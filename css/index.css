@@ -1,0 +1,271 @@
+:root {
+  --g: #03624c;
+  --w: #dadada;
+  --b: #333;
+  --r: #dadada;
+  --lg: #007b31;
+}
+
+@font-face {
+  font-family: "LPMQIsepMisbah";
+  src: url("../font/LPMQIsepMisbah.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", "sans-serif";
+  background-color: var(--w);
+  color: var(--b);
+  overflow-x: hidden;
+}
+
+.navbar {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 7%;
+  position: fixed;
+  background-color: var(--g);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+}
+
+.navbar .navbar-nav {
+  margin-left: 0%;
+}
+
+.navbar .navbar-nav a {
+  display: inline-block;
+  color: var(--w);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 6rem;
+  padding-top: 1.4rem;
+}
+
+.navbar .navbar-nav a::after {
+  content: "";
+  display: block;
+  padding-bottom: 0.1rem;
+  border-bottom: 0.4rem solid var(--w);
+  transform: scaleX(0);
+  transition: 0.2s linear;
+}
+.navbar h1 {
+  color: var(--w);
+  margin: 9px;
+  padding: 0.1rem;
+  font-size: 2.4rem;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.8);
+}
+
+.navbar .navbar-menu img {
+  width: 2rem;
+  padding-top: 0.9rem;
+}
+
+#menu-icon {
+  display: none;
+}
+
+.hero {
+  display: block;
+  background-image: url("../images/white_paper.jpg");
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.welcome {
+  display: flex;
+  padding: 12% 9%;
+  justify-content: space-between;
+  margin: 0% 5%;
+}
+
+.welcome .balancer {
+  display: flex;
+  margin-right: 3%;
+}
+
+.balancer img {
+  height: 38rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 60%;
+}
+
+.title_up {
+  font-size: 3.2rem;
+  width: 53rem;
+  padding-top: 4rem;
+}
+
+.title_down {
+  padding-top: 1rem;
+  width: 45rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.welcome-button {
+  display: flex;
+  margin: 3rem 3rem;
+}
+
+.welcome-button .hitung,
+.welcome-button .belajar {
+  position: relative;
+  margin: 0px 4px;
+}
+
+.welcome .hitung a {
+  color: var(--w);
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 1.2rem;
+  background-color: var(--g);
+  padding: 1rem 2rem;
+  max-height: 4.3rem;
+}
+
+.welcome .hitung a:hover {
+  font-size: 1.6rem;
+  transition: 0.25s;
+  transition-delay: 0.05;
+}
+
+.welcome .belajar a {
+  color: var(--g);
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 1.2rem;
+  border-color: var(--g);
+  background-color: transparent;
+  border: 2px solid var(--g);
+  padding: 0.8rem 2rem;
+  max-height: 4.3rem;
+}
+
+.welcome .belajar a:hover {
+  font-size: 1.6rem;
+  transition: 0.25s;
+  transition-delay: 0.05s;
+}
+
+.footer_hero {
+  display: block;
+  top: 100vw;
+  box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+}
+
+.footer_hero img {
+  height: 10vh;
+  width: 100vw;
+}
+
+.content {
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+  background-image: url(../images/silver_paper.jpeg);
+  background-size: cover;
+}
+
+.ayat {
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem;
+}
+
+.content_ayat .ca1,
+.ca2 {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/white_paper.jpg");
+  background-repeat: none;
+  background-position: center;
+  text-align: center;
+  font-family: "LPMQIsepMisbah", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  background-size: cover;
+  padding: 3rem;
+  border-radius: 20px;
+  border: 4px dashed var(--g);
+  margin: 2rem;
+}
+
+.content_ayat .ca1 p,
+.ca2 p {
+  line-height: 1.2;
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  padding: 1rem;
+}
+
+.hadits {
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem;
+}
+
+.content_hadits .ch1,
+.ch2 {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/white_paper.jpg");
+  background-repeat: none;
+  background-position: center;
+  text-align: center;
+  font-family: "LPMQIsepMisbah", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  background-size: cover;
+  padding: 3rem;
+  border-radius: 20px;
+  border: 4px dashed var(--g);
+  margin: 2rem;
+}
+
+.content_hadits .ch1 p,
+.ch2 p {
+  line-height: 1.2;
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  padding: 1rem;
+}
+
+.content_hadits .ch1 span,
+.ch2 span {
+  color: var(--lg);
+}

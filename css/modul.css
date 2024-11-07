@@ -1,0 +1,287 @@
+:root {
+  --g: #03624c;
+  --w: #dadada;
+  --b: #333;
+  --r: #dadada;
+  --lg: #007b31;
+  --gy: #b9ff50;
+  --lg: #a2f818;
+}
+@font-face {
+  font-family: "LPMQIsepMisbah";
+  src: url("../font/LPMQIsepMisbah.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+body {
+  font-family: "Poppins", "sans-serif";
+  background-color: var(--w);
+  color: var(--b);
+  overflow-x: hidden;
+}
+.navbar {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 3%;
+  position: fixed;
+  background-color: var(--g);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 9999;
+  box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+}
+.navbar a {
+  left: 1%;
+  top: 10%;
+  position: absolute;
+  margin-top: 5px;
+}
+.navbar a img {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar h3 {
+  display: flex;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--w);
+}
+.navbar-side {
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  display: grid;
+  right: 0;
+  background-color: var(--g);
+  z-index: 99;
+}
+.navbar-side .title-modul {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 6%;
+  max-height: 1.7rem;
+  width: 100%;
+  padding-bottom: 3.5rem;
+  border-bottom: solid var(--w) 2px;
+}
+.navbar-side .title-modul h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--w);
+  padding-top: 5px;
+}
+.navbar-side .list-modul {
+  display: flex;
+  position: absolute;
+  top: 12%;
+  width: 100%;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  margin: 1rem 1.5rem;
+}
+.navbar-side .list-modul a {
+  padding: 1rem;
+  color: var(--w);
+  font-family: "Poppins";
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.navbar-side .list-modul .bab {
+  transition: 0.5s;
+}
+.navbar-side .list-modul .bab:hover {
+  transform: translateZ(100px);
+  font-weight: 700;
+  color: var(--gy);
+}
+
+.navbar-side .list-modul .bab:hover + * {
+  transform: translateZ(100px) rotateX(-30deg);
+}
+.navbar-side .list-modul .bab:hover + * + * {
+  transform: translateZ(70px) rotateX(-15deg);
+}
+.navbar-side .list-modul .bab:has(+ *:hover) {
+  transform: translateZ(100px) rotateX(30deg);
+}
+
+.navbar-side .lis .modul {
+  width: 80%;
+  height: 100%;
+  position: fixed;
+  background-color: var(--w);
+}
+
+.modul {
+  position: absolute;
+  left: 2%;
+  margin-top: 64px;
+  width: 76%;
+}
+
+/* display bab */
+
+#bab-1,
+#bab-2 {
+  overflow-y: scroll;
+  width: 103%;
+  padding-bottom: 30px;
+  display: ;
+}
+
+#bab-4,
+#bab-5,
+#bab-6,
+#bab-7,
+#bab-8,
+#bab-9,
+#bab-10 {
+  display: ;
+}
+
+#header-bab {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.materi {
+  padding-top: 2rem;
+}
+
+.materi h2 {
+  font-weight: 700;
+}
+
+.materi h3 {
+  font-weight: 400;
+}
+
+.definisi td {
+  padding: 5px;
+}
+
+.definisi span {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.dalil h2 {
+  padding-top: 5px;
+}
+
+.dalil .content-ayat {
+  padding: 5px;
+}
+
+.content-ayat h1 {
+  font-family: "LPMQIsepMisbah", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 5px;
+}
+
+.content-ayat h3 {
+  text-align: center;
+  padding: 5px;
+}
+
+.content-hadits h1 {
+  font-family: "LPMQIsepMisbah", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 5px;
+}
+
+.content-hadits h3 {
+  text-align: center;
+  padding: 5px;
+}
+
+.tirkah {
+  padding-top: 2rem;
+}
+
+.tabel-tirkah td {
+  padding: 5px;
+}
+
+.hak {
+  padding-top: 2rem;
+}
+
+.hak h3 {
+  padding: 5px;
+}
+
+.list-hak {
+  font-size: 1.15rem;
+  padding: 5px;
+  margin-left: 15px;
+}
+
+.list-hak li {
+  padding: 2px;
+}
+
+/* bab-2 */
+
+.rukun-warisan,
+.syarat-warisan,
+.sebab-warisan,
+.penghalang-warisan,
+.jenis-warisan {
+  padding-top: 2rem;
+}
+
+.rukun-warisan li,
+.syarat-warisan li {
+  padding: 5px;
+  font-size: 1.15rem;
+  margin-left: 30px;
+}
+
+.rukun-warisan i {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.sebab-warisan li,
+.penghalang-warisan li,
+.jenis-warisan li {
+  padding: 5px;
+  margin-left: 30px;
+}
+
+.sebab-warisan li span,
+.penghalang-warisan li span,
+.jenis-warisan li span {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+#bab-3 {
+  overflow-y: scroll;
+  width: 103%;
+  padding-bottom: 30px;
+}

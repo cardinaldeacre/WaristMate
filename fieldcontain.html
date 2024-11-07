@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>fieldcontain</title>
+    <style>
+      body {
+        font-family: "Poppins";
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="legacy">
+      <div class="sheet">
+        <div class="data-awal">
+          <div data-role="fieldcontain" class="kolom-tirkah">
+            <label class="h-tirkah">TIRKAH (Harta yang diwariskan)</label>
+            <div><input type="text" name="i-24" id="i-24" /></div>
+          </div>
+
+          <div data-role="fieldcontain" class="kolom-muwarrits">
+            <label class="h-muwarrits">MUWARRITS</label>
+            <fieldset data-role="controlgroup" id="muwarrits">
+              <div class="ui-radio">
+                <input
+                  type="radio"
+                  data-highlight="true"
+                  name="muwarrits"
+                  id="pria"
+                  value="laki-laki"
+                  data-cacheval="true"
+                />
+                <label for="pria">LAKI-LAKI</label>
+              </div>
+              <div class="ui-radio">
+                <input
+                  type="radio"
+                  data-highlight="true"
+                  name="muwarrits"
+                  id="wanita"
+                  value="perempuan"
+                  data-cacheval="true"
+                />
+                <label for="wanita">WANITA</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div data-role="fieldcontain" class="kolom-hutang">
+            <label class="h-hutang">HUTANG</label>
+            <div><input type="text" name="i-26" id="i-26" /></div>
+          </div>
+
+          <div data-role="fieldcontain" class="kolom-wasiat">
+            <label class="h-wasiat">WASIAT (Maksimal 1/3 Harta Warisan)</label>
+            <div><input type="text" name="1-27" id="i-27" /></div>
+          </div>
+
+          <div data-role="fieldcontain" class="kolom-tajhiz">
+            <label class="h-tajhiz">TAJHIZ (Pengurusan Jenazah)</label>
+            <div><input type="text" name="i-28" id="i-28" /></div>
+          </div>
+
+          <div data-role="fieldcontain" class="kolom-irts"></div>
+          <label class="h-irts">AL-IRTS (Harta siap dibagi)</label>
+          <div>
+            <input
+              type="text"
+              name="i-30"
+              id="i-30"
+              value="Rp.0"
+              readonly="true"
+            />
+          </div>
+        </div>
+      </div>
+      <table class="tirkah">
+        <tr>         
+          <td><h3>Bahasa</h3></td>
+          <td><h3>:</h3></td>
+          <td><h3>sumber kata dari <i>Taraka</i>, berarti yang ditinggalkan</h3></td>
+        </tr>
+        <tr>
+          <td><h3>Istilah</h3></td>
+          <td><h3>:</h3></td>
+          <td><h3>apa yang ditinggalkan oleh mayat baik berupa uang maupun barang</h3></td>
+        </tr>
+        <tr>
+          <td><h3>Hukum Pelaksanaannya</h3></td>
+          <td><h3>:</h3></td>
+          <td>
+            <h3><i>Wajib</i>, Ketika membagi harta warisan</h3>
+          </td>
+        </tr>
+      </table>
+    </section>
+  </body>
+</html>

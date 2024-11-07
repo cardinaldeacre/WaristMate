@@ -1,0 +1,82 @@
+:root {
+  --g: #03624c;
+  --w: #dadada;
+  --b: #333;
+  --r: #dadada;
+  --lg: #007b31;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", "sans-serif";
+  background-color: var(--w);
+  color: var(--b);
+  overflow-x: hidden;
+}
+
+.navbar-main {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 3%;
+  position: fixed;
+  background-color: var(--g);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 9999;
+  box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+}
+
+.return-button {
+  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 1%;
+  top: 10%;
+}
+
+.next-button {
+  position: absolute;
+  right: 1%;
+  margin-top: 5px;
+  max-width: 30px;
+  height: 30px;
+  top: 10%;
+}
+
+.main-title {
+  color: var(--w);
+  position: absolute;
+  left: 7%;
+  top: 8%;
+}
+
+.sub-title {
+  display: none;
+  top: 3%;
+  position: absolute;
+  left: 50%;
+}
+
+.page-label {
+  position: absolute;
+  right: 7%;
+  padding: 0px 20px;
+  border-radius: 1rem;
+  border: 2px solid var(--w);
+  color: var(--w);
+  top: 22%;
+}

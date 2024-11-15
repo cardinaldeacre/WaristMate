@@ -317,3 +317,200 @@ body {
   font-weight: 400;
   padding: 3px;
 }
+
+/* bab 4 */
+
+.list-furudh {
+  padding: 5px;
+}
+
+.list-furudh h3 {
+  font-weight: 400;
+}
+
+.list-furudh li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-furudh ul .list-furudh ul li ol li {
+  padding: 3px;
+}
+
+.list-furudh h4 {
+  font-weight: 400;
+  padding: 3px;
+}
+
+/* bab 5 */
+
+.list-tashib {
+  padding: 5px;
+}
+
+.list-tashib h3 {
+  font-weight: 400;
+}
+
+.list-tashib li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-tashib ul .list-tashib ul li ol li {
+  padding: 3px;
+}
+
+.list-tashib h4 {
+  font-weight: 400;
+  padding: 3px;
+}
+
+/* bab 6 */
+
+.list-hujub {
+  padding: 5px;
+}
+
+.list-hujub h3 {
+  font-weight: 400;
+}
+
+.list-hujub li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-hujub ul .list-hujub ul li ol li {
+  padding: 3px;
+}
+
+.list-hujub h4 {
+  font-weight: 400;
+  padding: 3px;
+}
+
+/* bab 7 */
+
+.list-distribusi {
+  padding: 5px;
+}
+
+.list-distribusi h3 {
+  font-weight: 400;
+}
+
+.list-distribusi li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-distribusi ul .list-distribusi ul li ol li {
+  padding: 3px;
+}
+
+.list-distribusi h4 {
+  font-weight: 400;
+  padding: 3px;
+}
+
+/* bab 8 */
+
+.list-aul {
+  padding: 5px;
+}
+
+.list-aul h3 {
+  font-weight: 400;
+}
+
+.list-aul li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-aul ul .list-aul ul li ol li {
+  padding: 3px;
+}
+
+.list-aul h4 {
+  font-weight: 400;
+  padding: 3px;
+}
+
+.tabel-aul {
+  border: 2px solid var(--b);
+  width: 50%;
+}
+
+/* bab 9 */
+
+.list-koreksi {
+  padding: 5px;
+}
+
+.list-koreksi h3 {
+  font-weight: 400;
+}
+
+.list-koreksi li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-koreksi ul .list-koreksi ul li ol li {
+  padding: 3px;
+}
+
+.list-koreksi h4 {
+  font-weight: 400;
+  padding: 3px;
+}
+
+/* bab 10 */
+
+.list-radd {
+  padding: 5px;
+}
+
+.list-radd h3 {
+  font-weight: 400;
+}
+
+.list-radd li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-radd ul .list-radd ul li ol li {
+  padding: 3px;
+}
+
+.list-radd h4 {
+  font-weight: 400;
+  padding: 3px;
+}
+
+/* bab 10 */
+
+.list-terkenal {
+  padding: 5px;
+}
+
+.list-terkenal h3 {
+  font-weight: 400;
+}
+
+.list-terkenal li {
+  margin-left: 1rem;
+  font-weight: 400;
+}
+
+.list-terkenal ul .list-terkenal ul li ol li {
+  padding: 3px;
+}
+
+.list-terkenal h4 {
+  font-weight: 400;
+  padding: 3px;
+}

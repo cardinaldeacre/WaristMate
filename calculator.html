@@ -16,52 +16,109 @@
   <body>
     <!-- bismillahirrohmanirrohim -->
     <!-- navbar -->
-    <div class="navbar-main">
-      <a href="index.html">
-        <img class="return-button" src="images/back.png" alt="" />
-      </a>
-      <h1 class="main-title">KALKULATOR <span>WARIS</span></h1>
-      <div class="sub-title">
-        <h2 class="sub-title-1">Jumlah Harta</h2>
-        <h2 class="sub-title-2">2</h2>
-        <h2 class="sub-title-3">3</h2>
-        <h2 class="sub-title-5">4</h2>
-        <h2 class="sub-title-6">5</h2>
-        <h2 class="sub-title-4">6</h2>
-        <h2 class="sub-title-7">7</h2>
-        <h2 class="sub-title-8">8</h2>
-        <h2 class="sub-title-9">9</h2>
-      </div>
-      <div class="page-label">
-        <h3><span id="page-ke">1</span> dari 9</h3>
-      </div>
-      <img class="next-button" src="images/next.png" alt="" />
-    </div>
     <section id="legacy">
-      <div class="sheet">
-        <div class="data-awal">
-          <div data-role="fieldcontain" class="kolom-tirkah">
-            <label class="h-tirkah">Tirkah (Harta yang diwariskan)</label>
-            <div class="i-"><input type="text" name="i-24" id="i-24" /></div>
-          </div>
+      <div class="navbar-main">
+        <a href="index.html">
+          <img class="return-button" src="images/back.png" alt="" />
+        </a>
+        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+        <div class="sub-title">
+          <h3 class="sub-title-1">Jumlah Harta</h3>
         </div>
+        <div class="page-label">
+          <h4><span id="page-ke">1</span> dari 9</h4>
+        </div>
+        <a href="fieldcontain.html">
+          <img class="next-button" src="images/next.png" alt="" />
+        </a>
+      </div>
+      <div class="sheet">
+        <table class="data-awal">
+          <tr data-role="fieldcontain" class="kolom-tirkah">
+            <td>
+              <label class="h-tirkah">TIRKAH (Harta yang diwariskan)</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                name="i-24"
+                id="nTirkah"
+                class="numeric"
+                data-highlight="true"
+              />
+            </td>
+          </tr>
+
+          <tr data-role="fieldcontain" class="kolom-muwarrits">
+            <td><label class="h-muwarrits">MUWARRITS</label></td>
+            <td>
+              <fieldset data-role="controlgroup" id="muwarrits">
+                <div class="ui-radio">
+                  <input
+                    type="radio"
+                    data-highlight="true"
+                    name="muwarrits"
+                    id="pria"
+                    value="laki-laki"
+                    data-cacheval="true"
+                  />
+                  <label for="pria">LAKI-LAKI</label>
+                </div>
+                <div class="ui-radio">
+                  <input
+                    type="radio"
+                    data-highlight="true"
+                    name="muwarrits"
+                    id="wanita"
+                    value="perempuan"
+                    data-cacheval="true"
+                  />
+                  <label for="wanita">WANITA</label>
+                </div>
+              </fieldset>
+            </td>
+          </tr>
+
+          <tr data-role="fieldcontain" class="kolom-hutang">
+            <td><label class="h-hutang">HUTANG</label></td>
+            <td>
+              <div><input type="text" name="i-26" id="nHutang" /></div>
+            </td>
+          </tr>
+
+          <tr data-role="fieldcontain" class="kolom-wasiat">
+            <td>
+              <label class="h-wasiat"
+                >WASIAT (Maksimal 1/3 Harta Warisan)</label
+              >
+            </td>
+            <td>
+              <div><input type="text" name="1-27" id="nWasiat" /></div>
+            </td>
+          </tr>
+
+          <tr data-role="fieldcontain" class="kolom-tajhiz">
+            <td><label class="h-tajhiz">TAJHIZ (Pengurusan Jenazah)</label></td>
+            <td>
+              <div><input type="text" name="i-28" id="nTajhiz" /></div>
+            </td>
+          </tr>
+
+          <tr data-role="fieldcontain" class="kolom-irts">
+            <td><label class="h-irts">AL-IRTS (Harta siap dibagi)</label></td>
+            <td>
+              <input
+                type="text"
+                name="i-30"
+                id="nIrst"
+                value="Rp.0"
+                readonly="true"
+              />
+            </td>
+          </tr>
+        </table>
       </div>
     </section>
-
-    <section data-role="page" class="penghalang-1"></section>
-
-    <section data-role="page" class="penghalang-2"></section>
-
-    <section data-role="page" class="penghalang-3"></section>
-
-    <section data-role="page" class="penghalang-4"></section>
-
-    <section data-role="page" class="penghalang-5"></section>
-
-    <section data-role="page" class="penghalang-6"></section>
-
-    <section data-role="page" class="penghalang-7"></section>
-
-    <section data-role="page" class="penghalang-8"></section>
+    <script src="js/calculator.js"></script>
   </body>
 </html>

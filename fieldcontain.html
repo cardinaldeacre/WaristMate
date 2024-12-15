@@ -3,87 +3,802 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/calculator.css" />
+    <!-- Google Font Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/">
-    <title>fieldcontain</title>
-    <style>
-      body {
-        font-family: "Poppins";
-        font-weight: 600;
-      }
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <title>Kalkulator Waris</title>
   </head>
-  <body>
-    <section id="legacy">
-      <div class="sheet">
-        <div class="data-awal">
-          <div data-role="fieldcontain" class="kolom-tirkah">
-            <label class="h-tirkah">TIRKAH (Harta yang diwariskan)</label>
-            <div><input type="text" name="i-24" id="i-24" /></div>
-          </div>
-
-          <div data-role="fieldcontain" class="kolom-muwarrits">
-            <label class="h-muwarrits">MUWARRITS</label>
-            <fieldset data-role="controlgroup" id="muwarrits">
-              <div class="ui-radio">
-                <input
-                  type="radio"
-                  data-highlight="true"
-                  name="muwarrits"
-                  id="pria"
-                  value="laki-laki"
-                  data-cacheval="true"
-                />
-                <label for="pria">LAKI-LAKI</label>
-              </div>
-              <div class="ui-radio">
-                <input
-                  type="radio"
-                  data-highlight="true"
-                  name="muwarrits"
-                  id="wanita"
-                  value="perempuan"
-                  data-cacheval="true"
-                />
-                <label for="wanita">WANITA</label>
-              </div>
-            </fieldset>
-          </div>
-
-          <div data-role="fieldcontain" class="kolom-hutang">
-            <label class="h-hutang">HUTANG</label>
-            <div><input type="text" name="i-26" id="i-26" /></div>
-          </div>
-
-          <div data-role="fieldcontain" class="kolom-wasiat">
-            <label class="h-wasiat">WASIAT (Maksimal 1/3 Harta Warisan)</label>
-            <div><input type="text" name="1-27" id="i-27" /></div>
-          </div>
-
-          <div data-role="fieldcontain" class="kolom-tajhiz">
-            <label class="h-tajhiz">TAJHIZ (Pengurusan Jenazah)</label>
-            <div><input type="text" name="i-28" id="i-28" /></div>
-          </div>
-
-          <div data-role="fieldcontain" class="kolom-irts"></div>
-          <label class="h-irts">AL-IRTS (Harta siap dibagi)</label>
-          <div>
+  <body class="ui-mobile-viewport ui-overlay-b">
+    <div
+      data-role="page"
+      data-theme="b"
+      data-url="/apps/web/?host=iwaris.or.id"
+      tabindex="0"
+      class="ui-page ui-page-theme-b ui-page-header-fixed ui-page-footer-fixed ui-page-active"
+      style="padding-top: 40px; padding-bottom: 36px; min-height: 836px"
+    >
+      <div
+        data-role="header"
+        data-position="fixed"
+        data-theme="b"
+        role="banner"
+        class="ui-header ui-bar-b ui-header-fixed slidedown"
+        style=""
+      >
+        <a
+          data-theme="c"
+          class="ui-btn-right ui-link ui-btn ui-btn-c ui-shadow ui-corner-all"
+          data-role="button"
+          role="button"
+          >1 dari 9</a
+        >
+        <h1 class="ui-title" role="heading" aria-level="1">Jumlah Harta</h1>
+      </div>
+      <div data-role="content" class="ui-content" role="main">
+        <div data-role="fieldcontain" class="field ui-field-contain" type="1" req="1" id="div20">
+          <label class="field-label field_totalharta">Tirkah (Harta <i>muwarrits</i>)</label>
+          <br />
+          <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
             <input
-              type="text"
-              name="i-30"
-              id="i-30"
-              value="Rp.0"
+              name="f20"
+              type="number"
+              id="NilaiHartaKotor"
+              class="numeric"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
+            />
+          </div>
+        </div>
+        <div class="field ui-field-contain" type="3" req="0" data-role="fieldcontain" id="field_pewaris">
+          <label for="pewaris">Muwarrits (Yang meninggal)</label>
+          <fieldset
+            data-role="controlgroup"
+            id="pewaris"
+            class="ui-controlgroup ui-controlgroup-vertical ui-corner-all"
+          >
+            <div class="ui-controlgroup-controls">
+              <div class="ui-radio">
+                <label for="pria" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-radio-off ui-first-child"
+                  >Laki-laki</label
+                ><input
+                  type="radio"
+                  data-highlight="true"
+                  data-theme="a"
+                  data-track-theme="a"
+                  name="pewaris"
+                  id="pria"
+                  value="Laki-laki"
+                />
+              </div>
+
+              <div class="ui-radio">
+                <label for="wanita" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-radio-off ui-last-child"
+                  >Perempuan</label
+                ><input
+                  type="radio"
+                  data-highlight="true"
+                  data-theme="a"
+                  data-track-theme="a"
+                  name="pewaris"
+                  id="wanita"
+                  value="Perempuan"
+                />
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div
+          data-role="fieldcontain"
+          class="field ui-field-contain"
+          type="1"
+          req="0"
+          id="field_gonogini"
+          style="display: none"
+        >
+          <label class="field-label">Bait Zaujiah (Harta bersama)</label>
+          <br />
+          <fieldset
+            data-role="controlgroup"
+            id="gonogini"
+            class="ui-controlgroup ui-controlgroup-vertical ui-corner-all"
+          >
+            <div class="ui-controlgroup-controls">
+              <div class="ui-radio">
+                <label for="50" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-radio-off ui-first-child"
+                  >50%
+                  <span style="font-size: 12px"
+                    >(Selama mendampingi suami, istri ikut bekerja/membantu suami)</span
+                  ></label
+                ><input
+                  type="radio"
+                  data-highlight="true"
+                  data-theme="a"
+                  data-track-theme="a"
+                  name="gonogini"
+                  id="50"
+                  value="50"
+                />
+              </div>
+
+              <div class="ui-radio">
+                <label for="30" class="ui-btn ui-corner-all ui-btn-a ui-btn-icon-left ui-radio-off ui-last-child"
+                  >30% <span style="font-size: 12px">(Istri tidak ikut membantu bekerja)</span></label
+                ><input
+                  type="radio"
+                  data-highlight="true"
+                  data-theme="a"
+                  data-track-theme="a"
+                  name="gonogini"
+                  id="30"
+                  value="30"
+                />
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div
+          data-role="fieldcontain"
+          class="field ui-field-contain"
+          type="1"
+          req="1"
+          id="field_tirkah"
+          style="display: none"
+        >
+          <label class="field-label">Tirkah (Harta <i>muwarrits</i>)</label>
+          <br />
+          <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+            <input
+              name="f20"
+              type="number"
+              id="NilaiHarta"
+              class="numeric"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
               readonly="true"
             />
           </div>
         </div>
+        <div data-role="fieldcontain" class="field ui-field-contain" type="1" req="0" id="div28">
+          <label class="field-label">Hutang</label>
+          <br />
+          <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+            <input
+              name="f28"
+              type="number"
+              id="NilaiHutang"
+              class="numeric"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
+            />
+          </div>
+        </div>
+        <div data-role="fieldcontain" class="field ui-field-contain" type="1" req="0" id="div29">
+          <label class="field-label">Wasiat (maksimal 1/3 Harta Warits)</label>
+          <br />
+          <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+            <input
+              name="f29"
+              type="number"
+              id="NilaiWasiat"
+              class="numeric"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
+            />
+          </div>
+        </div>
+        <div data-role="fieldcontain" class="field ui-field-contain" type="1" req="0" id="div29">
+          <label class="field-label">Tajhiz (pengurusan) jenazah</label>
+          <br />
+          <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+            <input
+              name="f29"
+              type="number"
+              id="NilaiMakam"
+              class="numeric"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
+            />
+          </div>
+        </div>
+        <div data-role="fieldcontain" class="field ui-field-contain" type="1" req="0" id="div29">
+          <label class="field-label">Al Irts (Harta siap dibagi)</label>
+          <br />
+          <div class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset">
+            <input
+              type="text"
+              id="hasil_harta"
+              class="numeric"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
+              value="Rp.0"
+              readonly="true"
+              style="color: rgb(0, 0, 0); --darkreader-inline-color: #dcdbd8"
+              data-darkreader-inline-color=""
+            />
+          </div>
+        </div>
       </div>
-    </section>
-    <script src="js/fieldcontain.js"></script>
+      <div
+        data-role="footer"
+        data-position="fixed"
+        role="contentinfo"
+        class="ui-footer ui-bar-inherit ui-footer-fixed slideup"
+        style=""
+      >
+        <div data-role="navbar" data-iconpos="top" data-theme="a" class="ui-navbar" role="navigation">
+          <ul class="ui-grid-solo">
+            <li class="ui-block-a">
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next" class="ui-link ui-btn">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">2 dari 9</a>
+        <h1>Data Warits Keluarga</h1>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain" data-theme="a">
+          <fieldset data-role="controlgroup">
+            <input type="checkbox" name="cb_ayah" id="cb_ayah" value="1" data-theme="a" class="custom" />
+            <label for="cb_ayah">Ayah (<span id="saham_ayah">0</span>)</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain" data-theme="a">
+          <fieldset data-role="controlgroup">
+            <input type="checkbox" name="cb_ibu" id="cb_ibu" data-theme="a" class="custom" />
+            <label for="cb_ibu">Ibu (<span id="saham_ibu">0</span>)</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain" data-theme="a" id="field_suami">
+          <fieldset data-role="controlgroup">
+            <input type="checkbox" name="cb_suami" id="cb_suami" data-theme="a" class="custom" />
+            <label for="cb_suami">Suami (<span id="saham_suami">0</span>)</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain" id="field_istri" class="field" type="8" req="0">
+          <label class="field-label">Istri (<span id="saham_istri">0</span>)</label>
+          <br />
+          <input
+            id="nilai_istri"
+            name="nilai_istri"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="4"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="div37">
+          <label class="field-label">Anak laki-laki (<span id="saham_anaklaki">0</span>)</label>
+          <br />
+          <input
+            id="nilai_anaklaki"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="div38">
+          <label class="field-label">Anak perempuan (<span id="saham_anakperempuan">0</span>)</label>
+          <br />
+          <input
+            id="nilai_anakperempuan"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_1" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">3 dari 9</a>
+        <h1>Anak Cucu</h1>
+      </div>
+      <div data-role="content">
+        <div id="field_cucu">
+          <div data-role="fieldcontain" class="field" type="8" req="0" id="field_cuculaki">
+            <label class="field-label">Cucu laki-laki (dari Anak laki-laki) (<span id="saham_cuculaki">0</span>)</label>
+            <br />
+            <input
+              id="nilai_cuculaki"
+              type="range"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
+              min="0"
+              max="20"
+              value="0"
+            />
+          </div>
+          <div data-role="fieldcontain" class="field" type="8" req="0" id="field_cucuperempuan">
+            <label class="field-label"
+              >Cucu perempuan (dari Anak laki-laki) (<span id="saham_cucuperempuan">0</span>)</label
+            >
+            <br />
+            <input
+              id="nilai_cucuperempuan"
+              type="range"
+              data-highlight="true"
+              data-theme="a"
+              data-track-theme="a"
+              min="0"
+              max="20"
+              value="0"
+            />
+          </div>
+        </div>
+        <div id="info_penghalang_1" style="display: none">
+          <b>Cucu Laki &amp; Cucu Perempuan</b> dilewati karena sudah <b>terhalang</b> oleh <b>Anak Laki-laki</b>.
+        </div>
+        <div id="info_penghalang_1a" style="display: none">
+          <b>Cucu Perempuan</b> dilewati karena sudah <b>terhalang</b> oleh <b>2 Anak Perempuan</b> atau lebih.
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_2" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">4 dari 9</a>
+        <h1>Kakek &amp; Nenek</h1>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain" data-theme="a" id="field_kakek">
+          <fieldset data-role="controlgroup">
+            <input type="checkbox" name="cb_kakek" id="cb_kakek" value="1" data-theme="a" class="custom" />
+            <label for="cb_kakek">Kakek (dari Ayah) (<span id="saham_kakek">0</span>)</label>
+          </fieldset>
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_nenekayah">
+          <label class="field-label">Nenek (dari Ayah) (<span id="saham_nenekayah">0</span>)</label>
+          <br />
+          <input
+            id="nilai_nenekayah"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="4"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_nenekibu">
+          <label class="field-label">Nenek (dari Ibu) (<span id="saham_nenekibu">0</span>)</label>
+          <br />
+          <input
+            id="nilai_nenekibu"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="4"
+            value="0"
+          />
+        </div>
+        <div id="info_penghalang_2" style="display: none">
+          <b>Kakek &amp; Nenek</b> dilewati karena sudah <b>terhalang</b> oleh <b>Ayah</b> &amp; <b>Ibu</b>.
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_3" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">5 dari 9</a>
+        <h1>Saudara Kandung</h1>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_saudaralakikandung">
+          <label class="field-label">Saudara laki-laki kandung (<span id="saham_saudaralakikandung">0</span>)</label>
+          <br />
+          <input
+            id="nilai_saudaralakikandung"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_saudaraperempuankandung">
+          <label class="field-label"
+            >Saudara perempuan kandung (<span id="saham_saudaraperempuankandung">0</span>)</label
+          >
+          <br />
+          <input
+            id="nilai_saudaraperempuankandung"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div id="info_penghalang_3" style="display: none">
+          <b>Saudara Laki-laki &amp; Perempuan Kandung</b> dilewati karena sudah <b>terhalang</b> oleh <b>Ayah</b>.
+        </div>
+        <div id="info_penghalang_a3" style="display: none">
+          <b>Saudara Laki-laki Sekandung</b> dilewati karena sudah <b>terhalang</b> oleh <b>Anak Perempuan</b> atau
+          <b>Cucu Perempuan</b> bersama <b>Saudara Perempuan Kandung</b> (<i>Ashobah Ma'al Ghoiri</i>)
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_4" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">6 dari 9</a>
+        <h1>Saudara Tiri</h1>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_saudaralakiseayah">
+          <label class="field-label">Saudara laki-laki seAyah (<span id="saham_saudaralakiseayah">0</span>)</label>
+          <br />
+          <input
+            id="nilai_saudaralakiseayah"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_saudaraperempuanseayah">
+          <label class="field-label">Saudara perempuan seAyah (<span id="saham_saudaraperempuanseayah">0</span>)</label>
+          <br />
+          <input
+            id="nilai_saudaraperempuanseayah"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_saudaralakiseibu">
+          <label class="field-label">Saudara laki-laki seIbu (<span id="saham_saudaralakiseibu">0</span>)</label>
+          <br />
+          <input
+            id="nilai_saudaralakiseibu"
+            type="range"
+            min="0"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_saudaraperempuanseibu">
+          <label class="field-label">Saudara perempuan seIbu (<span id="saham_saudaraperempuanseibu">0</span>)</label>
+          <br />
+          <input
+            id="nilai_saudaraperempuanseibu"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div id="info_penghalang_4" style="display: none">
+          <b>Saudara Laki-laki &amp; Perempuan seAyah</b> dilewati karena sudah <b>terhalang</b> oleh
+          <b>Saudara Laki-laki Kandung</b>.
+          <br />
+        </div>
+        <div id="info_penghalang_a4" style="display: none">
+          <b>Saudara Perempuan seAyah</b> dilewati karena sudah <b>terhalang</b> oleh <b>Saudara Perempuan Kandung</b>.
+          <br />
+        </div>
+        <div id="info_penghalang_c4" style="display: none">
+          <b>Saudara Laki-laki seAyah</b> dilewati karena sudah <b>terhalang</b> oleh <b>Anak Perempuan</b> atau
+          <b>Cucu Perempuan</b> bersama <b>Saudara Perempuan seAyah</b> (<i>Ashobah Ma'al Ghoiri</i>)
+          <br />
+        </div>
+        <div id="info_penghalang_b4" style="display: none">
+          <b>Saudara Laki-laki &amp; Perempuan seIbu</b> dilewati karena sudah <b>terhalang</b> oleh
+          <b>Anak Perempuan</b> atau <b>Cucu Perempuan</b> (dari anak Laki-laki).
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_5" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">7 dari 9</a>
+        <h1>Anak Saudara</h1>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="div41">
+          <label class="field-label"
+            >Anak laki-laki (dari saudara laki-laki Kandung) (<span id="saham_anaklakisaudarakandung">0</span>)</label
+          >
+          <br />
+          <input
+            id="nilai_anaklakisaudarakandung"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            name="41"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_anaklakisaudaraseayah">
+          <label class="field-label"
+            >Anak laki-laki (dari saudara laki-laki seAyah) (<span id="saham_anaklakisaudaraseayah">0</span>)</label
+          >
+          <br />
+          <input
+            id="nilai_anaklakisaudaraseayah"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            name="41"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_6" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">8 dari 9</a>
+        <h1>Paman</h1>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="div41">
+          <label class="field-label">Paman Kandung (dari Ayah) (<span id="saham_pamankandungayah">0</span>)</label>
+          <br />
+          <input
+            id="nilai_pamankandungayah"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            name="41"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_pamansekakekayah">
+          <label class="field-label">Paman Sekakek (dari Ayah) (<span id="saham_pamansekakekayah">0</span>)</label>
+          <br />
+          <input
+            id="nilai_pamansekakekayah"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            name="41"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_7" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a data-theme="c" class="ui-btn-right">9 dari 9</a>
+        <h1>Anak Paman</h1>
+      </div>
+      <div data-role="content">
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="div41">
+          <label class="field-label"
+            >Anak laki-laki paman Kandung (dari Ayah) (<span id="saham_anaklakipamankandung">0</span>)</label
+          >
+          <br />
+          <input
+            id="nilai_anaklakipamankandung"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            name="41"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" req="0" id="field_anaklakipamansekakek">
+          <label class="field-label"
+            >Anak laki-laki paman Sekakek (dari Ayah) (<span id="saham_anaklakipamansekakek">0</span>)</label
+          >
+          <br />
+          <input
+            id="nilai_anaklakipamansekakek"
+            type="range"
+            data-highlight="true"
+            data-theme="a"
+            data-track-theme="a"
+            name="41"
+            min="0"
+            max="50"
+            value="0"
+          />
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="back">KEMBALI</a>
+            </li>
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="next">LANJUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-role="page" data-theme="b" class="penghalang_8" data-url="/apps/web/?host=iwaris.or.id">
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id#" data-role="button" data-theme="c" id="reset"
+          >HITUNG ULANG</a
+        >
+        <h1>Hasil</h1>
+      </div>
+      <div data-role="content">
+        <h3>Sudah dapat diketahui hasilnya, karena ada penghalang dari ahli waris.</h3>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top" data-theme="a">
+          <ul class="showHitung">
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="reset">ULANG</a>
+            </li>
+            <li class="showHitung" style="display: none">
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="hitung">HITUNG</a>
+            </li>
+          </ul>
+          <ul class="showUlang">
+            <li>
+              <a href="https://www.iwaris.or.id/apps/web/?host=iwaris.or.id" id="reset">HITUNG ULANG</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      var partnerHTML = "";
+      var host = "iwaris.or.id";
+      var _0x5f34 = [
+        "\x68\x69\x64\x65",
+        "\x75\x6C\x20\x6C\x69\x2E\x73\x68\x6F\x77\x48\x69\x74\x75\x6E\x67",
+        "\x70\x61\x72\x74\x6E\x65\x72\x2E\x70\x68\x70\x3F\x68\x6F\x73\x74\x3D",
+        "\x67\x65\x74",
+      ];
+      $(_0x5f34[1])[_0x5f34[0]]();
+      jQuery[_0x5f34[3]](_0x5f34[2] + host, function (_0xee2bx1) {
+        partnerHTML = _0xee2bx1;
+      });
+    </script>
+    <script type="text/javascript" src="./JumlahHarta_files/js"></script>
+
+    <div class="ui-loader ui-corner-all ui-body-a ui-loader-default">
+      <span class="ui-icon-loading"></span>
+      <h1>loading</h1>
+    </div>
   </body>
 </html>

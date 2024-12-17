@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- jQuery Migrate 3.5.0 -->
     <script src="https://code.jquery.com/jquery-migrate-3.5.0.min.js"></script>
-    <script src="js/.js"></script>
+    <script src="js/calculator.js"></script>
     <title>Kalkulator Waris</title>
   </head>
   <body>
@@ -770,153 +770,156 @@
             <img id="img-return-button8" src="images/back-button.png" alt="" />
           </a>
         </div>
-        <table>
-          <tr>
-            <td class="hasil_atas">Harta yang Ditinggalkan</td>
-            <td id="total_tirkah"></td>
-          </tr>
-          <tr>
-            <td class="hasil_atas">Hutang yang Ditinggalkan</td>
-            <td id="total_hutang"></td>
-          </tr>
-          <tr>
-            <td class="hasil_atas">Wasiat yang Ditinggalkan</td>
-            <td id="total_"></td>
-          </tr>
-          <tr>
-            <td class="hasil_atas">Biaya mengurus jenazah</td>
-          </tr>
-          <tr>
-            <td class="hasil_atas">Sisa Warisan (<i>Al-Irts</i>)</td>
-            <td id="total_irts"></td>
-          </tr>
-        </table>
-        <table>
-          <thead>
+        <div class="kolom_final">
+          <table class="kolom_hasil">
             <tr>
-              <th>Pewaris</th>
-              <th>Bagian</th>
-              <th>Per-Orang</th>
+              <td class="hasil_atas">Harta yang Ditinggalkan</td>
+              <td id="total_tirkah">234</td>
             </tr>
-          </thead>
-          <tbody>
-            <tr id="kolom_ayah">
-              <td>Ayah</td>
-              <td id="bagian_ayah"></td>
-              <td id="hasil_ayah"></td>
+            <tr>
+              <td class="hasil_atas">Hutang yang Ditinggalkan</td>
+              <td id="total_hutang">324</td>
             </tr>
-            <tr id="kolom_ibu">
-              <td>Ibu</td>
-              <td id="bagian_ibu"></td>
-              <td id="hasil_ibu"></td>
+            <tr>
+              <td class="hasil_atas">Wasiat yang Ditinggalkan</td>
+              <td id="total_wasiat">43</td>
             </tr>
-            <tr id="kolom_kakek">
-              <td>Kakek</td>
-              <td id="bagian_kakek"></td>
-              <td id="hasil_kakek"></td>
+            <tr>
+              <td class="hasil_atas">Biaya mengurus jenazah</td>
+              <td id="total_tajhiz">345</td>
             </tr>
-            <tr id="kolom_nenekayah">
-              <td>Nenek dari pihak Ayah</td>
-              <td id="bagian_nenekayah"></td>
-              <td id="hasil_nenekayah"></td>
+            <tr>
+              <td class="hasil_atas">Sisa Warisan (<i>Al-Irts</i>)</td>
+              <td id="total_irts">65756</td>
             </tr>
-            <tr id="kolom_nenekibu">
-              <td>Nenek dari Pihak ibu</td>
-              <td id="bagian_nenekibu"></td>
-              <td id="hasil_nenekibu"></td>
-            </tr>
-            <tr id="kolom_suami">
-              <td>Suami</td>
-              <td id="bagian_suami"></td>
-              <td id="hasil_suami"></td>
-            </tr>
-            <tr id="kolom_istri">
-              <td>Istri</td>
-              <td id="bagian_istri"></td>
-              <td id="hasil_istri"></td>
-            </tr>
-            <tr id="kolom_anaklaki">
-              <td>Anak Laki-Laki</td>
-              <td id="bagian_anaklaki"></td>
-              <td id="hasil_anaklaki"></td>
-            </tr>
-            <tr id="kolom_anakperempuan">
-              <td>Anak Perempuan</td>
-              <td id="bagian_anakperempuan"></td>
-              <td id="hasil_anakperempuan"></td>
-            </tr>
-            <tr id="kolom_cuculaki">
-              <td>Cucu Laki-Laki</td>
-              <td id="bagian_cuculaki"></td>
-              <td id="hasil_cucuperempuan"></td>
-            </tr>
-            <tr id="kolom_cucuperempuan">
-              <td>Cucu Perempuan</td>
-              <td id="bagian_cucuperempuan"></td>
-              <td id="hasil_cucuperempuan"></td>
-            </tr>
-            <tr id="kolom_saudaralakikandung">
-              <td>Saudara Laki-Laki Kandung</td>
-              <td id="bagian_saudaralakikandung"></td>
-              <td id="hasil_saudaralakikandung"></td>
-            </tr>
-            <tr id="kolom_saudaraperempuankandung">
-              <td>Saudara Perempuan Kandung</td>
-              <td id="bagian_saudaraperempuankandung"></td>
-              <td id="hasil_saudaraperempuankandung"></td>
-            </tr>
-            <tr id="kolom_saudaralakiseayah">
-              <td>Saudara Laki-Laki Seayah</td>
-              <td id="bagian_saudaralakiseayah"></td>
-              <td id="hasil_saudaralakiseayah"></td>
-            </tr>
-            <tr id="kolom_saudaraperempuanseayah">
-              <td>Saudara Perempuan Seayah</td>
-              <td id="bagian_saudaraperempuanseayah"></td>
-              <td id="hasil_saudaraperempuanseayah"></td>
-            </tr>
-            <tr id="kolom_saudaralakiseibu">
-              <td>Saudara Laki-Laki Seibu</td>
-              <td id="bagian_saudaralakiseibu"></td>
-              <td id="hasil_saudaralakiseibu"></td>
-            </tr>
-            <tr id="kolom_saudaraperempuanseibu">
-              <td>Saudara Perempuan Seibu</td>
-              <td id="bagian_saudaraperempuanseibu"></td>
-              <td id="hasil_saudaraperempuanseibu"></td>
-            </tr>
-            <tr id="kolom_anaklakisaudarakandung">
-              <td>Putra dari Saudara Kandung</td>
-              <td id="bagian_anaklakisaudarakandung"></td>
-              <td id="hasil_anaklakisaudarakandung"></td>
-            </tr>
-            <tr id="kolom_anaklakisaudaraseayah">
-              <td>Putra dari Saudara Seayah</td>
-              <td id="bagian_anaklakisaudaraseayah"></td>
-              <td id="hasil_anaklakisaudaraseayah"></td>
-            </tr>
-            <tr id="kolom-pamankandung">
-              <td>Paman Sekandung</td>
-              <td id="bagian_pamansekandung"></td>
-              <td id="hasil_pamansekandung"></td>
-            </tr>
-            <tr id="kolom_pamanseayah">
-              <td>Paman seayah</td>
-              <td id="bagian_pamanseayah"></td>
-              <td id="hasil_pamanseayah"></td>
-            </tr>
-            <tr id="kolom_anaklakipamankandung">
-              <td>Putra dari Paman Sekandung</td>
-              <td id="bagian_anaklakipamansekandung"></td>
-              <td id="hasil_anaklakipamansekandung"></td>
-            </tr>
-            <tr id="kolom_anaklakipamanseayah">
-              <td>Putra dari Paman Seayah</td>
-              <td id="bagian_anaklakipamanseayah"></td>
-              <td id="hasil_anaklakipamanseayah"></td>
-            </tr>
-          </tbody>
-        </table>
+          </table>
+          <table class="kolom_main">
+            <thead>
+              <tr>
+                <th>Pewaris</th>
+                <th>Bagian</th>
+                <th>Per-Orang</th>
+              </tr>
+            </thead>
+            <tbody class="kolom_bagian">
+              <tr id="kolom_ayah" style="display: none;">
+                <td>Ayah</td>
+                <td id="bagian_ayah"></td>
+                <td id="hasil_ayah"></td>
+              </tr>
+              <tr id="kolom_ibu" style="display: none;">
+                <td>Ibu</td>
+                <td id="bagian_ibu"></td>
+                <td id="hasil_ibu"></td>
+              </tr>
+              <tr id="kolom_kakek" style="display: none;">
+                <td>Kakek</td>
+                <td id="bagian_kakek"></td>
+                <td id="hasil_kakek"></td>
+              </tr>
+              <tr id="kolom_nenekayah" style="display: none;">
+                <td>Nenek dari pihak Ayah</td>
+                <td id="bagian_nenekayah"></td>
+                <td id="hasil_nenekayah"></td>
+              </tr>
+              <tr id="kolom_nenekibu" style="display: none;">
+                <td>Nenek dari Pihak ibu</td>
+                <td id="bagian_nenekibu"></td>
+                <td id="hasil_nenekibu"></td>
+              </tr>
+              <tr id="kolom_suami" style="display: none;">
+                <td>Suami</td>
+                <td id="bagian_suami"></td>
+                <td id="hasil_suami"></td>
+              </tr>
+              <tr id="kolom_istri" style="display: none;">
+                <td>Istri</td>
+                <td id="bagian_istri"></td>
+                <td id="hasil_istri"></td>
+              </tr>
+              <tr id="kolom_anaklaki" style="display: none;">
+                <td>Anak Laki-Laki</td>
+                <td id="bagian_anaklaki"></td>
+                <td id="hasil_anaklaki"></td>
+              </tr>
+              <tr id="kolom_anakperempuan" style="display: none;">
+                <td>Anak Perempuan</td>
+                <td id="bagian_anakperempuan"></td>
+                <td id="hasil_anakperempuan"></td>
+              </tr>
+              <tr id="kolom_cuculaki" style="display: none;">
+                <td>Cucu Laki-Laki</td>
+                <td id="bagian_cuculaki"></td>
+                <td id="hasil_cucuperempuan"></td>
+              </tr>
+              <tr id="kolom_cucuperempuan" style="display: none;">
+                <td>Cucu Perempuan</td>
+                <td id="bagian_cucuperempuan"></td>
+                <td id="hasil_cucuperempuan"></td>
+              </tr>
+              <tr id="kolom_saudaralakikandung"style="display: none;">
+                <td>Saudara Laki-Laki Kandung</td>
+                <td id="bagian_saudaralakikandung"></td>
+                <td id="hasil_saudaralakikandung"></td>
+              </tr>
+              <tr id="kolom_saudaraperempuankandung" style="display: none;">
+                <td>Saudara Perempuan Kandung</td>
+                <td id="bagian_saudaraperempuankandung"></td>
+                <td id="hasil_saudaraperempuankandung"></td>
+              </tr>
+              <tr id="kolom_saudaralakiseayah" style="display: none;">
+                <td>Saudara Laki-Laki Seayah</td>
+                <td id="bagian_saudaralakiseayah"></td>
+                <td id="hasil_saudaralakiseayah"></td>
+              </tr>
+              <tr id="kolom_saudaraperempuanseayah" style="display: none;">
+                <td>Saudara Perempuan Seayah</td>
+                <td id="bagian_saudaraperempuanseayah"></td>
+                <td id="hasil_saudaraperempuanseayah"></td>
+              </tr>
+              <tr id="kolom_saudaralakiseibu" style="display: none;">
+                <td>Saudara Laki-Laki Seibu</td>
+                <td id="bagian_saudaralakiseibu"></td>
+                <td id="hasil_saudaralakiseibu"></td>
+              </tr>
+              <tr id="kolom_saudaraperempuanseibu" style="display: none;">
+                <td>Saudara Perempuan Seibu</td>
+                <td id="bagian_saudaraperempuanseibu"></td>
+                <td id="hasil_saudaraperempuanseibu"></td>
+              </tr>
+              <tr id="kolom_anaklakisaudarakandung" style="display: none;">
+                <td>Putra dari Saudara Kandung</td>
+                <td id="bagian_anaklakisaudarakandung"></td>
+                <td id="hasil_anaklakisaudarakandung"></td>
+              </tr>
+              <tr id="kolom_anaklakisaudaraseayah" style="display: none;">
+                <td>Putra dari Saudara Seayah</td>
+                <td id="bagian_anaklakisaudaraseayah"></td>
+                <td id="hasil_anaklakisaudaraseayah"></td>
+              </tr>
+              <tr id="kolom-pamankandung" style="display: none;">
+                <td>Paman Sekandung</td>
+                <td id="bagian_pamansekandung"></td>
+                <td id="hasil_pamansekandung"></td>
+              </tr>
+              <tr id="kolom_pamanseayah" style="display: none;">
+                <td>Paman seayah</td>
+                <td id="bagian_pamanseayah"></td>
+                <td id="hasil_pamanseayah"></td>
+              </tr>
+              <tr id="kolom_anaklakipamankandung" style="display: none;">
+                <td>Putra dari Paman Sekandung</td>
+                <td id="bagian_anaklakipamansekandung"></td>
+                <td id="hasil_anaklakipamansekandung"></td>
+              </tr>
+              <tr id="kolom_anaklakipamanseayah" style="display: none;">
+                <td>Putra dari Paman Seayah</td>
+                <td id="bagian_anaklakipamanseayah"></td>
+                <td id="hasil_anaklakipamanseayah"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </section>
   </body>
 </html>

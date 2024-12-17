@@ -104,7 +104,7 @@ function updateDaughterData() {
 }
 
 // Fungsi untuk mengontrol tampilan suami/istri berdasarkan muwarrits
-function toggleSpouseFields(muwarrits) {
+function toggleSpouseFields1(muwarrits) {
   if (muwarrits === 'wanita') {
     $('#field_suami').show();
   } else if (muwarrits === 'laki-laki') {
@@ -128,14 +128,20 @@ $(document).ready(function () {
 
   $(document).on('change', "input[name='muwarrits']", function () {
     saveFormData();
-    toggleSpouseFields(formData.muwarrits);
+    toggleSpouseFields1(formData.muwarrits);
   });
 
   $('#cb_ayah, #cb_ibu').on('change', updateCheckboxData);
   $('#cb_suami').on('change', updateHusbandData);
   $('#nilai_istri').on('input', updateWifeData);
-  $('#nilai_anaklaki').on('input', updateSonData);
-  $('#nilai_anakperempuan').on('input', updateDaughterData);
+  $('#nilai_anaklaki').on('input', function () {
+    updateSonData();
+    checkBlockingConditions1(); // Tambahkan fungsi pengecekan di sini
+  });
+  $('#nilai_anakperempuan').on('input', function () {
+    updateDaughterData();
+    checkBlockingConditions1(); // Tambahkan fungsi pengecekan di sini
+  });
 
   $('#img-next-button0').click(function (e) {
     e.preventDefault();
@@ -168,9 +174,31 @@ $(document).ready(function () {
     $('#nIrst').val(formData.nIrst);
     $("input[name='muwarrits'][value='" + formData.muwarrits + "']").prop('checked', true);
   });
-});
 
-$(document).ready(function () {
+  function checkBlockingConditions1() {
+    const anakLakiValue = parseInt($('#nilai_anaklaki').val(), 10) || 0;
+    const anakPerempuanValue = parseInt($('#nilai_anakperempuan').val(), 10) || 0;
+
+    if (anakLakiValue > 0) {
+      $('#info_penghalang_1').show(); // Tampilkan info_penghalang_1
+      $('#field_cucu').hide(); // Sembunyikan class field_cucu
+
+      // Jika anakLakiValue > 0 dan anakPerempuanValue > 1, sembunyikan info_penghalang_1a
+      if (anakPerempuanValue > 1) {
+        $('#info_penghalang_1a').hide();
+      }
+    } else {
+      $('#info_penghalang_1').hide();
+    }
+
+    if (anakLakiValue === 0 && anakPerempuanValue > 1) {
+      $('#info_penghalang_1a').show(); // Tampilkan info_penghalang_1a jika hanya anakPerempuanValue > 1
+      $('#field_cucu').hide(); // Sembunyikan field_cucu
+    } else if (anakLakiValue === 0 && anakPerempuanValue <= 1) {
+      $('#info_penghalang_1a').hide(); // Sembunyikan info_penghalang_1a jika tidak memenuhi syarat
+      $('#field_cucu').show(); // Tampilkan field_cucu jika kedua syarat tidak terpenuhi
+    }
+  }
   // Fungsi untuk memperbarui nilai cucu laki-laki
   function updateCucuLakiData() {
     formData.cucuLaki = parseInt($('#nilai_cuculaki').val(), 10) || 0;
@@ -211,13 +239,38 @@ $(document).ready(function () {
     }
   });
 
-  // Inisialisasi awal untuk memastikan nilai span sesuai dengan nilai range
-
   updateCucuLakiData();
   updateCucuPerempuanData();
-});
 
-$(document).ready(function () {
+  function toggleSpouseFieldskakeknenek() {
+    const cb_ayah = $('#cb_ayah').is(':checked');
+    const cb_ibu = $('#cb_ibu').is(':checked');
+
+    if (cb_ayah && cb_ibu) {
+      // Jika Ayah dan Ibu dicentang
+      $('#field_kakek').hide();
+      $('#field_nenekayah').hide();
+      $('#field_nenekibu').hide();
+      $('#info_penghalang_2').show();
+    } else {
+      // Jika salah satu atau keduanya tidak dicentang
+      $('#field_kakek').toggle(!cb_ayah);
+      $('#field_nenekayah').toggle(!cb_ibu);
+      $('#field_nenekibu').toggle(!cb_ibu);
+      $('#info_penghalang_2').hide();
+    }
+  }
+
+  // Event listener untuk checkbox Ayah
+  $(document).on('change', '#cb_ayah', function () {
+    toggleSpouseFieldskakeknenek();
+  });
+
+  // Event listener untuk checkbox Ibu
+  $(document).on('change', '#cb_ibu', function () {
+    toggleSpouseFieldskakeknenek();
+  });
+
   // Fungsi untuk memperbarui nilai Kakek
   function updateKakekData() {
     formData.cb_kakek = $('#cb_kakek').is(':checked');
@@ -272,9 +325,33 @@ $(document).ready(function () {
   updateKakekData();
   updateNenekAyahData();
   updateNenekIbuData();
-});
 
-$(document).ready(function () {
+  function checkBlockingConditions2() {
+    const ayahValue = parseInt($('#cb_ayah').val(), 10) || 0;
+    const anakPerempuanValue = parseInt($('#nilai_anakperempuan').val(), 10) || 0;
+    const 
+
+
+    if (anakLakiValue > 0) {
+      $('#info_penghalang_1').show(); // Tampilkan info_penghalang_1
+      $('#field_cucu').hide(); // Sembunyikan class field_cucu
+
+      // Jika anakLakiValue > 0 dan anakPerempuanValue > 1, sembunyikan info_penghalang_1a
+      if (anakPerempuanValue > 1) {
+        $('#info_penghalang_1a').hide();
+      }
+    } else {
+      $('#info_penghalang_1').hide();
+    }
+
+    if (anakLakiValue === 0 && anakPerempuanValue > 1) {
+      $('#info_penghalang_1a').show(); // Tampilkan info_penghalang_1a jika hanya anakPerempuanValue > 1
+      $('#field_cucu').hide(); // Sembunyikan field_cucu
+    } else if (anakLakiValue === 0 && anakPerempuanValue <= 1) {
+      $('#info_penghalang_1a').hide(); // Sembunyikan info_penghalang_1a jika tidak memenuhi syarat
+      $('#field_cucu').show(); // Tampilkan field_cucu jika kedua syarat tidak terpenuhi
+    }
+  }
   // Fungsi untuk memperbarui nilai Saudara Laki Kandung
   function updateSaudaraLakiKandungData() {
     formData.nilai_saudaralakikandung = parseInt($('#nilai_saudaralakikandung').val(), 10) || 0;
@@ -318,9 +395,7 @@ $(document).ready(function () {
 
   updateSaudaraLakiKandungData();
   updateSaudaraPerempuanKandungData();
-});
 
-$(document).ready(function () {
   // Fungsi untuk memperbarui nilai Saudara Laki Kandung
   function updateSaudaraLakiSeayahData() {
     formData.nilai_saudaralakiseayah = parseInt($('#nilai_saudaralakiseayah').val(), 10) || 0;
@@ -389,9 +464,7 @@ $(document).ready(function () {
   updateSaudaraPerempuanSeayahData();
   updateSaudaraLakiSeibuData();
   updateSaudaraPerempuanSeibuData();
-});
 
-$(document).ready(function () {
   function updateAnakLakiSaudaraKandungData() {
     formData.nilai_anaklakisaudarakandung =
       parseInt($('#nilai_anaklakisaudarakandung').val(), 10) || 0;
@@ -432,9 +505,7 @@ $(document).ready(function () {
 
   updateAnakLakiSaudaraKandungData();
   updateAnakLakiSaudaraSeayahData();
-});
 
-$(document).ready(function () {
   function updatePamanKandungData() {
     formData.nilai_pamankandungayah = parseInt($('#nilai_pamankandungayah').val(), 10) || 0;
     $('#saham_pamankandungayah').text(formData.nilai_pamankandungayah);
@@ -473,9 +544,7 @@ $(document).ready(function () {
 
   updatePamanKandungData();
   updatePamanSekakekAyahData();
-});
 
-$(document).ready(function () {
   function updateAnakPamanKandungData() {
     formData.nilai_anaklakipamankandung = parseInt($('#nilai_anaklakipamankandung').val(), 10) || 0;
     $('#saham_anaklakipamankandung').text(formData.nilai_anaklakipamankandung);
@@ -494,21 +563,21 @@ $(document).ready(function () {
     updatePamanSekakekData();
   });
 
-  $('#img-next-button7').click(function (e) {
+  $('#img-next-button8').click(function (e) {
     e.preventDefault();
     if (validateInputs()) {
       saveFormData();
-      $('#legacy8').hide();
-      $('#legacy9').show();
+      $('#legacy9').hide();
+      $('#legacy_total').show();
     }
   });
 
-  $('#img-return-button7').click(function (e) {
+  $('#img-return-button8').click(function (e) {
     e.preventDefault();
     if (validateInputs()) {
       saveFormData();
-      $('#legacy8').hide();
-      $('#legacy7').show();
+      $('#legacy9').hide();
+      $('#legacy8').show();
     }
   });
 

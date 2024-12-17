@@ -48,7 +48,8 @@ body {
 #legacy6,
 #legacy7,
 #legacy8,
-#legacy9 {
+#legacy9,
+#legacy_total {
   display: none;
 }
 
@@ -208,4 +209,39 @@ table tr {
   background: #4caf50;
   border-radius: 50%;
   cursor: pointer;
+}
+
+#legacy_total {
+  margin: 0;
+  padding: 0;
+}
+
+.kolom_final {
+  width: 90vw;
+  margin: auto;
+}
+
+.kolom_hasil {
+  display: block;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hasil_atas {
+  width: 100%;
+}
+
+#total_tirkah,
+#total_hutang,
+#total_wasiat,
+#total_tajhiz,
+#total_irts {
+  position: absolute;
+  right: 0%;
+}
+
+.kolom_bagian tr td:nth-child(2) {
+  right: 50%;
+  transform: translateX(50);
+  position: absolute;
 }

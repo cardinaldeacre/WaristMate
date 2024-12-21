@@ -1,0 +1,68 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vsode"
+	},
+	"prettier.requireConfig": false,
+	"prettier.printWidth": 80,
+	"prettier.tabWidth": 2,
+	"prettier.useTabs": true,
+	"prettier.semi": true,
+	"prettier.singleQuote": true,
+	"prettier.trailingComma": "es5",
+	"prettier.bracketSpacing": true,
+	"prettier.arrowParens": "avoid",
+	"prettier.endOfLine": "lf",
+	"prettier.resolveGlobalModules": true,
+	"liveServer.settings.donotVerifyTags": true,
+	"liveServer.settings.donotShowInfoMsg": true,
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"name": "One Dark italic",
+				"scope": [
+					"comment",
+					"entity.other.attribute-name",
+					"keyword",
+					"markup.underline.link",
+					"storage.modifier",
+					"storage.type",
+					"string.url",
+					"variable.language.super",
+					"variable.language.this"
+				],
+				"settings": {
+					"fontStyle": "italic"
+				}
+			},
+			{
+				"name": "One Dark italic reset",
+				"scope": [
+					"keyword.operator",
+					"keyword.other.type",
+					"storage.modifier.import",
+					"storage.modifier.package",
+					"storage.type.built-in",
+					"storage.type.function.arrow",
+					"storage.type.generic",
+					"storage.type.java",
+					"storage.type.primitive"
+				],
+				"settings": {
+					"fontStyle": ""
+				}
+			}
+		]
+	},
+	"workbench.colorTheme": "Wolves League Dark",
+	"vscode-edge-devtools.webhintInstallNotification": true,
+	"docker.languageserver.formatter.ignoreMultilineInstructions": true,
+	"notebook.formatOnSave.enabled": true,
+	"chat.editing.alwaysSaveWithGeneratedChanges": true,
+	"diffEditor.codeLens": true,
+	"editor.formatOnPaste": true,
+	"files.autoSaveDelay": 0,
+	"files.autoSave": "afterDelay",
+	"editor.codeActions.triggerOnFocusChange": true
+}

@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: 'Poppins', 'sans-serif';
+  font-family: "Poppins", "sans-serif";
   background-color: var(--w);
   color: var(--b);
   overflow-x: hidden;
@@ -89,7 +89,9 @@ body {
 #img-next-button7,
 #img-return-button7,
 #img-next-button8,
-#img-return-button8 {
+#img-return-button8,
+#img-next-button9,
+#img-return-button9 {
   margin: 35% 15%;
   max-width: 50px;
   height: 50px;
@@ -111,12 +113,6 @@ body {
   position: absolute;
   left: 7%;
   top: 1%;
-}
-
-.main-page {
-  position: absolute;
-  padding: 0;
-  margin: 0% 5%;
 }
 
 .sub-title {
@@ -150,6 +146,12 @@ section {
   font-size: 1.3rem;
 }
 
+.main-page {
+  padding: 18% 10%;
+  margin: 0;
+  max-height: 100vh;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -163,6 +165,18 @@ table tr {
   padding: 3px;
 }
 
+.numeric {
+  font-size: 1.2rem;
+  font-family: "Poppins", "sans-serif";
+  padding: 0px 5px;
+  width: 40vw;
+}
+
+.ui-radio {
+  left: 0%;
+  width: 40vw;
+}
+
 .custom {
   height: 20px;
   width: 20px;
@@ -174,20 +188,19 @@ table tr {
 }
 
 .field-label {
-  width: 80%;
+  display: flex;
+  width: 100%;
 }
 
 .slider {
-  -webkit-appearance: ; /* Override default CSS styles */
   appearance: none;
-  width: 100%; /* Full-width */
-  height: 25px; /* Specified height */
-  background: var(--b); /* Grey background */
-  outline: solid 1px var(--b); /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  width: 80vw;
+  background: var(--b);
+  outline: solid 1px var(--b);
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
   transition: opacity 0.2s;
-  margin: 5px 10rem;
+  margin: 5px;
 }
 
 .slider:hover {
@@ -195,7 +208,7 @@ table tr {
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: ; /* Override default look */
+  padding-top: 10px;
   appearance: none;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
@@ -204,6 +217,7 @@ table tr {
 }
 
 .slider::-moz-range-thumb {
+  padding-top: 10px;
   width: 16px;
   height: 16px;
   background: #4caf50;
@@ -213,12 +227,16 @@ table tr {
 
 #legacy_total {
   margin: 0;
-  padding: 0;
+}
+
+.main-page2 {
+  padding: 0% 10%;
+  margin: 0;
+  max-height: 100vh;
 }
 
 .kolom_final {
-  width: 90vw;
-  margin: auto;
+  margin: 1%;
 }
 
 .kolom_hasil {
@@ -238,10 +256,24 @@ table tr {
 #total_irts {
   position: absolute;
   right: 0%;
+  margin-right: 11%;
 }
 
 .kolom_bagian tr td:nth-child(2) {
   right: 50%;
   transform: translateX(50);
   position: absolute;
+}
+
+.kolom_final table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.kolom_final table tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px;
 }

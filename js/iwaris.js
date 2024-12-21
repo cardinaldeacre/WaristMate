@@ -92,7 +92,7 @@ $("#NilaiHartaKotor,#NilaiHutang,#NilaiGonoGini,#NilaiMakam,#NilaiWasiat").on(
     $("#NilaiHarta").val(_Harta);
     $("#hasil_harta").val(toRp(_Modal));
     $("#hasil_harta").css({ color: "#000" });
-  }
+  },
 );
 $("#gonogini").change(function () {
   _GonoGini = ($("input=[name=gonogini]:checked").val() / 100) * _HartaKotor;
@@ -265,40 +265,41 @@ $("#nilai_anaklakipamansekakek").on("change", function () {
   _AnakLakiPamanSeKakek = $(this).val();
   isSaham();
 });
-$(
-  "#nilai_cuculaki,#nilai_saudaralakiseayah,#nilai_anaklakisaudarakandung"
-).on("change", function () {
-  if (_AnakPerempuan > 1) {
-    if (_CucuLaki > 0) {
-      $("#field_cucuperempuan").show();
-      $("#info_penghalang_1a").hide();
-    } else {
-      $("#nilai_cucuperempuan").val("0").slider().slider("refresh");
-      $("#field_cucuperempuan").hide();
-      $("#info_penghalang_1a").show();
+$("#nilai_cuculaki,#nilai_saudaralakiseayah,#nilai_anaklakisaudarakandung").on(
+  "change",
+  function () {
+    if (_AnakPerempuan > 1) {
+      if (_CucuLaki > 0) {
+        $("#field_cucuperempuan").show();
+        $("#info_penghalang_1a").hide();
+      } else {
+        $("#nilai_cucuperempuan").val("0").slider().slider("refresh");
+        $("#field_cucuperempuan").hide();
+        $("#info_penghalang_1a").show();
+      }
     }
-  }
-  if (_SaudaraPerempuanKandung > 1) {
-    if (_SaudaraLakiSeAyah > 0) {
-      if (_SaudaraPerempuanKandung > 1) {
-        $("#field_saudaraperempuanseayah").show();
-        $("#info_penghalang_a4").hide();
+    if (_SaudaraPerempuanKandung > 1) {
+      if (_SaudaraLakiSeAyah > 0) {
+        if (_SaudaraPerempuanKandung > 1) {
+          $("#field_saudaraperempuanseayah").show();
+          $("#info_penghalang_a4").hide();
+        }
+      } else {
+        $("#nilai_saudaraperempuanseayah").val("0").slider().slider("refresh");
+        $("#field_saudaraperempuanseayah").hide();
+        $("#info_penghalang_a4").show();
       }
     } else {
-      $("#nilai_saudaraperempuanseayah").val("0").slider().slider("refresh");
-      $("#field_saudaraperempuanseayah").hide();
-      $("#info_penghalang_a4").show();
+      $("#info_penghalang_a4").hide();
     }
-  } else {
-    $("#info_penghalang_a4").hide();
-  }
-  if (_AnakLakiSaudaraKandung > 0) {
-    $("#nilai_anaklakisaudaraseayah").val("0").slider().slider("refresh");
-    $("#field_anaklakisaudaraseayah").hide();
-  } else {
-    $("#field_anaklakisaudaraseayah").show();
-  }
-});
+    if (_AnakLakiSaudaraKandung > 0) {
+      $("#nilai_anaklakisaudaraseayah").val("0").slider().slider("refresh");
+      $("#field_anaklakisaudaraseayah").hide();
+    } else {
+      $("#field_anaklakisaudaraseayah").show();
+    }
+  },
+);
 $("#nilai_anaklakipamankandung").on("change", function () {
   if (
     _AnakLakiPamanKandung > 0 ||
@@ -357,12 +358,12 @@ function isDone() {
     $("#nilai_saudaralakikandung").val("0").slider().slider("refresh");
     $("#nilai_saudaraperempuankandung").val("0").slider().slider("refresh");
     $(
-      "#field_kakek,#field_saudaralakikandung,#field_saudaraperempuankandung,#field_saudaraperempuanseayah"
+      "#field_kakek,#field_saudaralakikandung,#field_saudaraperempuankandung,#field_saudaraperempuanseayah",
     ).hide();
   } else {
     $("#info_penghalang_3").hide();
     $(
-      "#field_kakek,#nilai_nenekayah,#field_saudaralakikandung,#field_saudaraperempuankandung,#field_saudaraperempuanseayah"
+      "#field_kakek,#nilai_nenekayah,#field_saudaralakikandung,#field_saudaraperempuankandung,#field_saudaraperempuanseayah",
     ).show();
   }
   if (_Ibu > 0) {
@@ -405,7 +406,7 @@ function isDone() {
     }
   } else {
     $(
-      "#field_saudaralakiseibu,#field_saudaraperempuanseibu,#field_saudaralakikandung,#field_saudaralakiseayah"
+      "#field_saudaralakiseibu,#field_saudaraperempuanseibu,#field_saudaralakikandung,#field_saudaralakiseayah",
     ).show();
     $("#info_penghalang_a,#info_penghalang_c4").hide();
     $("#info_penghalang_4").hide();
@@ -1220,7 +1221,7 @@ function calculateAshobahShare(
   targetShare,
   multiplier,
   maxIterations,
-  defaultShare
+  defaultShare,
 ) {
   var numerator = 0,
     denominator = 0,
@@ -1867,7 +1868,7 @@ $(window).load(function () {
       var ratioParts = _p(
         "1/" + _0alphac3f3alphabb,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       var secondCharacter = ratioParts.split("/");
       var _0alphac3f3alphac0 = "";
@@ -1940,7 +1941,7 @@ $(window).load(function () {
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilIstri = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -1950,7 +1951,7 @@ $(window).load(function () {
         " Istri (" +
         rIstri +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha + '</td><td align="right">' + toRp(h / _Istri) + "</td></tr>";
@@ -1975,7 +1976,7 @@ $(window).load(function () {
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilSuami = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha = alpha + "<tr>";
@@ -1986,7 +1987,7 @@ $(window).load(function () {
         " Suami (" +
         rSuami +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha + '</td><td align="right">' + toRp(h / _Suami) + "</td></tr>";
@@ -2004,7 +2005,7 @@ $(window).load(function () {
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilIbu = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2014,7 +2015,7 @@ $(window).load(function () {
         " Ibu (" +
         rIbu +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha = alpha + '</td><td align="right">' + toRp(h / _Ibu) + "</td></tr>";
     }
@@ -2034,14 +2035,14 @@ $(window).load(function () {
         (h / _Nenek2) * _NenekAyah,
         _Modal,
         _0alphac3f3alphabd,
-        ratioParts
+        ratioParts,
       );
       alpha =
         alpha +
         "<td>&rarr; " +
         _NenekAyah +
         ' Nenek dari Ayah</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2052,14 +2053,14 @@ $(window).load(function () {
         (h / _Nenek2) * _NenekIbu,
         _Modal,
         _0alphac3f3alphabd,
-        ratioParts
+        ratioParts,
       );
       alpha =
         alpha +
         "<td>&rarr; " +
         _NenekIbu +
         ' Nenek dari Ibu</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2073,7 +2074,7 @@ $(window).load(function () {
         _0alphac3f3alphabf = _0alphac3f3alphabf + h;
         _HasilNenekAyah = h;
         secondCharacter = secondCharacter + 1;
-        if (_l(ratioParts) == "Ashobah") {
+        if (determineShareType(ratioParts) == "Ashobah") {
           ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
         }
         alpha =
@@ -2083,7 +2084,7 @@ $(window).load(function () {
           " Nenek dari Ayah (" +
           rNenekAyah +
           ')</td><td align="center">' +
-          _l(ratioParts) +
+          determineShareType(ratioParts) +
           "</td>";
         alpha =
           alpha +
@@ -2097,7 +2098,7 @@ $(window).load(function () {
         _0alphac3f3alphabf = _0alphac3f3alphabf + h;
         _HasilNenekIbu = h;
         secondCharacter = secondCharacter + 1;
-        if (_l(ratioParts) == "Ashobah") {
+        if (determineShareType(ratioParts) == "Ashobah") {
           ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
         }
         alpha =
@@ -2107,7 +2108,7 @@ $(window).load(function () {
           " Nenek dari Ibu (" +
           rNenekIbu +
           ')</td><td align="center">' +
-          _l(ratioParts) +
+          determineShareType(ratioParts) +
           "</td>";
         alpha =
           alpha +
@@ -2122,7 +2123,7 @@ $(window).load(function () {
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilAnakPerempuan = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2132,7 +2133,7 @@ $(window).load(function () {
         " Anak Perempuan (" +
         rAnakPerempuan +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2146,7 +2147,7 @@ $(window).load(function () {
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilAnakLaki = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2156,7 +2157,7 @@ $(window).load(function () {
         " Anak Laki-laki (" +
         rAnakLaki +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha + '</td><td align="right">' + toRp(h / _AnakLaki) + "</td></tr>";
@@ -2167,7 +2168,7 @@ $(window).load(function () {
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilCucuLaki = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2177,7 +2178,7 @@ $(window).load(function () {
         " Cucu Laki-laki (" +
         rCucuLaki +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha + '</td><td align="right">' + toRp(h / _CucuLaki) + "</td></tr>";
@@ -2188,7 +2189,7 @@ $(window).load(function () {
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilCucuPerempuan = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2198,7 +2199,7 @@ $(window).load(function () {
         " Cucu Perempuan (" +
         rCucuPerempuan +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2210,13 +2211,13 @@ $(window).load(function () {
       ratioParts = _p(
         rSaudaraPerempuanKandung,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_SaudaraPerempuanKandung, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilSaudaraPerempuanKandung = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2226,7 +2227,7 @@ $(window).load(function () {
         " Saudara Perempuan sekandung (" +
         rSaudaraPerempuanKandung +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2238,16 +2239,16 @@ $(window).load(function () {
       ratioParts = _p(
         rSaudaraLakiKandung,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_SaudaraLakiKandung, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilSaudaraLakiKandung = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
-      if (_l(ratioParts) == "Musytarakah") {
+      if (determineShareType(ratioParts) == "Musytarakah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2257,7 +2258,7 @@ $(window).load(function () {
         " Saudara Laki-laki sekandung (" +
         rSaudaraLakiKandung +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2269,13 +2270,13 @@ $(window).load(function () {
       ratioParts = _p(
         rSaudaraLakiSeAyah,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_SaudaraLakiSeAyah, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilSaudaraLakiSeAyah = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2285,7 +2286,7 @@ $(window).load(function () {
         " Saudara Laki-laki satu Ayah (" +
         rSaudaraLakiSeAyah +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2297,13 +2298,13 @@ $(window).load(function () {
       ratioParts = _p(
         rSaudaraPerempuanSeAyah,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_SaudaraPerempuanSeAyah, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilSaudaraPerempuanSeAyah = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2313,7 +2314,7 @@ $(window).load(function () {
         " Saudara Perempuan satu Ayah (" +
         rSaudaraPerempuanSeAyah +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2341,14 +2342,14 @@ $(window).load(function () {
         (h / _SaudaraIbu) * _SaudaraLakiSeIbu,
         _Modal,
         _0alphac3f3alphabd,
-        ratioParts
+        ratioParts,
       );
       alpha =
         alpha +
         "<td>&rarr; " +
         _SaudaraLakiSeIbu +
         ' Saudara Laki-laki satu Ibu</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2359,20 +2360,20 @@ $(window).load(function () {
         (h / _SaudaraIbu) * _SaudaraPerempuanSeIbu,
         _Modal,
         _0alphac3f3alphabd,
-        ratioParts
+        ratioParts,
       );
       alpha =
         alpha +
         "<td>&rarr; " +
         _SaudaraPerempuanSeIbu +
         ' Saudara Prempuan satu Ibu</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
         '</td><td align="right">' +
         toRp(
-          ((h / _SaudaraIbu) * _SaudaraPerempuanSeIbu) / _SaudaraPerempuanSeIbu
+          ((h / _SaudaraIbu) * _SaudaraPerempuanSeIbu) / _SaudaraPerempuanSeIbu,
         ) +
         "</td></tr>";
     } else {
@@ -2392,7 +2393,7 @@ $(window).load(function () {
             "<td>&rarr; " +
             _SaudaraLakiSeIbu +
             ' Saudara Laki-laki satu Ibu</td><td align="center">' +
-            _l("1/1B") +
+            determineShareType("1/1B") +
             "</td>";
           alpha =
             alpha +
@@ -2406,7 +2407,7 @@ $(window).load(function () {
             "<td>&rarr; " +
             _SaudaraPerempuanSeIbu +
             ' Saudara Perempuan satu Ibu</td><td align="center">' +
-            _l("1/1B") +
+            determineShareType("1/1B") +
             "</td>";
           alpha =
             alpha +
@@ -2419,18 +2420,18 @@ $(window).load(function () {
           ratioParts = _p(
             rSaudaraLakiSeIbu,
             _0alphac3f3alphabb,
-            _0alphac3f3alphabe
+            _0alphac3f3alphabe,
           );
           h = _h(_SaudaraLakiSeIbu, ratioParts, _Modal);
           _0alphac3f3alphabf = _0alphac3f3alphabf + h;
           _HasilSaudaraLakiSeIbu = h;
           secondCharacter = secondCharacter + 1;
-          if (_l(ratioParts) == "Musytarakah") {
+          if (determineShareType(ratioParts) == "Musytarakah") {
             ratioParts = sahamAshobah(
               h,
               _Modal,
               _0alphac3f3alphabd,
-              ratioParts
+              ratioParts,
             );
           }
           alpha =
@@ -2440,7 +2441,7 @@ $(window).load(function () {
             " Saudara Laki-laki satu Ibu (" +
             rSaudaraLakiSeIbu +
             ')</td><td align="center">' +
-            _l(ratioParts) +
+            determineShareType(ratioParts) +
             "</td>";
           alpha =
             alpha +
@@ -2452,18 +2453,18 @@ $(window).load(function () {
           ratioParts = _p(
             rSaudaraPerempuanSeIbu,
             _0alphac3f3alphabb,
-            _0alphac3f3alphabe
+            _0alphac3f3alphabe,
           );
           h = _h(_SaudaraPerempuanSeIbu, ratioParts, _Modal);
           _0alphac3f3alphabf = _0alphac3f3alphabf + h;
           _HasilSaudaraPerempuanSeIbu = h;
           secondCharacter = secondCharacter + 1;
-          if (_l(ratioParts) == "Musytarakah") {
+          if (determineShareType(ratioParts) == "Musytarakah") {
             ratioParts = sahamAshobah(
               h,
               _Modal,
               _0alphac3f3alphabd,
-              ratioParts
+              ratioParts,
             );
           }
           alpha =
@@ -2473,7 +2474,7 @@ $(window).load(function () {
             " Saudara Perempuan satu Ibu (" +
             rSaudaraPerempuanSeIbu +
             ')</td><td align="center">' +
-            _l(ratioParts) +
+            determineShareType(ratioParts) +
             "</td>";
           alpha =
             alpha +
@@ -2487,13 +2488,13 @@ $(window).load(function () {
       ratioParts = _p(
         rAnakLakiSaudaraKandung,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_AnakLakiSaudaraKandung, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilAnakLakiSaudaraKandung = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2503,7 +2504,7 @@ $(window).load(function () {
         " Anak Laki-laki saudara Sekandung (" +
         rAnakLakiSaudaraKandung +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2515,13 +2516,13 @@ $(window).load(function () {
       ratioParts = _p(
         rAnakLakiSaudaraSeAyah,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_AnakLakiSaudaraSeAyah, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilAnakLakiSaudaraSeAyah = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2531,7 +2532,7 @@ $(window).load(function () {
         " Anak Laki-laki saudara satu Ayah (" +
         rAnakLakiSaudaraSeAyah +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2543,13 +2544,13 @@ $(window).load(function () {
       ratioParts = _p(
         rPamanKandungAyah,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_PamanKandungAyah, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilPamanKandungAyah = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2559,7 +2560,7 @@ $(window).load(function () {
         " Paman kandung dari Ayah (" +
         rPamanKandungAyah +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2571,13 +2572,13 @@ $(window).load(function () {
       ratioParts = _p(
         rPamanSeKakekAyah,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_PamanSeKakekAyah, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilPamanSeKakekAyah = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2587,7 +2588,7 @@ $(window).load(function () {
         " Paman satu Kakek dari Ayah (" +
         rPamanSeKakekAyah +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2599,13 +2600,13 @@ $(window).load(function () {
       ratioParts = _p(
         rAnakLakiPamanKandung,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_AnakLakiPamanKandung, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilAnakLakiPamanKandung = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2615,7 +2616,7 @@ $(window).load(function () {
         " Anak Laki-laki Paman sekandung (" +
         rAnakLakiPamanKandung +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2627,13 +2628,13 @@ $(window).load(function () {
       ratioParts = _p(
         rAnakLakiPamanSeKakek,
         _0alphac3f3alphabb,
-        _0alphac3f3alphabe
+        _0alphac3f3alphabe,
       );
       h = _h(_AnakLakiPamanSeKakek, ratioParts, _Modal);
       _0alphac3f3alphabf = _0alphac3f3alphabf + h;
       _HasilAnakLakiPamanSeKakek = h;
       secondCharacter = secondCharacter + 1;
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2643,7 +2644,7 @@ $(window).load(function () {
         " Anak Laki-laki Paman satu Kakek (" +
         rAnakLakiPamanSeKakek +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha +
@@ -2665,7 +2666,7 @@ $(window).load(function () {
           ratioParts = ratioParts + "+A";
         }
       }
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2675,7 +2676,7 @@ $(window).load(function () {
         " Ayah (" +
         rAyah +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha + '</td><td align="right">' + toRp(h / _Ayah) + "</td></tr>";
@@ -2694,7 +2695,7 @@ $(window).load(function () {
           ratioParts = ratioParts + "+A";
         }
       }
-      if (_l(ratioParts) == "Ashobah") {
+      if (determineShareType(ratioParts) == "Ashobah") {
         ratioParts = sahamAshobah(h, _Modal, _0alphac3f3alphabd, ratioParts);
       }
       alpha =
@@ -2704,7 +2705,7 @@ $(window).load(function () {
         " Kakek (" +
         rKakek +
         ')</td><td align="center">' +
-        _l(ratioParts) +
+        determineShareType(ratioParts) +
         "</td>";
       alpha =
         alpha + '</td><td align="right">' + toRp(h / _Kakek) + "</td></tr>";
@@ -2721,7 +2722,7 @@ $(window).load(function () {
     alpha = alpha + '<p id="table">' + partnerHTML + "</p>";
     $("li.hitung").remove();
     $("ul.selesai").html(
-      '<li><a href="" id="reset" class="ui-link ui-btn">HITUNG LAGI</a></li>'
+      '<li><a href="" id="reset" class="ui-link ui-btn">HITUNG LAGI</a></li>',
     );
     $("#hasilperhitungan").html(alpha);
   });
@@ -2735,7 +2736,7 @@ $(window).load(function () {
             .val(
               "Wasiat tidak boleh lebih dari 1/3 (" +
                 toRp(_Harta / 3) +
-                ") harta warist"
+                ") harta warist",
             )
             .val();
           $("#hasil_harta").css({ color: "red" });
@@ -2746,7 +2747,7 @@ $(window).load(function () {
               .val(
                 "Gonogini tidak boleh lebih dari 1/2 (" +
                   toRp(_Harta / 2) +
-                  ") harta warist"
+                  ") harta warist",
               )
               .val();
             $("#hasil_harta").css({ color: "red" });

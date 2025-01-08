@@ -2,7 +2,7 @@
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vsode"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"prettier.requireConfig": false,
 	"prettier.printWidth": 80,
@@ -64,5 +64,8 @@
 	"editor.formatOnPaste": true,
 	"files.autoSaveDelay": 0,
 	"files.autoSave": "afterDelay",
-	"editor.codeActions.triggerOnFocusChange": true
+	"editor.codeActions.triggerOnFocusChange": true,
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	}
 }

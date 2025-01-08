@@ -1,516 +1,834 @@
 :root {
-  --g: #03624c;
-  --w: #dadada;
-  --b: #333;
-  --r: #dadada;
-  --lg: #007b31;
-  --gy: #b9ff50;
-  --lg: #a2f818;
+	--g: #03624c;
+	--w: #dadada;
+	--b: #333;
+	--lg: #007b31;
+	--gy: #b9ff50;
+	--dg: #0a8138;
+	--lb: #0a4fb6;
+	--r: #c5681c;
 }
 @font-face {
-  font-family: "LPMQIsepMisbah";
-  src: url("../font/LPMQIsepMisbah.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'LPMQIsepMisbah';
+	src: url('../font/LPMQIsepMisbah.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  text-decoration: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+	border: none;
+	text-decoration: none;
 }
 body {
-  font-family: "Poppins", "sans-serif";
-  background-color: var(--w);
-  color: var(--b);
-  overflow-x: hidden;
+	font-family: 'Poppins', 'sans-serif';
+	background-color: var(--w);
+	overflow-x: hidden;
 }
+
 .navbar {
-  max-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 3%;
-  position: fixed;
-  background-color: var(--g);
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  z-index: 9999;
-  box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	max-width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 3%;
+	position: fixed;
+	background-color: var(--g);
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	z-index: 9999;
+	box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
 }
 .navbar a {
-  left: 1%;
-  top: 10%;
-  position: absolute;
-  margin-top: 5px;
+	left: 1%;
+	top: 10%;
+	position: absolute;
+	margin-top: 5px;
 }
 .navbar a img {
-  width: 30px;
-  height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
 .navbar h3 {
-  display: flex;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--w);
+	display: flex;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	font-weight: 700;
+	font-size: 1.6rem;
+	color: var(--w);
 }
 .navbar-side {
-  width: 20%;
-  height: 100%;
-  position: fixed;
-  display: grid;
-  right: 0;
-  background-color: var(--g);
-  z-index: 99;
+	width: 20%;
+	height: 100%;
+	position: fixed;
+	display: grid;
+	right: 0;
+	background-color: var(--g);
+	z-index: 99;
+	overflow-y: auto;
 }
 .navbar-side .title-modul {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  top: 6%;
-  max-height: 1.7rem;
-  width: 100%;
-  padding-bottom: 3.5rem;
-  border-bottom: solid var(--w) 2px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	padding-top: 60px;
+	max-height: 1.7rem;
+	width: 100%;
+	padding-bottom: 3.5rem;
+	border-bottom: solid var(--w) 2px;
 }
 .navbar-side .title-modul h2 {
-  text-align: center;
-  font-size: 1.5rem;
-  color: var(--w);
-  padding-top: 5px;
+	text-align: center;
+	font-size: 1.2rem;
+	color: var(--w);
+	padding-top: 5px;
 }
 .navbar-side .list-modul {
-  display: flex;
-  position: absolute;
-  top: 12%;
-  width: 100%;
-  flex-direction: column;
-  transform-style: preserve-3d;
-  transform: perspective(1000px);
-  margin: 1rem 1.5rem;
+	display: flex;
+	position: absolute;
+	padding-top: 100px;
+	width: 100%;
+	flex-direction: column;
+	transform-style: preserve-3d;
+	transform: perspective(1000px);
+	margin: 1rem 1.5rem;
 }
 .navbar-side .list-modul a {
-  padding: 1rem;
-  color: var(--w);
-  font-family: "Poppins";
-  font-size: 1.3rem;
-  font-weight: 500;
+	padding: 1rem;
+	color: var(--w);
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.2rem;
+	font-weight: 500;
 }
 .navbar-side .list-modul .bab {
-  transition: 0.5s;
+	transition: 0.5s;
 }
 .navbar-side .list-modul .bab:hover {
-  transform: translateZ(100px);
-  font-weight: 700;
-  color: var(--gy);
+	transform: translateZ(100px);
+	font-weight: 700;
+	color: var(--gy);
 }
 
 .navbar-side .list-modul .bab:hover + * {
-  transform: translateZ(100px) rotateX(-30deg);
+	transform: translateZ(100px) rotateX(-30deg);
 }
 .navbar-side .list-modul .bab:hover + * + * {
-  transform: translateZ(70px) rotateX(-15deg);
+	transform: translateZ(70px) rotateX(-15deg);
 }
 .navbar-side .list-modul .bab:has(+ *:hover) {
-  transform: translateZ(100px) rotateX(30deg);
+	transform: translateZ(100px) rotateX(30deg);
 }
 
 .navbar-side .lis .modul {
-  width: 80%;
-  height: 100%;
-  position: fixed;
-  background-color: var(--w);
+	width: 80%;
+	height: 100%;
+	position: fixed;
+	background-color: var(--w);
 }
 
 .modul {
-  position: absolute;
-  left: 2%;
-  margin-top: 64px;
-  width: 76%;
+	position: absolute;
+	left: 2%;
+	margin-top: 64px;
+	width: 76%;
 }
 
 /* display bab */
-
 #bab-1,
-#bab-2 {
-  overflow-y: scroll;
-  width: 103%;
-  padding-bottom: 30px;
-  display:;
-}
-
+#bab-2,
+#bab-3,
 #bab-4,
 #bab-5,
 #bab-6,
 #bab-7,
 #bab-8,
 #bab-9,
-#bab-10 {
-  display:;
+#bab-10,
+#bab-11 {
+	display: none;
+}
+
+#bab-1,
+#bab-2,
+#bab-3,
+#bab-4,
+#bab-5,
+#bab-6,
+#bab-7,
+#bab-8,
+#bab-9,
+#bab-10,
+#bab-11 {
+	width: 103%;
+	padding-bottom: 30px;
+	padding-right: 20px;
 }
 
 #header-bab {
-  margin-left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
 }
 
-.materi {
-  padding-top: 2rem;
+.materi1 {
+	padding-top: 2rem;
+	font-size: 1.1rem;
+	font-family: 'Poppins', sans-serif;
 }
 
-.materi h2 {
-  font-weight: 700;
+.materi1 p {
+	font-size: 1rem;
 }
 
-.materi h3 {
-  font-weight: 400;
+.materi1 h2 {
+	font-weight: 700;
+}
+
+.materi1 h3 {
+	font-weight: 400;
 }
 
 .definisi td {
-  padding: 5px;
+	padding: 5px;
 }
 
 .definisi span {
-  font-size: 1.25rem;
-  font-weight: 600;
+	font-size: 1.1rem;
+	font-weight: 500;
+	color: var(--dg);
 }
 
 .dalil h2 {
-  padding-top: 5px;
+	padding-top: 5px;
 }
 
 .dalil .content-ayat {
-  padding: 5px;
+	padding: 5px;
+}
+.dalil h1 {
+	color: var(--g);
 }
 
 .content-ayat h1 {
-  font-family: "LPMQIsepMisbah", sans-serif;
-  font-size: 1.7rem;
-  font-weight: 400;
-  text-align: center;
-  padding: 5px;
+	font-family: 'LPMQIsepMisbah', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 400;
+	text-align: center;
+	padding: 5px;
 }
 
-.content-ayat h3 {
-  text-align: center;
-  padding: 5px;
+.content-ayat p {
+	text-align: center;
+	font-size: 1rem;
+	color: var(--b);
+	padding: 5px;
+	font-family: 'Poppins', sans-serif;
 }
 
 .content-hadits h1 {
-  font-family: "LPMQIsepMisbah", sans-serif;
-  font-size: 1.7rem;
-  font-weight: 400;
-  text-align: center;
-  padding: 5px;
+	font-family: 'LPMQIsepMisbah', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 400;
+	text-align: center;
+	padding: 5px;
 }
 
-.content-hadits h3 {
-  text-align: center;
-  padding: 5px;
+.content-hadits p {
+	text-align: center;
+	font-size: 1rem;
+	padding: 5px;
+	color: var(--b);
+	font-family: 'Poppins', sans-serif;
 }
 
 .tirkah {
-  padding-top: 2rem;
+	padding-top: 2rem;
 }
 
 .tabel-tirkah td {
-  padding: 5px;
+	padding: 0px 5px;
+}
+
+.tabel-tirkah td span {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.1rem;
 }
 
 .hak {
-  padding-top: 2rem;
+	padding-top: 2rem;
+}
+
+.hak span {
+	font-weight: 500;
+	color: var(--lb);
 }
 
 .hak h3 {
-  padding: 5px;
+	padding: 5px;
+}
+
+.hak p {
+	font-weight: 500;
+	color: var(--dg);
+	font-size: 1.1rem;
 }
 
 .list-hak {
-  font-size: 1.15rem;
-  padding: 5px;
-  margin-left: 15px;
+	font-size: 1rem;
+	padding: 5px;
+	margin-left: 15px;
 }
 
 .list-hak li {
-  padding: 2px;
+	padding: 2px;
 }
 
 /* bab-2 */
+
+.materi2 {
+	padding-top: 2rem;
+	font-size: 1.1rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+.materi2 p {
+	font-size: 1rem;
+}
+
+.materi2 h2 {
+	font-weight: 700;
+}
+
+.materi2 h3 {
+	font-weight: 400;
+}
 
 .rukun-warisan,
 .syarat-warisan,
 .sebab-warisan,
 .penghalang-warisan,
 .jenis-warisan {
-  padding-top: 2rem;
+	padding-top: 2rem;
 }
 
 .rukun-warisan li,
 .syarat-warisan li {
-  padding: 5px;
-  font-size: 1.15rem;
-  margin-left: 30px;
+	padding: 5px;
+	font-size: 1rem;
+	margin-left: 30px;
 }
 
 .rukun-warisan i {
-  font-weight: 600;
-  font-size: 1.25rem;
+	font-weight: 600;
+	font-size: 1rem;
+	color: var(--dg);
+}
+
+.rukun-warisan p {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.syarat-warisan li {
+	color: var(--dg);
+	font-weight: 500;
+}
+
+.sebab-warisan .span-blue {
+	color: var(--lb);
+	font-weight: 500;
 }
 
 .sebab-warisan li,
 .penghalang-warisan li,
 .jenis-warisan li {
-  padding: 5px;
-  margin-left: 30px;
+	padding: 5px;
+	margin-left: 30px;
 }
 
 .sebab-warisan li span,
 .penghalang-warisan li span,
 .jenis-warisan li span {
-  font-weight: 600;
-  font-size: 1.25rem;
+	font-weight: 600;
+	font-size: 1rem;
+	color: var(--dg);
 }
 
-#bab-3 {
-  overflow-y: scroll;
-  width: 103%;
-  padding-bottom: 30px;
+/* BAB 3 */
+
+.materi3 h2 {
+	padding-top: 10px;
 }
 
-.materi h3 {
-  padding: 5px;
-  font-weight: 500;
+.materi3 h3 {
+	padding: 5px;
+	font-weight: 500;
 }
 
-.materi h4 {
-  padding: 5px;
-  font-weight: 400;
+.materi3 h4 {
+	padding: 5px;
+	font-weight: 400;
 }
 
 .list-sebab {
-  padding: 5px;
+	padding: 5px;
 }
 
 .list-sebab h3 {
-  font-weight: 700;
+	font-weight: 700;
 }
 
 .list-sebab li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
 }
 
 .list-sebab ul .list-sebab ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
 .list-sebab h4 {
-  font-weight: 400;
-  padding: 3px;
+	font-weight: 600;
+	padding: 3px;
 }
 
+.list-sebab h4 span {
+	color: var(--dg);
+}
+
+.list-kerabat {
+	margin-left: 10px;
+}
+
+.poin-kerabat {
+	font-weight: 500;
+	color: var(--lb);
+}
+
+.list-ahli-waris {
+	margin-left: 30px;
+}
+
+.pewris-pria,
+.pewris-wanita {
+	font-size: 1.2rem;
+	color: #0a8138;
+	font-weight: 500;
+}
+
+.list-jenis-ahli-waris {
+	margin-left: 30px;
+}
+
+.list-jenis-ahli-waris h4 {
+	font-weight: 500;
+	padding: 3px;
+	color: var(--dg);
+}
+
+.list-jenis-ahli-waris p {
+	font-weight: 400;
+	padding: 0px 8px;
+}
+
+.list-jenis-ahli-waris span {
+	font-weight: 500;
+	color: var(--lb);
+}
 /* bab 4 */
 
+.furudh-header {
+	color: var(--dg);
+}
+
 .list-furudh {
-  padding: 5px;
+	padding: 5px;
+}
+.list-furudh .green {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.1rem;
+}
+
+.list-furudh span {
+	color: var(--lb);
+	font-weight: 500;
 }
 
 .list-furudh h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-furudh li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1.5rem;
+	font-weight: 400;
 }
 
 .list-furudh ul .list-furudh ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
 .list-furudh h4 {
-  font-weight: 400;
-  padding: 3px;
+	font-weight: 400;
+	padding: 3px;
+}
+
+.judul-tabel-bagi {
+	color: var(--dg);
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin: auto;
+}
+
+.tabel-pembagian-ahli-waris {
+	margin: auto;
+	width: 100%;
+}
+
+.tabel-pembagian-ahli-waris tr td {
+	padding: 0px 3px;
+	border: 1px solid var(--b);
+	text-align: center;
 }
 
 /* bab 5 */
 
+.pembagian {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.05rem;
+}
+
 .list-tashib {
-  padding: 5px;
+	padding: 5px;
 }
 
 .list-tashib h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-tashib li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-tashib span {
+	font-weight: 500;
+	color: var(--dg);
+	font-size: 1.05;
+}
+
+.list-tashib .blue {
+	color: var(--lb);
 }
 
 .list-tashib ul .list-tashib ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
-.list-tashib h4 {
-  font-weight: 400;
-  padding: 3px;
+.list-tashib i {
+	font-weight: 400;
+	padding: 3px;
+	color: var(--lb);
 }
 
 /* bab 6 */
+.header-hujub {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.05rem;
+}
 
 .list-hujub {
-  padding: 5px;
+	padding: 5px 5px;
+	margin-left: 5px;
+}
+
+.list-hujub2 {
+	padding: 5px 30px;
+}
+
+.list-hujub i {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.list-hujub span {
+	font-weight: 500;
+	color: var(--r);
 }
 
 .list-hujub h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-hujub li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
 }
 
 .list-hujub ul .list-hujub ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
 .list-hujub h4 {
-  font-weight: 400;
-  padding: 3px;
+	font-weight: 400;
+	padding: 3px;
 }
 
+.blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.tabel-hujub
+
 /* bab 7 */
+.materi7 {
+	padding-top: 2rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+.materi7 p {
+	font-size: 1rem;
+	text-align: justify;
+}
+
+.materi7 h2 {
+	font-weight: 700;
+}
+
+.materi7 .green {
+	color: var(--dg);
+	font-weight: 500;
+}
+
+.materi7 span {
+	font-weight: 500;
+	color: var(--lb);
+}
+
+.materi7 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+.materi7 .green {
+	color: var(--dg);
+	font-weight: 500;
+}
 
 .list-distribusi {
-  padding: 5px;
+	padding: 5px;
 }
 
 .list-distribusi h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-distribusi li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
 }
 
 .list-distribusi ul .list-distribusi ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
 .list-distribusi h4 {
-  font-weight: 400;
-  padding: 3px;
+	font-weight: 400;
+	padding: 3px;
 }
 
 /* bab 8 */
+.materi8 span {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.materi8 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+.materi8 .green {
+	color: var(--dg);
+	font-weight: 500;
+}
 
 .list-aul {
-  padding: 5px;
+	padding: 5px;
 }
 
 .list-aul h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-aul li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
 }
 
 .list-aul ul .list-aul ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
 .list-aul h4 {
-  font-weight: 400;
-  padding: 3px;
+	font-weight: 400;
+	padding: 3px;
 }
 
 .tabel-aul {
-  border: 2px solid var(--b);
-  width: 50%;
+	border-collapse: collapse;
+}
+
+.tabel-aul td {
+	border: 1px solid var(--b);
+	padding: 2px 10px;
+	text-align: center;
+}
+
+.tabel-hitung-aul td {
+	padding: 0 2px;
 }
 
 /* bab 9 */
 
+.materi9 {
+	padding-top: 30px;
+}
+
 .list-koreksi {
-  padding: 5px;
+	padding: 5px;
 }
 
 .list-koreksi h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-koreksi li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
 }
 
 .list-koreksi ul .list-koreksi ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
-.list-koreksi h4 {
-  font-weight: 400;
-  padding: 3px;
+.materi9 span {
+	font-weight: 500;
+	color: var(--dg);
+	font-size: 1.05rem;
+}
+
+.materi9 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+.materi9 .blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.contoh-koreksi-masalah {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.05rem;
+	padding: 5px 0;
+}
+
+.tabel-koreksi-masalah {
+	border-collapse: collapse;
+}
+
+.tabel-koreksi-masalah td {
+	border: 1px solid var(--b);
+	padding: 2px 10px;
+	text-align: center;
 }
 
 /* bab 10 */
 
 .list-radd {
-  padding: 5px;
+	padding: 5px;
 }
 
 .list-radd h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-radd li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
 }
 
 .list-radd ul .list-radd ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
 .list-radd h4 {
-  font-weight: 400;
-  padding: 3px;
+	font-weight: 400;
+	padding: 3px;
 }
 
 /* bab 10 */
 
 .list-terkenal {
-  padding: 5px;
+	padding: 5px;
 }
 
 .list-terkenal h3 {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .list-terkenal li {
-  margin-left: 1rem;
-  font-weight: 400;
+	margin-left: 1rem;
+	font-weight: 400;
 }
 
 .list-terkenal ul .list-terkenal ul li ol li {
-  padding: 3px;
+	padding: 3px;
 }
 
 .list-terkenal h4 {
-  font-weight: 400;
-  padding: 3px;
+	font-weight: 400;
+	padding: 3px;
+}
+
+@media (max-width: 1024px) {
+	html {
+		font-size: 75%;
+	}
+	.main-title {
+		top: 20%;
+	}
+	.sub-title {
+		margin-top: 0.7rem;
+	}
+	.page-label {
+		margin-top: 1rem;
+	}
+}
+
+@media (max-width: 768px) {
+	html {
+		font-size: 62.5%;
+	}
+	.main-title {
+		top: 23%;
+	}
+	.sub-title {
+		margin-top: 1rem;
+	}
+	.page-label {
+		margin-top: 1.4rem;
+	}
 }

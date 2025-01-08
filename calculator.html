@@ -1,922 +1,722 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/calculator.css" />
-    <!-- Google Font Poppins -->
-    <link rel="icon" type="image/png" sizes="32x32" href="images/logo_white.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/src/notiflix.min.css">
-    <!-- jQuery 3.x -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- jQuery Migrate 3.5.0 -->
-    <script src="https://code.jquery.com/jquery-migrate-3.5.0.min.js"></script>
-    <script src="js/calculator.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"></script>
-    <title>Kalkulator Waris</title>
-  </head>
-  <body>
-    <!-- bismillahirrohmanirrohim -->
-    <!-- navbar -->
-    <section id="legacy1" style="display: contents;">
-      <div class="navbar-main" data-role="page">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/calculator.css" />
+  <!-- Google Font Poppins -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo_white.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/src/notiflix.min.css">
+  <!-- jQuery 3.x -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- jQuery Migrate 3.5.0 -->
+  <script src="https://code.jquery.com/jquery-migrate-3.5.0.min.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"></script>
+  <title>Kalkulator Waris</title>
+</head>
+
+<body>
+  <!-- bismillahirrohmanirrohim -->
+  <!-- navbar -->
+  <section id="legacy1" style="display: contents;">
+    <div class="navbar-main" data-role="page">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-1">jumlah Harta</h3>
       </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-1">Jumlah Harta</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">1</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button0" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <table class="data-awal">
-          <tr data-role="fieldcontain" class="kolom-tirkah">
+      <div class="page-label">
+        <h4><span id="page-ke">1</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button0" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <table class="data-awal">
+        <tr data-role="fieldcontain" class="kolom-tirkah">
           <td>
-              <label class="h-tirkah">Tirkah (Harta yang diwariskan)</label>
-            </td>
-            <td>
-              <input type="text" name="f20" id="nTirkah" class="numeric" data-highlight="true" />
-            </td>
-          </tr>
+            <label class="h-tirkah">Tirkah (Harta yang diwariskan)</label>
+          </td>
+          <td>
+            <input type="text" name="f20" id="nTirkah" class="numeric" data-highlight="true" />
+          </td>
+        </tr>
 
-          <tr data-role="fieldcontain" class="kolom-muwarrits">
-            <td><label class="h-muwarrits">Muwarrits</label></td>
-            <td>
-              <fieldset data-role="controlgroup" id="muwarrits">
-                <div class="ui-radio">
-                  <input
-                    type="radio"
-                    data-highlight="true"
-                    name="muwarrits"
-                    id="pria"
-                    value="laki-laki"
-                    data-cacheval="true" />
-                  <label for="pria">Laki-laki</label>
-                </div>
-                <div class="ui-radio">
-                  <input
-                    type="radio"
-                    data-highlight="true"
-                    name="muwarrits"
-                    id="wanita"
-                    value="wanita"
-                    data-cacheval="true" />
-                  <label for="wanita">Wanita</label>
-                </div>
-              </fieldset>
-            </td>
-          </tr>
+        <tr data-role="fieldcontain" class="kolom-muwarrits">
+          <td><label class="h-muwarrits">Muwarrits</label></td>
+          <td>
+            <fieldset data-role="controlgroup" id="muwarrits">
+              <div class="ui-radio">
+                <input type="radio" data-highlight="true" name="muwarrits" id="pria" value="laki-laki"
+                  data-cacheval="true" />
+                <label for="pria">Laki-laki</label>
+              </div>
+              <div class="ui-radio">
+                <input type="radio" data-highlight="true" name="muwarrits" id="wanita" value="wanita"
+                  data-cacheval="true" />
+                <label for="wanita">Wanita</label>
+              </div>
+            </fieldset>
+          </td>
+        </tr>
 
-          <tr data-role="fieldcontain" class="kolom-hutang">
-            <td><label class="h-hutang">Hutang</label></td>
-            <td>
-              <div><input type="text" name="f28" class="numeric" id="nHutang" /></div>
-            </td>
-          </tr>
+        <tr data-role="fieldcontain" class="kolom-tajhiz">
+          <td><label class="h-tajhiz">Tajhiz (Pengurusan Jenazah)</label></td>
+          <td>
+            <div><input type="text" class="numeric" id="nTajhiz" /></div>
+          </td>
+        </tr>
 
-         <tr data-role="fieldcontain" class="kolom-wasiat">
-            <td>
-              <label class="h-wasiat">Wasiat (Maksimal 1/3 Harta Warisan)</label>
-            </td>
-            <td>
-              <div><input type="text" name="f29" class="numeric" id="nWasiat" /></div>
-            </td>
-          </tr>
+        <tr data-role="fieldcontain" class="kolom-hutang">
+          <td><label class="h-hutang">Hutang</label></td>
+          <td>
+            <div><input type="text" class="numeric" id="nHutang" /></div>
+          </td>
+        </tr>
 
-          <tr data-role="fieldcontain" class="kolom-tajhiz">
-            <td><label class="h-tajhiz">Tajhiz (Pengurusan Jenazah)</label></td>
-            <td>
-              <div><input type="text" name="f29" class="numeric" id="nTajhiz" /></div>
-            </td>
-          </tr>
+        <tr data-role="fieldcontain" class="kolom-wasiat">
+          <td>
+            <label class="h-wasiat">Wasiat (Maksimal 1/3 Harta Warisan)</label>
+          </td>
+          <td>
+            <div><input type="text" class="numeric" id="nWasiat" /></div>
+          </td>
+        </tr>
 
-          <tr data-role="fieldcontain" class="kolom-irts">
-            <td><label class="h-irts">Al-Irts (Harta siap dibagi)</label></td>
-            <td>
-              <input type="text" name="i-30" id="nIrst" class="numeric" value="Rp.0" readonly="true" />
-            </td>
-          </tr>
-        </table>
+        <tr data-role="fieldcontain" class="kolom-irts">
+          <td><label class="h-irts">Al-Irts (Harta siap dibagi)</label></td>
+          <td>
+            <input type="text" name="i-30" id="nIrst" class="numeric" value="Rp.0" readonly="true" />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  <section id="legacy2" data-role="page" style="display: contents;">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Data Waris Keluarga</h3>
       </div>
-    </section>
-    <section id="legacy2" data-role="page" style="display: contents;">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
+      <div class="page-label">
+        <h4><span id="page-ke">2</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button1" src="images/next-button.png" alt="" />
         </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
       </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Data Waris Keluarga</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">2</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button1" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button1" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div data-role="fieldcontain" class="kolom-muwarrits">
-            <div>
-              <fieldset data-role="controlgroup">
-                <div class="ui-cb">
-                  <input
-                    type="checkbox"
-                    data-highlight="true"
-                    name="cb_ayah"
-                    id="cb_ayah"
-                    value="1"
-                    class="custom" />
-                  <label for="cb_ayah">Ayah (<span id="saham_ayah">0</span>)</label>
-                </div>
-              </fieldset>
-            </div>
-          </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button1" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div data-role="fieldcontain" class="kolom-muwarrits">
           <div>
-            <div>
-              <fieldset data-role="controlgroup">
-                <div class="ui-cb">
-                  <input
-                    type="checkbox"
-                    data-highlight="true"
-                    name="cb_ibu"
-                    id="cb_ibu"
-                    value="1"
-                    class="custom" />
-                  <label for="cb_ibu">Ibu (<span id="saham_ibu">0</span>)</label>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-
-          <div data-role="fieldcontain" id="field_suami" style="display: none">
-            <div>
-              <fieldset data-role="controlgroup">
-                <input type="checkbox" name="cb_suami" id="cb_suami" class="custom" />
-                <label for="cb_suami">Suami (<span id="saham_suami">0</span>)</label>
-              </fieldset>
-            </div>
-          </div>
-
-          <div data-role="fieldcontain" id="field_istri" type="8" style="display: none">
-            <div>
-              <label class="field-label">Istri (<span id="saham_istri">0</span>)</label>
-
-              <input
-                type="range"
-                id="nilai_istri"
-                name="nilai_istri"
-                data-highlight="true"
-                class="slider"
-                min="0"
-                max="4"
-                value="0" />
-            </div>
-          </div>
-
-          <div data-role="fieldcontain" class="field" type="8" id="div37">
-            <div>
-              <label class="field-label">Anak kaki-laki (<span id="saham_anaklaki">0</span>)</label>
-
-              <input
-                id="nilai_anaklaki"
-                data-highlight="true"
-                class="slider"
-                min="0"
-                max="50"
-                value="0"
-                type="range" />
-            </div>
-          </div>
-          <div data-role="fieldcontain" class="field" type="8" id="div38">
-            <div>
-              <label class="field-label"
-                >Anak Perempuan (<span id="saham_anakperempuan">0</span>)
-              </label>
-
-              <input
-                id="nilai_anakperempuan"
-                data-highlight="true"
-                class="slider"
-                min="0"
-                max="50"
-                value="0"
-                type="range" />
-            </div>
-          </div>
-        </table>
-      </div>
-    </section>
-    <section id="legacy3" data-role="page" class="penghalang_1">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Cucu</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">3</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button2" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button2" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div id="field_cucu">
-            <div class="field" data-role="fieldcontain" type="8" id="field_cuculaki">
-              <label class="field-label"
-                >Cucu Laki-laki (dari anak laki-laki) (<span id="saham_cuculaki">0</span>)
-              </label>
-              <input
-                id="nilai_cuculaki"
-                data-highlight="true"
-                min="0"
-                max="50"
-                value="0"
-                class="slider"
-                type="range" />
-            </div>
-            <div class="field" data-role="fieldcontain" type="8" id="field_cucuperempuan">
-              <label class="field-label"
-                >Cucu Perempuan (dari anak laki-laki) (<span id="saham_cucuperempuan">0</span>)
-              </label>
-              <br />
-              <input
-                id="nilai_cucuperempuan"
-                data-highlight="true"
-                min="0"
-                max="50"
-                class="slider"
-                value="0"
-                type="range" />
-            </div>
-          </div>
-        </table>
-        <div id="info_penghalang_1" style="display: none">
-          <b>Cucu Laki &amp; Cucu Perempuan</b> dilewati karena sudah <b>terhalang</b> oleh
-          <b>Anak Laki-laki</b>.
-        </div>
-        <div id="info_penghalang_1a" style="display: none">
-          <b>Cucu Perempuan</b> dilewati karena sudah <b>terhalang</b> oleh
-          <b>2 Anak Perempuan</b> atau lebih.
-        </div>
-      </div>
-    </section>
-    <section id="legacy4" data-role="page" class="penghalang_2">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Kakek & Nenek</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">4</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button3" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button3" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div data-role="fieldcontain" id="field_kakek">
             <fieldset data-role="controlgroup">
-              <input name="cb_kakek" id="cb_kakek" value="1" class="custom" type="checkbox" />
-              <label for="cb_kakek">Kakek (dari Ayah) (<span id="saham_kakek">0</span>)</label>
+              <div class="ui-cb">
+                <input type="checkbox" data-highlight="true" name="cb_ayah" id="cb_ayah" value="1" class="custom" />
+                <label for="cb_ayah">Ayah (<span id="saham_ayah">0</span>)</label>
+              </div>
             </fieldset>
           </div>
-          <div id="field_nenekayah" data-role="fieldcontain" class="field" type="8" req="0">
-            <label class="field-label"
-              >Nenek (dari Ayah) (<span id="saham_nenekayah">0</span>)</label
-            >
-            <br />
-            <input
-              id="nilai_nenekayah"
-              data-highlight="true"
-              min="0"
-              max="4"
-              class="slider"
-              value="0"
-              type="range" />
+        </div>
+        <div>
+          <div>
+            <fieldset data-role="controlgroup">
+              <div class="ui-cb">
+                <input type="checkbox" data-highlight="true" name="cb_ibu" id="cb_ibu" value="1" class="custom" />
+                <label for="cb_ibu">Ibu (<span id="saham_ibu">0</span>)</label>
+              </div>
+            </fieldset>
           </div>
-          <div id="field_nenekibu" data-role="fieldcontain" class="field" type="8" req="0">
-            <label class="field-label">Nenek (dari Ibu) (<span id="saham_nenekibu">0</span>)</label>
-            <br />
-            <input
-              id="nilai_nenekibu"
-              data-highlight="true"
-              min="0"
-              max="4"
-              class="slider"
-              value="0"
-              type="range" />
-          </div>
-        </table>
-        <div id="info_penghalang_2" style="display: none">
-          <b>Kakek & Nenek</b> dilewati karena sudah <b>terhalang</b> oleh <b>Ayah</b> & <b>Ibu</b>.
         </div>
-      </div>
-    </section>
-    <section id="legacy5" data-role="page" class="penghalang_3">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Saudara Kandung</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">5</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button4" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button4" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div
-            id="field_saudaralakikandung"
-            data-role="fieldcontain"
-            type="8"
-            req="0"
-            class="field">
-            <label class="field-label">
-              Saudara Laki-Laki Kandung (<span id="saham_saudaralakikandung">0</span>)
-            </label>
-            <br />
-            <input
-              id="nilai_saudaralakikandung"
-              data-highlight="true"
-              min="0"
-              max="50"
-              class="slider"
-              value="0"
-              type="range" />
-          </div>
-          <div
-            id="field_saudaraperempuankandung"
-            data-role="fieldcontain"
-            class="field"
-            type="8"
-            req="0">
-            <label class="field-label"
-              >Saudara Perempuan Kandung (<span id="saham_saudaraperempuankandung">0</span>)</label
-            >
-            <br />
-            <input
-              data-highlight="true"
-              id="nilai_saudaraperempuankandung"
-              min="0"
-              max="50"
-              class="slider"
-              value="0"
-              type="range" />
-          </div>
-        </table>
-        <div id="info_penghalang_3" style="display: none">
-          <b>Saudara Laki-Laki & Perempuan Kandung</b> dilewati karena sudah <b>terhalang</b> oleh
-          <b id="si_penghalang"></b>.
-        </div>
-      </div>
-    </section>
-    <section id="legacy6" data-role="page" class="penghalang_4">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Saudara Tiri</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">7</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button5" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button5" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div id="field_saudaralakiseayah" data-role="fieldcontain" type="8" req="0" class="field">
-            <label class="field-label">
-              Saudara Laki-Laki SeAyah (<span id="saham_saudaralakiseayah">0</span>)
-            </label>
-            <br />
-            <input
-              id="nilai_saudaralakiseayah"
-              data-highlight="true"
-              min="0"
-              max="50"
-              value="0"
-              class="slider"
-              type="range" />
-          </div>
-          <div
-            id="field_saudaraperempuanseayah"
-            data-role="fieldcontain"
-            class="field"
-            type="8"
-            req="0">
-            <label class="field-label"
-              >Saudara Perempuan SeAyah (<span id="saham_saudaraperempuanseayah">0</span>)</label
-            >
-            <br />
-            <input
-              data-highlight="true"
-              id="nilai_saudaraperempuanseayah"
-              min="0"
-              max="50"
-              value="0"
-              class="slider"
-              type="range" />
-          </div>
-          <div id="field_saudaralakiseibu" data-role="fieldcontain" type="8" req="0" class="field">
-            <label class="field-label">
-              Saudara Laki-Laki SeIbu (<span id="saham_saudaralakiseibu">0</span>)
-            </label>
-            <br />
-            <input
-              id="nilai_saudaralakiseibu"
-              data-highlight="true"
-              min="0"
-              max="50"
-              value="0"
-              class="slider"
-              type="range" />
-          </div>
-          <div
-            id="field_saudaraperempuanseibu"
-            data-role="fieldcontain"
-            class="field"
-            type="8"
-            req="0">
-            <label class="field-label"
-              >Saudara Perempuan SeIbu (<span id="saham_saudaraperempuanseIbu">0</span>)</label
-            >
-            <br />
-            <input
-              data-highlight="true"
-              id="nilai_saudaraperempuanseIbu"
-              min="0"
-              max="50"
-              value="0"
-              class="slider"
-              type="range" />
-          </div>
-        </table>
-        <div id="info_penghalang_4a" style="display: none">
-          <b>Saudara Laki-Laki & Perempuan Seayah</b> dilewati karena sudah <b>terhalang</b> oleh
-          <b id="si_penghalang_4a">Saudara Laki-Laki Kandung</b>.
-        </div>
-        <div id="info_penghalang_4b" style="display: none">
-          <b>Saudara Laki-Laki & Perempuan Seibu</b> dilewati karena sudah <b>terhalang</b> oleh
-          <b id="si_penghalang_4b">Ayah</b>.
-        </div>
-      </div>
-    </section>
-    <section id="legacy7" data-role="page" class="penghalang_5">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Keponakan</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">7</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button6" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button6" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div data-role="fieldcontain" type="8" req="0" class="field" id="field_anaklakisaudarakandung">
-            <label class="field-label">
-              Anak Laki-Laki dari Saudara Laki-Laki Kandung (<span
-                id="saham_anaklakisaudarakandung"
-                >0</span
-              >)
-            </label>
-            <br />
-            <input
-              id="nilai_anaklakisaudarakandung"
-              type="range"
-              data-highlight="true"
-              name="41"
-              min="0"
-              max="50"
-              class="slider"
-              value="0" />
-          </div>
-          <div
-            id="field_anaklakisaudaraseayah"
-            data-role="fieldcontain"
-            class="field"
-            type="8"
-            req="0">
-            <label class="field-label"
-              >Anak Laki-Laki dari Saudara Laki-Laki SeAyah (<span
-                id="saham_anaklakisaudaraseayah"
-                >0</span
-              >)</label
-            >
-            <br />
-            <input
-              data-highlight="true"
-              id="nilai_anaklakisaudaraseayah"
-              min="0"
-              max="50"
-              value="0"
-              class="slider"
-              type="range" />
-          </div>
-        </table>
-        <div id="info_penghalang_5a" style="display: none">
-          <b>Anak Laki-Laki dari Saudara Laki-Laki Kandung</b> dilewati karena sudah
-          <b>terhalang</b> oleh <b id="si_penghalang_5a"></b>.
-        </div>
-        <div id="info_penghalang_5b" style="display: none">
-          <b>Anak Laki-Laki dari Saudara Laki-Laki Seayah</b> dilewati karena sudah
-          <b>terhalang</b> oleh <b id="si_penghalang_5b"></b>.
-        </div>
-      </div>
-    </section>
-    <section id="legacy8" data-role="page" class="penghalang_5">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Paman</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">8</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button7" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button7" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div data-role="fieldcontain" type="8" req="0" class="field" id="field_pamankandung">
-            <label class="field-label">
-              Paman Kandung (dari Ayah) (<span id="saham_pamankandungayah">0</span>)
-            </label>
-            <br />
-            <input
-              id="nilai_pamankandungayah"
-              type="range"
-              data-highlight="true"
-              class="slider"
-              name="41"
-              min="0"
-              max="50"
-              value="0" />
-          </div>
-          <div id="field_pamansekakekayah" data-role="fieldcontain" class="field" type="8" req="0">
-            <label class="field-label"
-              >Paman Sekakek (dari Ayah) (<span id="saham_pamansekakekayah">0</span>)</label
-            >
-            <br />
-            <input
-              data-highlight="true"
-              id="nilai_pamansekakekayah"
-              class="slider"
-              min="0"
-              max="50"
-              value="0"
-              type="range" />
-          </div>
-        </table>
-        <div id="info_penghalang_6a" style="display: none">
-          <b>Paman Kandung (dari Ayah)</b> dilewati karena sudah <b>terhalang</b> oleh <b id="si_penghalang_6a"> </b>.
-        </div>
-        <div id="info_penghalang_6b" style="display: none">
-          <b>Paman SeKakek (dari Ayah)</b> dilewati karena sudah <b>terhalang</b> oleh <b id="si_penghalang_6b"> </b>.
-        </div>
-      </div>
-    </section>
-    <section id="legacy9" data-role="page" class="penghalang_5">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Anak Paman</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">9</span> dari 9</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button8" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button8" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <table data-role="content">
-          <div data-role="fieldcontain" type="8" req="0" class="field" id="field_anaklakipamansekandung">
-            <label class="field-label">
-              Anak Laki-Laki Paman Kandung (dari Ayah) (<span id="saham_anaklakipamankandung"
-                >0</span
-              >)
-            </label>
-            <br />
-            <input
-              id="nilai_anaklakipamankandung"
-              type="range"
-              data-highlight="true"
-              class="slider"
-              name="41"
-              min="0"
-              max="50"
-              value="0" />
-          </div>
-          <div
-            id="field_anaklakipamansekakek"
-            data-role="fieldcontain"
-            class="field"
-            type="8"
-            req="0">
-            <label class="field-label"
-              >Anak Laki-Laki Paman Sekakek (dari Ayah) (<span id="saham_anaklakipamansekakek"
-                >0</span
-              >)</label
-            >
-            <br />
-            <input
-              data-highlight="true"
-              id="nilai_anaklakipamansekakek"
-              class="slider"
-              min="0"
-              max="50"
-              value="0"
-              type="range" />
-          </div>
-        </table>
-        <div id="info_penghalang_7a" style="display: none">
-          <b>Anak Laki-Laki Paman Kandung</b> dilewati karena sudah <b>terhalang</b> oleh
-          <b id="si_penghalang_7a"></b>
-        </div>
-        <div id="info_penghalang_7b" style="display: none">
-          <b>Anak Laki-Laki Paman Sekakek</b> dilewati karena sudah <b>terhalang</b> oleh
-          <b id="si_penghalang_7b"></b>.
-        </div>
-      </div>
-    </section>
-    <section id="legacy_total">
-      <div class="navbar-main">
-        <a href="index.html">
-          <img class="return-button" src="images/back.png" alt="" />
-        </a>
-        <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
-      </div>
-      <div class="main-page2">
-        <div class="sub-title">
-          <h3 class="sub-title-2">Hasil Akhir</h3>
-        </div>
-        <div class="page-label">
-          <h4><span id="page-ke">Total</h4>
-        </div>
-        <div class="a-next-button">
-          <a href="">
-            <img id="img-next-button9" src="images/next-button.png" alt="" />
-          </a>
-        </div>
-        <div class="a-return-button">
-          <a href="">
-            <img id="img-return-button9" src="images/back-button.png" alt="" />
-          </a>
-        </div>
-        <div class="kolom_final">
-          <table class="kolom_hasil">
-            <tr>
-              <td class="hasil_atas">Harta yang Ditinggalkan</td>
-              <td id="total_tirkah">234</td>
-            </tr>
-            <tr>
-              <td class="hasil_atas">Hutang yang Ditinggalkan</td>
-              <td id="total_hutang">324</td>
-            </tr>
-            <tr>
-              <td class="hasil_atas">Wasiat yang Ditinggalkan</td>
-              <td id="total_wasiat">43</td>
-            </tr>
-            <tr>
-              <td class="hasil_atas">Biaya mengurus jenazah</td>
-              <td id="total_tajhiz">345</td>
-            </tr>
-            <tr>
-              <td class="hasil_atas">Sisa Warisan (<i>Al-Irts</i>)</td>
-              <td id="total_irts">65756</td>
-            </tr>
-          </table>
-          <table class="kolom_main">
-            <thead>
-              <tr>
-                <th>Pewaris</th>
-                <th>Bagian</th>
-                <th>Per-Orang</th>
-              </tr>
-            </thead>
-            <tbody class="kolom_bagian">
-              <tr id="kolom_ayah" style="display: none;">
-                <td>Ayah</td>
-                <td id="bagian_ayah"></td>
-                <td id="hasil_ayah"></td>
-              </tr>
-              <tr id="kolom_ibu" style="display: none;">
-                <td>Ibu</td>
-                <td id="bagian_ibu"></td>
-                <td id="hasil_ibu"></td>
-              </tr>
-              <tr id="kolom_kakek" style="display: none;">
-                <td>Kakek</td>
-                <td id="bagian_kakek"></td>
-                <td id="hasil_kakek"></td>
-              </tr>
-              <tr id="kolom_nenekayah" style="display: none;">
-                <td>Nenek dari pihak Ayah</td>
-                <td id="bagian_nenekayah"></td>
-                <td id="hasil_nenekayah"></td>
-              </tr>
-              <tr id="kolom_nenekibu" style="display: none;">
-                <td>Nenek dari Pihak ibu</td>
-                <td id="bagian_nenekibu"></td>
-                <td id="hasil_nenekibu"></td>
-              </tr>
-              <tr id="kolom_suami" style="display: none;">
-                <td>Suami</td>
-                <td id="bagian_suami"></td>
-                <td id="hasil_suami"></td>
-              </tr>
-              <tr id="kolom_istri" style="display: none;">
-                <td>Istri</td>
-                <td id="bagian_istri"></td>
-                <td id="hasil_istri"></td>
-              </tr>
-              <tr id="kolom_anaklaki" style="display: none;">
-                <td>Anak Laki-Laki</td>
-                <td id="bagian_anaklaki"></td>
-                <td id="hasil_anaklaki"></td>
-              </tr>
-              <tr id="kolom_anakperempuan" style="display: none;">
-                <td>Anak Perempuan</td>
-                <td id="bagian_anakperempuan"></td>
-                <td id="hasil_anakperempuan"></td>
-              </tr>
-              <tr id="kolom_cuculaki" style="display: none;">
-                <td>Cucu Laki-Laki</td>
-                <td id="bagian_cuculaki"></td>
-                <td id="hasil_cucuperempuan"></td>
-              </tr>
-              <tr id="kolom_cucuperempuan" style="display: none;">
-                <td>Cucu Perempuan</td>
-                <td id="bagian_cucuperempuan"></td>
-                <td id="hasil_cucuperempuan"></td>
-              </tr>
-              <tr id="kolom_saudaralakikandung"style="display: none;">
-                <td>Saudara Laki-Laki Kandung</td>
-                <td id="bagian_saudaralakikandung"></td>
-                <td id="hasil_saudaralakikandung"></td>
-              </tr>
-              <tr id="kolom_saudaraperempuankandung" style="display: none;">
-                <td>Saudara Perempuan Kandung</td>
-                <td id="bagian_saudaraperempuankandung"></td>
-                <td id="hasil_saudaraperempuankandung"></td>
-              </tr>
-              <tr id="kolom_saudaralakiseayah" style="display: none;">
-                <td>Saudara Laki-Laki Seayah</td>
-                <td id="bagian_saudaralakiseayah"></td>
-                <td id="hasil_saudaralakiseayah"></td>
-              </tr>
-              <tr id="kolom_saudaraperempuanseayah" style="display: none;">
-                <td>Saudara Perempuan Seayah</td>
-                <td id="bagian_saudaraperempuanseayah"></td>
-                <td id="hasil_saudaraperempuanseayah"></td>
-              </tr>
-              <tr id="kolom_saudaralakiseibu" style="display: none;">
-                <td>Saudara Laki-Laki Seibu</td>
-                <td id="bagian_saudaralakiseibu"></td>
-                <td id="hasil_saudaralakiseibu"></td>
-              </tr>
-              <tr id="kolom_saudaraperempuanseibu" style="display: none;">
-                <td>Saudara Perempuan Seibu</td>
-                <td id="bagian_saudaraperempuanseibu"></td>
-                <td id="hasil_saudaraperempuanseibu"></td>
-              </tr>
-              <tr id="kolom_anaklakisaudarakandung" style="display: none;">
-                <td>Putra dari Saudara Kandung</td>
-                <td id="bagian_anaklakisaudarakandung"></td>
-                <td id="hasil_anaklakisaudarakandung"></td>
-              </tr>
-              <tr id="kolom_anaklakisaudaraseayah" style="display: none;">
-                <td>Putra dari Saudara Seayah</td>
-                <td id="bagian_anaklakisaudaraseayah"></td>
-                <td id="hasil_anaklakisaudaraseayah"></td>
-              </tr>
-              <tr id="kolom-pamankandung" style="display: none;">
-                <td>Paman Sekandung</td>
-                <td id="bagian_pamansekandung"></td>
-                <td id="hasil_pamansekandung"></td>
-              </tr>
-              <tr id="kolom_pamanseayah" style="display: none;">
-                <td>Paman seayah</td>
-                <td id="bagian_pamanseayah"></td>
-                <td id="hasil_pamanseayah"></td>
-              </tr>
-              <tr id="kolom_anaklakipamankandung" style="display: none;">
-                <td>Putra dari Paman Sekandung</td>
-                <td id="bagian_anaklakipamansekandung"></td>
-                <td id="hasil_anaklakipamansekandung"></td>
-              </tr>
-              <tr id="kolom_anaklakipamanseayah" style="display: none;">
-                <td>Putra dari Paman Seayah</td>
-                <td id="bagian_anaklakipamanseayah"></td>
-                <td id="hasil_anaklakipamanseayah"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-    </section>
-  </body>
-</html>
 
-<!-- keponakan -->
+        <div data-role="fieldcontain" id="field_suami" style="display: none">
+          <div>
+            <fieldset data-role="controlgroup">
+              <input type="checkbox" name="cb_suami" id="cb_suami" class="custom" />
+              <label for="cb_suami">Suami (<span id="saham_suami">0</span>)</label>
+            </fieldset>
+          </div>
+        </div>
+
+        <div data-role="fieldcontain" id="field_istri" type="8" style="display: none">
+          <div>
+            <label class="field-label">Istri (<span id="saham_istri">0</span>)</label>
+
+            <input type="range" id="nilai_istri" name="nilai_istri" data-highlight="true" class="slider" min="0" max="4"
+              value="0" />
+          </div>
+        </div>
+
+        <div data-role="fieldcontain" class="field" type="8" id="div37">
+          <div>
+            <label class="field-label">Anak Laki-Laki (<span id="saham_anaklaki">0</span>)</label>
+
+            <input id="nilai_anaklaki" data-highlight="true" class="slider" min="0" max="50" value="0" type="range" />
+          </div>
+        </div>
+        <div data-role="fieldcontain" class="field" type="8" id="div38">
+          <div>
+            <label class="field-label">Anak Perempuan (<span id="saham_anakperempuan">0</span>)
+            </label>
+
+            <input id="nilai_anakperempuan" data-highlight="true" class="slider" min="0" max="50" value="0"
+              type="range" />
+          </div>
+        </div>
+      </table>
+    </div>
+  </section>
+  <section id="legacy3" data-role="page" class="penghalang_1">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Cucu</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">3</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button2" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button2" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div id="field_cucu">
+          <div class="field" data-role="fieldcontain" type="8" id="field_cuculaki">
+            <label class="field-label">Cucu Laki-laki (dari anak laki-laki) (<span id="saham_cuculaki">0</span>)
+            </label>
+            <input id="nilai_cuculaki" data-highlight="true" min="0" max="50" value="0" class="slider" type="range" />
+          </div>
+          <div class="field" data-role="fieldcontain" type="8" id="field_cucuperempuan">
+            <label class="field-label">Cucu Perempuan (dari anak laki-laki) (<span id="saham_cucuperempuan">0</span>)
+            </label>
+            <input id="nilai_cucuperempuan" data-highlight="true" min="0" max="50" class="slider" value="0"
+              type="range" />
+          </div>
+        </div>
+      </table>
+      <div id="info_penghalang_1" style="display: none">
+        <b>Cucu Laki &amp; Cucu Perempuan</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b>Anak Laki-laki</b>.
+      </div>
+      <div id="info_penghalang_1a" style="display: none">
+        <b>Cucu Perempuan</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b>2 Anak Perempuan</b> atau lebih.
+      </div>
+    </div>
+  </section>
+  <section id="legacy4" data-role="page" class="penghalang_2">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Kakek & Nenek</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">4</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button3" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button3" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div data-role="fieldcontain" id="field_kakek">
+          <fieldset data-role="controlgroup">
+            <input name="cb_kakek" id="cb_kakek" value="1" class="custom" type="checkbox" />
+            <label for="cb_kakek">Kakek (dari Ayah) (<span id="saham_kakek">0</span>)</label>
+          </fieldset>
+        </div>
+        <div id="field_nenekayah" data-role="fieldcontain">
+          <input name="cb_nenekayah" id="cb_nenekayah" value="1" class="custom" type="checkbox" />
+          <label for="cb_nenekayah">Nenek (dari Ayah) (<span id="saham_nenekayah">0</span>)</label>
+        </div>
+        <div id="field_nenekibu" data-role="fieldcontain">
+          <input name="cb_nenekibu" id="cb_nenekibu" value="1" class="custom" type="checkbox" />
+          <label for="cb_nenekibu">Nenek (dari Ibu) (<span id="saham_nenekibu">0</span>)</label>
+        </div>
+      </table>
+      <div id="info_penghalang_2" style="display: none">
+        <b>Kakek & Nenek</b> dilewati karena sudah <b>terhalang</b> oleh <b>Ayah</b> & <b>Ibu</b>.
+      </div>
+    </div>
+  </section>
+  <section id="legacy5" data-role="page" class="penghalang_3">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Saudara Kandung</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">5</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button4" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button4" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div id="field_saudaralakikandung" data-role="fieldcontain" type="8" req="0" class="field">
+          <label class="field-label">
+            Saudara Laki-Laki Kandung (<span id="saham_saudaralakikandung">0</span>)
+          </label>
+          <input id="nilai_saudaralakikandung" data-highlight="true" min="0" max="50" class="slider" value="0"
+            type="range" />
+        </div>
+        <div id="field_saudaraperempuankandung" data-role="fieldcontain" class="field" type="8" req="0">
+          <label class="field-label">Saudara Perempuan Kandung (<span
+              id="saham_saudaraperempuankandung">0</span>)</label>
+          <input data-highlight="true" id="nilai_saudaraperempuankandung" min="0" max="50" class="slider" value="0"
+            type="range" />
+        </div>
+      </table>
+      <div id="info_penghalang_3" style="display: none">
+        <b>Saudara Laki-Laki & Perempuan Kandung</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b id="si_penghalang"></b>.
+      </div>
+    </div>
+  </section>
+  <section id="legacy6" data-role="page" class="penghalang_4">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Saudara Tiri</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">7</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button5" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button5" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div id="field_saudaralakiseayah" data-role="fieldcontain" type="8" req="0" class="field">
+          <label class="field-label">
+            Saudara Laki-Laki SeAyah (<span id="saham_saudaralakiseayah">0</span>)
+          </label>
+          <input id="nilai_saudaralakiseayah" data-highlight="true" min="0" max="50" value="0" class="slider"
+            type="range" />
+        </div>
+        <div id="field_saudaraperempuanseayah" data-role="fieldcontain" class="field" type="8" req="0">
+          <label class="field-label">Saudara Perempuan SeAyah (<span id="saham_saudaraperempuanseayah">0</span>)</label>
+          <input data-highlight="true" id="nilai_saudaraperempuanseayah" min="0" max="50" value="0" class="slider"
+            type="range" />
+        </div>
+        <div id="field_saudaralakiseibu" data-role="fieldcontain" type="8" req="0" class="field">
+          <label class="field-label">
+            Saudara Laki-Laki SeIbu (<span id="saham_saudaralakiseibu">0</span>)
+          </label>
+          <input id="nilai_saudaralakiseibu" data-highlight="true" min="0" max="50" value="0" class="slider"
+            type="range" />
+        </div>
+        <div id="field_saudaraperempuanseibu" data-role="fieldcontain" class="field" type="8" req="0">
+          <label class="field-label">Saudara Perempuan SeIbu (<span id="saham_saudaraperempuanseIbu">0</span>)</label>
+          <input data-highlight="true" id="nilai_saudaraperempuanseIbu" min="0" max="50" value="0" class="slider"
+            type="range" />
+        </div>
+      </table>
+      <div id="info_penghalang_4a" style="display: none">
+        <b>Saudara Laki-Laki & Perempuan Seayah</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b id="si_penghalang_4a"></b>.
+      </div>
+      <div id="info_penghalang_4b" style="display: none">
+        <b>Saudara Laki-Laki & Perempuan Seibu</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b id="si_penghalang_4b"></b>.
+      </div>
+      <div id="info_penghalang_4c" style="display: none">
+        <b>Saudara Perempuan Seayah</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b id="si_penghalang_4c"></b>.
+      </div>
+    </div>
+  </section>
+  <section id="legacy7" data-role="page" class="penghalang_5">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Keponakan</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">7</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button6" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button6" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div data-role="fieldcontain" type="8" req="0" class="field" id="field_anaklakisaudarakandung">
+          <label class="field-label">
+            Anak Laki-Laki dari Saudara Laki-Laki Kandung (<span id="saham_anaklakisaudarakandung">0</span>)
+          </label>
+          <input id="nilai_anaklakisaudarakandung" type="range" data-highlight="true" name="41" min="0" max="50"
+            class="slider" value="0" />
+        </div>
+        <div id="field_anaklakisaudaraseayah" data-role="fieldcontain" class="field" type="8" req="0">
+          <label class="field-label">Anak Laki-Laki dari Saudara Laki-Laki SeAyah (<span
+              id="saham_anaklakisaudaraseayah">0</span>)</label>
+          <input data-highlight="true" id="nilai_anaklakisaudaraseayah" min="0" max="50" value="0" class="slider"
+            type="range" />
+        </div>
+      </table>
+      <div id="info_penghalang_5a" style="display: none">
+        <b>Anak Laki-Laki dari Saudara Laki-Laki Kandung</b> dilewati karena sudah
+        <b>terhalang</b> oleh <b id="si_penghalang_5a"></b>.
+      </div>
+      <div id="info_penghalang_5b" style="display: none">
+        <b>Anak Laki-Laki dari Saudara Laki-Laki Seayah</b> dilewati karena sudah
+        <b>terhalang</b> oleh <b id="si_penghalang_5b"></b>.
+      </div>
+    </div>
+  </section>
+  <section id="legacy8" data-role="page" class="penghalang_5">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Paman</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">8</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button7" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button7" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div data-role="fieldcontain" type="8" req="0" class="field" id="field_pamankandung">
+          <label class="field-label">
+            Paman Kandung (dari Ayah) (<span id="saham_pamankandungayah">0</span>)
+          </label>
+          <input id="nilai_pamankandungayah" type="range" data-highlight="true" class="slider" name="41" min="0"
+            max="50" value="0" />
+        </div>
+        <div id="field_pamansekakekayah" data-role="fieldcontain" class="field" type="8" req="0">
+          <label class="field-label">Paman Sekakek (dari Ayah) (<span id="saham_pamansekakekayah">0</span>)</label>
+          <input data-highlight="true" id="nilai_pamansekakekayah" class="slider" min="0" max="50" value="0"
+            type="range" />
+        </div>
+      </table>
+      <div id="info_penghalang_6a" style="display: none">
+        <b>Paman Kandung (dari Ayah)</b> dilewati karena sudah <b>terhalang</b> oleh <b id="si_penghalang_6a"> </b>.
+      </div>
+      <div id="info_penghalang_6b" style="display: none">
+        <b>Paman SeKakek (dari Ayah)</b> dilewati karena sudah <b>terhalang</b> oleh <b id="si_penghalang_6b"> </b>.
+      </div>
+    </div>
+  </section>
+  <section id="legacy9" data-role="page" class="penghalang_5">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Anak Paman</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">9</span> dari 9</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="">
+          <img id="img-next-button8" src="images/next-button.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button8" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <table data-role="content">
+        <div data-role="fieldcontain" type="8" req="0" class="field" id="field_anaklakipamansekandung">
+          <label class="field-label">
+            Anak Laki-Laki Paman Kandung (dari Ayah) (<span id="saham_anaklakipamankandung">0</span>)
+          </label>
+          <input id="nilai_anaklakipamankandung" type="range" data-highlight="true" class="slider" name="41" min="0"
+            max="50" value="0" />
+        </div>
+        <div id="field_anaklakipamansekakek" data-role="fieldcontain" class="field" type="8" req="0">
+          <label class="field-label">Anak Laki-Laki Paman Sekakek (dari Ayah) (<span
+              id="saham_anaklakipamansekakek">0</span>)</label>
+          <input data-highlight="true" id="nilai_anaklakipamansekakek" class="slider" min="0" max="50" value="0"
+            type="range" />
+        </div>
+      </table>
+      <div id="info_penghalang_7a" style="display: none">
+        <b>Anak Laki-Laki Paman Kandung</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b id="si_penghalang_7a"></b>
+      </div>
+      <div id="info_penghalang_7b" style="display: none">
+        <b>Anak Laki-Laki Paman Sekakek</b> dilewati karena sudah <b>terhalang</b> oleh
+        <b id="si_penghalang_7b"></b>.
+      </div>
+    </div>
+  </section>
+  <section id="legacy_total">
+    <div class="navbar-main">
+      <a href="index.html">
+        <img class="return-button" src="images/back.png" alt="" />
+      </a>
+      <h2 class="main-title">KALKULATOR <span>WARIS</span></h2>
+    </div>
+    <div class="main-page2">
+      <div class="sub-title">
+        <h3 class="sub-title-2">Hasil Akhir</h3>
+      </div>
+      <div class="page-label">
+        <h4><span id="page-ke">Total</h4>
+      </div>
+      <div class="a-next-button">
+        <a href="calculator.html">
+          <img id="img-next-button9" src="images/home.png" alt="" />
+        </a>
+      </div>
+      <div class="a-return-button">
+        <a href="">
+          <img id="img-return-button9" src="images/back-button.png" alt="" />
+        </a>
+      </div>
+      <div class="kolom_final">
+        <table class="kolom_hasil">
+          <tr>
+            <td class="hasil_atas">Harta yang Ditinggalkan</td>
+            <td id="total_tirkah"></td>
+          </tr>
+          <tr>
+            <td class="hasil_atas">Biaya mengurus jenazah</td>
+            <td id="total_tajhiz"></td>
+          </tr>
+          <tr>
+            <td class="hasil_atas">Hutang yang Ditinggalkan</td>
+            <td id="total_hutang"></td>
+          </tr>
+          <tr>
+            <td class="hasil_atas">Wasiat yang Ditinggalkan</td>
+            <td id="total_wasiat"></td>
+          </tr>
+          <tr>
+            <td class="hasil_atas">Sisa Warisan (<i>Al-Irts</i>)</td>
+            <td id="total_irts"></td>
+          </tr>
+        </table>
+        <table class="kolom_main">
+          <thead>
+            <tr>
+              <th>Pewaris</th>
+              <th>Bagian</th>
+              <th>Per-Orang</th>
+            </tr>
+          </thead>
+          <tbody class="kolom_bagian">
+            <tr id="kolom_ayah" style="display: none;">
+              <td>Ayah</td>
+              <td id="bagian_ayah"></td>
+              <td id="hasil_ayah"></td>
+            </tr>
+            <tr id="kolom_ibu" style="display: none;">
+              <td>Ibu</td>
+              <td id="bagian_ibu"></td>
+              <td id="hasil_ibu"></td>
+            </tr>
+            <tr id="kolom_kakek" style="display: none;">
+              <td>Kakek</td>
+              <td id="bagian_kakek"></td>
+              <td id="hasil_kakek"></td>
+            </tr>
+            <tr id="kolom_nenek2" style="display: none;">
+              <td><span id=""></span> Nenek dari pihak Ibu & Ayah</td>
+              <td id="bagian_nenek2"></td>
+            </tr>
+            <tr id="kolom_nenekayah" style="display: none;">
+              <td>Nenek dari pihak Ayah</td>
+              <td id="bagian_nenekayah"></td>
+              <td id="hasil_nenekayah"></td>
+            </tr>
+            <tr id="kolom_nenekibu" style="display: none;">
+              <td>Nenek dari pihak Ibu</td>
+              <td id="bagian_nenekibu"></td>
+              <td id="hasil_nenekibu"></td>
+            </tr>
+            <tr id="kolom_suami" style="display: none;">
+              <td>Suami</td>
+              <td id="bagian_suami"></td>
+              <td id="hasil_suami"></td>
+            </tr>
+            <tr id="kolom_istri" style="display: none;">
+              <td><span id="jumlah_istri"></span> Istri</td>
+              <td id="bagian_istri"></td>
+              <td id="hasil_istri"></td>
+            </tr>
+            <tr id="kolom_anaklaki" style="display: none;">
+              <td><span id="jumlah_anaklaki"></span> Anak Laki-Laki</td>
+              <td id="bagian_anaklaki"></td>
+              <td id="hasil_anaklaki"></td>
+            </tr>
+            <tr id="kolom_anakperempuan" style="display: none;">
+              <td><span id="jumlah_anakperempuan"></span> Anak Perempuan</td>
+              <td id="bagian_anakperempuan"></td>
+              <td id="hasil_anakperempuan"></td>
+            </tr>
+            <tr id="kolom_cuculaki" style="display: none;">
+              <td><span id="jumlah_cuculaki"></span> Cucu Laki-Laki</td>
+              <td id="bagian_cuculaki"></td>
+              <td id="hasil_cucuperempuan"></td>
+            </tr>
+            <tr id="kolom_cucuperempuan" style="display: none;">
+              <td><span id="jumlah_cucuperempuan"></span> Cucu Perempuan</td>
+              <td id="bagian_cucuperempuan"></td>
+              <td id="hasil_cucuperempuan"></td>
+            </tr>
+            <tr id="kolom_saudaralakikandung" style="display: none;">
+              <td><span id="jumlah_saudaralakikandung"></span> Saudara Laki-Laki Kandung</td>
+              <td id="bagian_saudaralakikandung"></td>
+              <td id="hasil_saudaralakikandung"></td>
+            </tr>
+            <tr id="kolom_saudaraperempuankandung" style="display: none;">
+              <td><span id="jumlah_saudaraperempuankandung"></span> Saudara Perempuan Kandung</td>
+              <td id="bagian_saudaraperempuankandung"></td>
+              <td id="hasil_saudaraperempuankandung"></td>
+            </tr>
+            <tr id="kolom_saudaralakiseayah" style="display: none;">
+              <td><span id="jumlah_saudaralakiseayah"></span> Saudara Laki-Laki Seayah</td>
+              <td id="bagian_saudaralakiseayah"></td>
+              <td id="hasil_saudaralakiseayah"></td>
+            </tr>
+            <tr id="kolom_saudaraperempuanseayah" style="display: none;">
+              <td><span id="jumlah_saudaraperempuanseayah"></span> Saudara Perempuan Seayah</td>
+              <td id="bagian_saudaraperempuanseayah"></td>
+              <td id="hasil_saudaraperempuanseayah"></td>
+            </tr>
+            <tr id="kolom_saudaralakiseibu" style="display: none;">
+              <td><span id="jumlah_saudaralakiseibu"></span> Saudara Laki-Laki Seibu</td>
+              <td id="bagian_saudaralakiseibu"></td>
+              <td id="hasil_saudaralakiseibu"></td>
+            </tr>
+            <tr id="kolom_saudaraperempuanseibu" style="display: none;">
+              <td><span id="jumlah_saudaraperempuanseibu"></span> Saudara Perempuan Seibu</td>
+              <td id="bagian_saudaraperempuanseibu"></td>
+              <td id="hasil_saudaraperempuanseibu"></td>
+            </tr>
+            <tr id="kolom_anaklakisaudarakandung" style="display: none;">
+              <td><span id="jumlah_anaklakisaudarakandung"></span> Putra dari Saudara Kandung</td>
+              <td id="bagian_anaklakisaudarakandung"></td>
+              <td id="hasil_anaklakisaudarakandung"></td>
+            </tr>
+            <tr id="kolom_anaklakisaudaraseayah" style="display: none;">
+              <td><span id="jumlah_anaklakisaudaraseayah"></span> Putra dari Saudara Seayah</td>
+              <td id="bagian_anaklakisaudaraseayah"></td>
+              <td id="hasil_anaklakisaudaraseayah"></td>
+            </tr>
+            <tr id="kolom-pamankandung" style="display: none;">
+              <td><span id="jumlah_pamankandung"></span> Paman Sekandung</td>
+              <td id="bagian_pamansekandung"></td>
+              <td id="hasil_pamansekandung"></td>
+            </tr>
+            <tr id="kolom_pamanseayah" style="display: none;">
+              <td><span id="jumlahpamanseayah"></span> Paman seayah</td>
+              <td id="bagian_pamanseayah"></td>
+              <td id="hasil_pamanseayah"></td>
+            </tr>
+            <tr id="kolom_anaklakipamankandung" style="display: none;">
+              <td><span id="jumlah_anaklakipamankandung"></span> Putra dari Paman Sekandung</td>
+              <td id="bagian_anaklakipamansekandung"></td>
+              <td id="hasil_anaklakipamansekandung"></td>
+            </tr>
+            <tr id="kolom_anaklakipamanseayah" style="display: none;">
+              <td><span id="jumlah_anaklakipamanseayah"></span> Putra dari Paman Seayah</td>
+              <td id="bagian_anaklakipamanseayah"></td>
+              <td id="hasil_anaklakipamanseayah"></td>
+            </tr>
+            <tr id="kolom_rasiobersama" style="display: none;">
+              <br>
+              <td id="info_bersama"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </section>
+</body>
+
+</html>

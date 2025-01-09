@@ -1,0 +1,289 @@
+:root {
+    --g: #03624c;
+    --w: #dadada;
+    --b: #333;
+    --r: #dadada;
+    --lg: #007b31;
+  }
+  
+  @font-face {
+    font-family: "LPMQIsepMisbah";
+    src: url("../font/LPMQIsepMisbah.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+  }
+  
+  body {
+    font-family: "Poppins", "sans-serif";
+    background-color: var(--w);
+    color: var(--b);
+    overflow-x: hidden;
+  }
+
+/* navigation*/
+.navbar {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 7%;
+  position: fixed;
+  background-color: var(--g);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+}
+
+.navbar .navbar-nav {
+  margin-left: 0%;
+}
+
+.navbar .navbar-nav a {
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+  color: var(--w);
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 1.4rem 6rem;
+}
+
+.navbar .navbar-nav a::after {
+  content: "";
+  display: block;
+  padding-bottom: 0.1rem;
+  border-bottom: 0.4rem solid var(--w);
+  transform: scaleX(0);
+  transition: 0.2s linear;
+}
+.navbar h1 {
+  color: var(--w);
+  margin: 9px;
+  padding: 0.1rem;
+  font-size: 2.4rem;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.8);
+}
+
+.navbar .navbar-menu img {
+  width: 2rem;
+  padding-top: 0.9rem;
+}
+
+#menu-icon {
+  display: none;
+}
+
+.hero {
+  position: absolute;
+  top: 100px;
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: var(--w);
+}
+
+.title {
+  white-space: nowrap;
+  padding: 3rem 6rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.title h1 {
+  font-size: 2rem;
+}
+
+.latarBelakang {
+  margin-bottom: 50px;
+}
+
+.latarBelakang h2 {
+  margin-bottom: 15px;
+}
+
+.apaItu {
+  margin-bottom: 50px;
+}
+
+.apaItu h2 {
+  margin-bottom: 15px;
+}
+
+.timPenyusun {
+  margin-bottom: 50px;
+}
+
+.timPenyusun h2 {
+  margin-bottom: 15px;
+}
+
+.profil {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  place-content: center;
+}
+
+.profil .personal {
+  width: fit-content;
+  list-style: none;
+  place-items: center;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 5px 3px rgba(0, 0, 0, 0.5);
+}
+
+.profil .foto {
+  width: 100%;
+}
+
+.profil .nama {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.profil .bagian {
+  font-size: 13px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.profil img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 400px;
+}
+
+.referensi {
+  margin-bottom: 50px;
+}
+
+.referensi h2 {
+  margin-bottom: 15px;
+}
+
+.penggunaanWeb {
+  margin-bottom: 50px;
+}
+
+.penggunaanWeb h2 {
+  margin-bottom: 15px;
+}
+
+/* mediaSize */
+@media (max-width: 1625px) {
+  .navbar {
+    justify-content: space-between;
+  }
+
+  .navbar .navbar-nav {
+    display: none;
+  }
+
+  #menu-icon {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  .navbar .navbar-nav.show {
+    display: flex;
+    position: absolute;
+    top: 85px;
+    background-color: var(--g);
+    flex-direction: column;
+    width: 30%;
+    padding: none;
+    right: 0%;
+    z-index: 888;
+    justify-items: center;
+  }
+
+  .navbar .navbar-nav.show a {
+    display: inline-block;
+    align-items: center;
+    padding: 1.4rem;
+    border-bottom: 1px solid var(--lg);
+    margin: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    justify-content: space-between;
+  }
+
+  .navbar .navbar-nav {
+    display: none;
+  }
+
+  #menu-icon {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  .navbar .navbar-nav.show {
+    display: flex;
+    position: absolute;
+    top: 85px;
+    background-color: var(--g);
+    flex-direction: column;
+    width: 30%;
+    padding: none;
+    right: 0%;
+    z-index: 888;
+    justify-items: center;
+  }
+
+  .navbar .navbar-nav.show a {
+    display: inline-block;
+    align-items: center;
+    padding: 1.4rem;
+    border-bottom: 1px solid var(--lg);
+    margin: 0;
+  }
+
+  main .hero {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 75%;
+  }
+
+  main .hero .title {
+    padding: 10px;
+  }
+
+  main .hero .title h1 {
+    font-size: 20px;
+  }
+
+  main .hero h2 {
+    font-size: 15px;
+  }
+
+  main .hero p, main .hero .penggunaanWeb li {
+    font-size: 10px;
+  }
+}

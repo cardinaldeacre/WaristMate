@@ -1,0 +1,939 @@
+:root {
+	--g: #03624c;
+	--w: #dadada;
+	--b: #333;
+	--lg: #007b31;
+	--gy: #b9ff50;
+	--dg: #0a8138;
+	--lb: #0a4fb6;
+	--r: #c5681c;
+}
+@font-face {
+	font-family: 'LPMQIsepMisbah';
+	src: url('../font/LPMQIsepMisbah.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+	border: none;
+	text-decoration: none;
+}
+body {
+	font-family: 'Poppins', 'sans-serif';
+	background-color: var(--w);
+	overflow-x: hidden;
+}
+
+header {
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.navbar {
+	max-width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 3%;
+	position: fixed;
+	background-color: var(--g);
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	z-index: 9999;
+	box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	will-change: transform;
+}
+.navbar a {
+	left: 1%;
+	top: 10%;
+	position: absolute;
+	margin-top: 5px;
+}
+.navbar a img {
+	width: 30px;
+	height: 30px;
+}
+
+.navbar h3 {
+	display: flex;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	font-weight: 700;
+	font-size: 1.6rem;
+	color: var(--w);
+}
+.navbar-side {
+	width: 22%;
+	height: 100%;
+	position: fixed;
+	display: grid;
+	right: 0;
+	background-color: var(--g);
+	z-index: 99;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.navbar-side .title-modul {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	padding-top: 60px;
+	max-height: 1.7rem;
+	width: 100%;
+	padding-bottom: 3.5rem;
+	border-bottom: solid var(--w) 2px;
+}
+.navbar-side .title-modul h2 {
+	text-align: center;
+	font-size: 1.2rem;
+	color: var(--w);
+	padding-top: 5px;
+}
+.navbar-side .list-modul {
+	display: flex;
+	position: absolute;
+	padding-top: 100px;
+	width: 100%;
+	flex-direction: column;
+	transform-style: preserve-3d;
+	transform: perspective(1000px);
+	margin: 2rem 1rem;
+	width: 90%;
+}
+.navbar-side .list-modul a {
+	padding: 10px 0px;
+	color: var(--w);
+	font-family: 'Poppins', sans-serif;
+	font-size: 1rem;
+	font-weight: 500;
+}
+.navbar-side .list-modul .bab {
+	transition: 0.5s;
+	cursor: pointer;
+}
+.navbar-side .list-modul .bab:hover {
+	transform: translateZ(75px);
+	font-weight: 700;
+	color: var(--gy);
+}
+.navbar-side .list-modul .bab:hover + * {
+	transform: translateZ(75px) rotateX(-30deg);
+}
+.navbar-side .list-modul .bab:hover + * + * {
+	transform: translateZ(50px) rotateX(-15deg);
+}
+.navbar-side .list-modul .bab:has(+ *:hover) {
+	transform: translateZ(75px) rotateX(30deg);
+}
+
+.h-button {
+	display: none;
+}
+
+.modul {
+	position: absolute;
+	left: 2%;
+	margin-top: 64px;
+	width: 74%;
+}
+
+/* display bab */
+#bab-2,
+#bab-3,
+#bab-4,
+#bab-5,
+#bab-6,
+#bab-7,
+#bab-8,
+#bab-9,
+#bab-10,
+#bab-11,
+#bab-12 {
+	display: none;
+}
+
+#bab-1,
+#bab-2,
+#bab-3,
+#bab-4,
+#bab-5,
+#bab-6,
+#bab-7,
+#bab-8,
+#bab-9,
+#bab-10,
+#bab-11 {
+	width: 103%;
+	padding-bottom: 30px;
+	padding-right: 20px;
+}
+
+#header-bab {
+	margin-left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	width: 70%;
+}
+
+.materi1 {
+	padding-top: 2rem;
+	font-size: 1.1rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+.materi1 p {
+	font-size: 1rem;
+}
+
+.materi1 h2 {
+	font-weight: 700;
+}
+
+.materi1 h3 {
+	font-weight: 400;
+}
+
+.definisi td {
+	padding: 5px;
+}
+
+.definisi span {
+	font-size: 1.1rem;
+	font-weight: 500;
+	color: var(--dg);
+}
+
+.dalil h2 {
+	padding-top: 5px;
+}
+
+.dalil .content-ayat {
+	padding: 5px;
+}
+.dalil h1 {
+	color: var(--g);
+}
+
+.content-ayat h1 {
+	font-family: 'LPMQIsepMisbah', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 400;
+	text-align: center;
+	padding: 5px;
+}
+
+.content-ayat p {
+	text-align: center;
+	font-size: 1rem;
+	color: var(--b);
+	padding: 5px;
+	font-family: 'Poppins', sans-serif;
+}
+
+.content-hadits h1 {
+	font-family: 'LPMQIsepMisbah', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 400;
+	text-align: center;
+	padding: 5px;
+}
+
+.content-hadits p {
+	text-align: center;
+	font-size: 1rem;
+	padding: 5px;
+	color: var(--b);
+	font-family: 'Poppins', sans-serif;
+}
+
+.tirkah {
+	padding-top: 2rem;
+}
+
+.tabel-tirkah td {
+	padding: 0px 5px;
+}
+
+.tabel-tirkah td span {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.1rem;
+}
+
+.hak {
+	padding-top: 2rem;
+}
+
+.hak span {
+	font-weight: 500;
+	color: var(--lb);
+}
+
+.hak h3 {
+	padding: 5px;
+}
+
+.hak p {
+	font-weight: 500;
+	color: var(--dg);
+	font-size: 1.1rem;
+}
+
+.list-hak {
+	font-size: 1rem;
+	padding: 5px;
+	margin-left: 15px;
+}
+
+.list-hak li {
+	padding: 2px;
+}
+
+/* bab-2 */
+
+.materi2 {
+	padding-top: 2rem;
+	font-size: 1.1rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+.materi2 p {
+	font-size: 1rem;
+}
+
+.materi2 h2 {
+	font-weight: 700;
+}
+
+.materi2 h3 {
+	font-weight: 400;
+}
+
+.rukun-warisan,
+.syarat-warisan,
+.sebab-warisan,
+.penghalang-warisan,
+.jenis-warisan {
+	padding-top: 2rem;
+}
+
+.rukun-warisan li,
+.syarat-warisan li {
+	padding: 5px;
+	font-size: 1rem;
+	margin-left: 30px;
+}
+
+.rukun-warisan i {
+	font-weight: 600;
+	font-size: 1rem;
+	color: var(--dg);
+}
+
+.rukun-warisan p {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.syarat-warisan li {
+	color: var(--dg);
+	font-weight: 500;
+}
+
+.sebab-warisan .span-blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.sebab-warisan li,
+.penghalang-warisan li,
+.jenis-warisan li {
+	padding: 5px;
+	margin-left: 30px;
+}
+
+.sebab-warisan li span,
+.penghalang-warisan li span,
+.jenis-warisan li span {
+	font-weight: 600;
+	font-size: 1rem;
+	color: var(--dg);
+}
+
+/* BAB 3 */
+
+.materi3 h2 {
+	padding-top: 10px;
+}
+
+.materi3 h3 {
+	padding: 5px;
+	font-weight: 500;
+}
+
+.materi3 h4 {
+	padding: 5px;
+	font-weight: 400;
+}
+
+.list-sebab {
+	padding: 5px;
+}
+
+.list-sebab h3 {
+	font-weight: 700;
+}
+
+.list-sebab li {
+	margin-left: 0.8rem;
+	font-weight: 400;
+}
+
+.list-sebab ul .list-sebab ul li ol li {
+	padding: 3px;
+}
+
+.list-sebab h4 {
+	font-weight: 600;
+	padding: 3px;
+}
+
+.list-sebab h4 span {
+	color: var(--dg);
+}
+
+.list-kerabat {
+	margin-left: 10px;
+}
+
+.poin-kerabat {
+	font-weight: 500;
+	color: var(--lb);
+}
+
+.list-ahli-waris {
+	margin-left: 30px;
+}
+
+.pewris-pria,
+.pewris-wanita {
+	font-size: 1.2rem;
+	color: #0a8138;
+	font-weight: 500;
+}
+
+.list-jenis-ahli-waris {
+	margin-left: 30px;
+}
+
+.list-jenis-ahli-waris h4 {
+	font-weight: 500;
+	padding: 3px;
+	color: var(--dg);
+}
+
+.list-jenis-ahli-waris p {
+	font-weight: 400;
+	padding: 0px 8px;
+}
+
+.list-jenis-ahli-waris span {
+	font-weight: 500;
+	color: var(--lb);
+}
+/* bab 4 */
+
+.furudh-header {
+	color: var(--dg);
+}
+
+.list-furudh {
+	padding: 5px;
+}
+.list-furudh .green {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.1rem;
+}
+
+.list-furudh span {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.list-furudh h3 {
+	font-weight: 400;
+}
+
+.list-furudh li {
+	margin-left: 1.5rem;
+	font-weight: 400;
+}
+
+.list-furudh ul .list-furudh ul li ol li {
+	padding: 3px;
+}
+
+.list-furudh h4 {
+	font-weight: 400;
+	padding: 3px;
+}
+
+.judul-tabel-bagi {
+	color: var(--dg);
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin: auto;
+}
+
+.tabel-pembagian-ahli-waris {
+	margin: auto;
+	width: 100%;
+}
+
+.tabel-pembagian-ahli-waris tr td {
+	padding: 0px 3px;
+	border: 1px solid var(--b);
+	text-align: center;
+}
+
+/* bab 5 */
+
+.pembagian {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.05rem;
+}
+
+.list-tashib {
+	padding: 5px;
+}
+
+.list-tashib h3 {
+	font-weight: 400;
+}
+
+.list-tashib li {
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-tashib span {
+	font-weight: 500;
+	color: var(--dg);
+	font-size: 1.05;
+}
+
+.list-tashib .blue {
+	color: var(--lb);
+}
+
+.list-tashib ul .list-tashib ul li ol li {
+	padding: 3px;
+}
+
+.list-tashib i {
+	font-weight: 400;
+	padding: 3px;
+	color: var(--lb);
+}
+
+/* bab 6 */
+.header-hujub {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.05rem;
+}
+
+.list-hujub {
+	padding: 5px 5px;
+	margin-left: 5px;
+}
+
+.list-hujub2 {
+	padding: 5px 30px;
+}
+
+.list-hujub i {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.list-hujub span {
+	font-weight: 500;
+	color: var(--r);
+}
+
+.list-hujub h3 {
+	font-weight: 400;
+}
+
+.list-hujub li {
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-hujub ul .list-hujub ul li ol li {
+	padding: 3px;
+}
+
+.list-hujub h4 {
+	font-weight: 400;
+	padding: 3px;
+}
+
+.blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.tabel-hujub
+
+/* bab 7 */
+.materi7 {
+	padding-top: 2rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+.materi7 p {
+	font-size: 1rem;
+	text-align: justify;
+}
+
+.materi7 h2 {
+	font-weight: 700;
+}
+
+.materi7 .green {
+	color: var(--dg);
+	font-weight: 500;
+}
+
+.materi7 span {
+	font-weight: 500;
+	color: var(--lb);
+}
+
+.materi7 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+.materi7 .green {
+	color: var(--dg);
+	font-weight: 500;
+}
+
+.list-distribusi {
+	padding: 5px;
+}
+
+.list-distribusi h3 {
+	font-weight: 400;
+}
+
+.list-distribusi li {
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-distribusi ul .list-distribusi ul li ol li {
+	padding: 3px;
+}
+
+.list-distribusi h4 {
+	font-weight: 400;
+	padding: 3px;
+}
+
+.tabel {
+	padding: rem;
+	margin: auto;
+	border-collapse: collapse;
+}
+.tabel tr td {
+	border: 1px solid var(--b);
+	padding: 2px 6px;
+}
+.tabel tr td:nth-child(2),
+.tabel tr td:nth-child(3),
+.tabel tr td:nth-child(4),
+.tabel tr td:nth-child(5),
+.tabel tr td:nth-child(6) {
+	text-align: center;
+}
+.tabel tr:nth-child(1) {
+	text-align: center;
+}
+
+/* bab 8 */
+.materi8 span {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.materi8 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+.materi8 .green {
+	color: var(--dg);
+	font-weight: 500;
+}
+
+.list-aul {
+	padding: 5px;
+}
+
+.list-aul h3 {
+	font-weight: 400;
+}
+
+.list-aul li {
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-aul ul .list-aul ul li ol li {
+	padding: 3px;
+}
+
+.list-aul h4 {
+	font-weight: 400;
+	padding: 3px;
+}
+
+.tabel-aul {
+	border-collapse: collapse;
+}
+
+.tabel-aul td {
+	border: 1px solid var(--b);
+	padding: 2px 10px;
+	text-align: center;
+}
+
+.tabel-hitung-aul td {
+	padding: 0 2px;
+}
+
+/* bab 9 */
+
+.materi9 {
+	padding-top: 30px;
+}
+
+.list-koreksi {
+	padding: 5px;
+}
+
+.list-koreksi h3 {
+	font-weight: 400;
+}
+
+.list-koreksi li {
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-koreksi ul .list-koreksi ul li ol li {
+	padding: 3px;
+}
+
+.materi9 span {
+	font-weight: 500;
+	color: var(--dg);
+	font-size: 1.05rem;
+}
+
+.materi9 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+.materi9 .blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+
+.contoh-koreksi-masalah {
+	color: var(--dg);
+	font-weight: 500;
+	font-size: 1.05rem;
+	padding: 5px 0;
+}
+
+.tabel-koreksi-masalah {
+	border-collapse: collapse;
+}
+
+.tabel-koreksi-masalah td {
+	border: 1px solid var(--b);
+	padding: 2px 10px;
+	text-align: center;
+}
+
+/* bab 10 */
+
+.list-radd {
+	padding: 5px;
+}
+
+.list-radd h3 {
+	font-weight: 400;
+}
+
+.list-radd li {
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-radd ul .list-radd ul li ol li {
+	padding: 3px;
+}
+
+.list-radd h4 {
+	font-weight: 400;
+	padding: 3px;
+}
+
+/* bab 10 */
+.materi10 span {
+	color: var(--dg);
+	font-weight: 500;
+}
+.materi10 .blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+.materi10 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+.list-terkenal {
+	padding: 5px;
+}
+
+.list-terkenal h3 {
+	font-weight: 400;
+}
+
+.list-terkenal li {
+	margin-left: 1rem;
+	font-weight: 400;
+}
+
+.list-terkenal ul .list-terkenal ul li ol li {
+	padding: 3px;
+}
+
+.list-terkenal h4 {
+	font-weight: 400;
+	padding: 3px;
+}
+
+/* bab 11 */
+.materi11 span {
+	color: var(--dg);
+	font-weight: 500;
+}
+.materi11 .blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+.materi11 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+#bab-12 {
+	margin: 0px 0 40px 0;
+}
+
+.tabel-rasio {
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+.tabel-rasio tr:nth-child(1) {
+	text-align: center;
+}
+
+.tabel-rasio tr td {
+	border: 1px solid var(--b);
+	padding: 2px 5px;
+}
+
+.tabel-rasio tr td:nth-child(1) {
+	text-align: center;
+}
+
+.tabel-rasio tr td:nth-child(3) {
+	text-align: center;
+}
+
+@media (max-width: 1025px) {
+	html {
+		font-size: 75%;
+	}
+	.navbar {
+		height: 45;
+	}
+	.navbar h3 {
+		position: absolute;
+		top: 23%;
+	}
+	.navbar-side {
+		width: 30%;
+		right: -50%;
+		transition: 0.5s ease;
+		opacity: 0.95;
+	}
+	.navbar-side.active {
+		right: 0;
+	}
+	.navbar-side .list-modul {
+		margin: 0.8rem;
+		width: 97%;
+	}
+	.navbar-side .list-modul a {
+		padding: 10px 20px 0px 8px;
+	}
+	.h-button {
+		position: absolute;
+		display: block;
+		right: 3%;
+		top: 23%;
+	}
+	#h-button {
+		height: 23px;
+	}
+	.modul {
+		width: 96%;
+	}
+	#bab-12 {
+		margin: 0px 0 20px 0;
+	}
+}
+
+@media (max-width: 768px) {
+	html {
+		font-size: 57%;
+	}
+	.navbar-side {
+		width: 35%;
+	}
+	#bab-12 {
+		margin: 0px 0 15px 0;
+	}
+}

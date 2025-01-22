@@ -1,0 +1,2894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul Pembelajaran</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png" />
+  <link rel="stylesheet" href="css/modul.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/src/notiflix.min.css">
+  <!-- jQuery 3.x -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- jQuery Migrate 3.5.0 -->
+  <script src="https://code.jquery.com/jquery-migrate-3.5.0.min.js"></script>
+  <script src="js/modul.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="index.html">
+        <img src="images/back.png" />
+      </a>
+      <h3>Modul Pembelajaran</h3>
+      <div class="h-button">
+        <img id="h-button" src="images/menu-w.png">
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="navbar-side">
+      <div class="title-modul">
+        <h2>Pilih Pembelajaran</h2>
+      </div>
+      <div class="list-modul">
+        <a class="bab" id="link-1">1. Pendahuluan Tentang Ilmu Waris</a>
+        <a class="bab" id="link-2">2. Harta Waris</a>
+        <a class="bab" id="link-3">3. Sebab-Sebab Warisan</a>
+        <a class="bab" id="link-4">4. Pembagian Yang Ditentukan <br />
+          Dalam Alquran</a>
+        <a class="bab" id="link-5">5. Ahli Waris : Ta'sib</a>
+        <a class="bab" id="link-6">6. Ahli Waris : Hajb</a>
+        <a class="bab" id="link-12">7. Tabel Waris </a>
+        <a class="bab" id="link-7">8. Metode Dasar Pembagian Warisan</a>
+        <a class="bab" id="link-8">9. Penyesuaian Pembagian : Al-'Aul</a>
+        <a class="bab" id="link-9">10. Koreksi Masalah</a>
+        <a class="bab" id="link-10">11. Penyesuaian Pembagian : Ar-Radd</a>
+        <a class="bab" id="link-11">12. Masalah Dalam Pembagian</a>
+      </div>
+    </section>
+    <section class="modul">
+      <div id="bab-1">
+        <div id="header-bab">
+          <h1>BAB 1</h1>
+          <h1>PENGENALAN ILMU FARAIDH</h1>
+        </div>
+
+        <div class="materi1">
+          <h2>Definisi</h2>
+          <table class="definisi">
+            <tr>
+              <td><span>Bahasa</span></td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>jamak dari kata <i>fardhu</i>, artinya kebijakan.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Istilah</span>
+              </td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>
+                  ilmu yang mempelajari bagaimana cara membagi warisan
+                  diantara para ahli waris.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Subjek</span></td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>Warisan.</p>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Tujuan</span></td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>Menayampaikan hak-hak kepada mereka yang berhak.</p>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Landasan</span></td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>Al-Quran, Hadits, dan Ijma'.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Hukum mempelajarinya</span>
+              </td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>
+                  <i>Fardhu Kifayah</i>, jika Sebagian orang telah
+                  memenuhinya, maka beban tersebut menjadi tanggungan yang
+                  lain.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Hukum Pelaksanaannya</span></td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p><i>Wajib</i>, Ketika membagi harta warisan.</p>
+              </td>
+            </tr>
+          </table>
+          <div class="dalil">
+            <h2>Dalil Hukum</h2>
+            <div class="content-ayat">
+              <h1 class="ca1">
+                لِلرِّجَالِ نَصِيْبٌ مِّمَّا تَرَكَ الْوَالِدٰنِ
+                وَالْاَقْرَبُوْنَۖ وَلِلنِّسَاۤءِ نَصِيْبٌ مِّمَّا تَرَكَ
+                الْوَالِدٰنِ وَالْاَقْرَبُوْنَ مِمَّا قَلَّ مِنْهُ اَوْ كَثُرَ
+                ۗ نَصِيْبًا مَّفْرُوْضًا
+                <p>
+                  Bagi laki-laki ada hak bagian dari harta peninggalan kedua
+                  orang tua dan kerabatnya, dan bagi perempuan ada hak bagian
+                  (pula) dari harta peninggalan kedua orang tua dan
+                  kerabatnya, baik sedikit atau banyak menurut bagian yang
+                  telah ditetapkan. [Q.S 4: An-Nisa’ (7)].
+                </p>
+              </h1>
+              <h1 class="ca2">
+                ۚيُوْصِيْكُمُ اللّٰهُ فِيْٓ اَوْلَادِكُمْ لِلذَّكَرِ مِثْلُ
+                حَظِّ الْاُنْثَيَيْنِ
+                <p>
+                  Allah mensyariatkan (mewajibkan) kepadamu tentang (pembagian
+                  warisan untuk) anak-anakmu, (yaitu) bagian seorang anak
+                  laki-laki sama dengan bagian dua orang anak perempuan. [Q.S
+                  4: An-Nisa’ (11)].
+                </p>
+              </h1>
+            </div>
+            <div class="content-hadits">
+              <h1 class="ch1">يَا أَبَا هُرَيْرَةَ تَعَلَّمُوا الْفَرَائِضَ وَعَلِّمُوهَا، فَإِنَّهُ نِصْفُ الْعِلْمِ
+                وَهُوَ يُنْسَى، وَهُوَ أَوَّلُ
+                شَيْءٍ يُنْزَعُ مِنْ أُمَّتِي
+                <br> رواه ابن ماجه
+                <p>
+                  "Wahai Abu Hurairah, belajarlah ilmu faraidh dan ajarkanlah, karena sesungguhnya ia adalah setengah
+                  dari ilmu. Dan ilmu itu akan dilupakan dan dia adalah ilmu yang pertama kali dicabut dari umatku.”
+                  (HR. Ibnu Majah).
+                </p>
+              </h1>
+              <h1 class="ch1">
+                عَنِ ابْنِ عَبَّاسٍ رَضِيَ اللهُ عَنْهُمَا قَالَ: قَالَ
+                رَسُوْلُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ:
+                <span>
+                  أَلْحِقُوا الفَرائِضَ بأَهْلِها، فَمَا أَبْقَتِ الفَرائِضُ
+                  فَلِأَوْلى رَجُلٍ ذَكَرٍ.
+                </span><br>
+                رواه البُخَارِيُّ وَمُسْلِمٌ
+                <p>
+                  Dari Ibnu Abbas radhiyallahu ‘anhuma, ia berkata: Rasulullah
+                  shallallahu ‘alaihi wa sallam bersabda: "Bagikanlah harta
+                  warisan kepada yang berhak (sesuai dengan bagian yang telah
+                  ditentukan), maka jika masih tersisa setelah pembagian
+                  warisan tersebut, serahkanlah kepada kerabat laki-laki
+                  terdekat." (HR. Bukhari dan Muslim).
+                </p>
+              </h1>
+              <h1 class="ch2">
+                :عَنْ أَبِي أُمَامَةَ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْتُ
+                رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ
+                <br />
+                <span>
+                  إِنَّ اللَّهَ قَدْ أَعْطَى كُلَّ ذِي حَقٍّ حَقَّهُ، فَلَا
+                  وَصِيَّةَ لِوَارِثٍ
+                </span><br>
+                رواه أبو داود وابن ماجه
+                <p>
+                  Dari Abu Umamah radhiyallahu 'anhu, ia berkata: Aku
+                  mendengar Rasulullah shallallahu 'alaihi wa sallam bersabda:
+                  "Sesungguhnya Allah telah memberikan setiap orang yang
+                  berhak akan haknya, maka tidak ada wasiat untuk ahli waris."
+                  (HR. Abu Dawud dan Ibnu Majah).
+                </p>
+              </h1>
+            </div>
+          </div>
+          <div class="tirkah">
+            <h2>Tirkah</h2>
+            <table class="tabel-tirkah">
+              <tr>
+                <td>
+                  <p><span>Bahasa</span></p>
+                </td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    sumber kata dari <i>Taraka</i>, berarti yang ditinggalkan.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p><span>Istilah</span></p>
+                </td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    Harta yang tidak boleh diberikan kepada ahli waris sebelum 
+                    hak-hak yang berkaitan dengan harta peninggalan telah terurus seluruhnya.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="hak">
+            <h2>Hak-Hak Yang Berkaitan Dengan Tirkah</h2>
+            <p>
+              Ada 4 hak yang Berkaitan dengan harta peninggalan si mayit :
+            </p>
+            <div class="list-hak">
+              <ol>
+                <li>
+                  <span>Biaya penyelenggaraan jenazah.</span>
+                </li>
+                <li>
+                  <span>Hutang.</span>
+                </li>
+                <li>
+                  <span>Sepertiga Wasiat atau Kurang kepada anggota keluarga bukan ahli waris.</span>
+                </li>
+                <li>
+                  <span>Pembagian Harta Warisan.</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="bab-2">
+        <div id="header-bab">
+          <h1>BAB 2</h1>
+          <h1>HARTA WARISAN</h1>
+        </div>
+        <div class="materi2">
+          <h2>Definisi</h2>
+          <table class="definisi">
+            <tr>
+              <td><span>Bahasa</span></td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>
+                  Pemindahan kepemilikan sesuatu dari suatu kelompok kepada
+                  kelompok lain.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Istilah</span>
+              </td>
+              <td>
+                <p>:</p>
+              </td>
+              <td>
+                <p>
+                  Hak untuk menguasai harta peninggalan orang yang telah
+                  meninggal, yang dipastikan dengan kematiannya, atau hak-hak
+                  terkait hubungan kekeluargaan atau sebab-sebab lain.
+                </p>
+              </td>
+            </tr>
+          </table>
+          <div class="rukun-warisan">
+            <h2>Rukun-Rukun Warisan</h2>
+            <ul>
+              <li><i>Al-Muwarrits</i> (Yang Meninggal Dunia).</li>
+              <li><i>Al-Warits</i> (Ahli Waris).</li>
+              <li><i>Al-Mauruts</i> (Harta Peninggalan).</li>
+            </ul>
+            <p>
+              Jika seseorang tidak memiliki ahli waris, atau dia punya namun
+              tidak memiliki harta maka tidak ada pembagian harta warisan.
+            </p>
+          </div>
+          <div class="syarat-warisan">
+            <h2>Syarat Warisan</h2>
+            <ul>
+              <li>Pastinya kematian <i>Al-Muwarrits</i> (pewaris).</li>
+              <li>
+                Pastinya kehidupan ahli waris setelah kematian pewaris,
+                walaupun hanya sesaat.
+              </li>
+              <li>Pengetahuan tentang siapa yang berhak mewarisi.</li>
+            </ul>
+          </div>
+          <div class="sebab-warisan">
+            <h2>Sebab-Sebab Mendapat Hak Waris</h2>
+            <ul>
+              <li>
+                <p>
+                  <span>Nasab </span>: <span class="span-blue">Hubungan kekerabatan melalui darah</span>, sebagaimana
+                  yang difirmankan oleh Allah: "Dan
+                  Kami jadikan para wali dari peninggalan kedua orang tua dan
+                  para kerabat" (An-Nisa: 33).
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Nikah </span>: <span class="span-blue">Pernikahan yang sah</span></span>, walaupun belum ada
+                  hubungan suami istri atau khalwat (hubungan intim).
+                  Sebagaimana firman Allah: "Dan bagi istri-istri ada bagian
+                  dari apa yang mereka tinggalkan" (An-Nisa: 12).
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Wala'</span>: Hak waris jika seseorang yang telah dimerdekakan (<i>ma'toq</i>) meninggal dunia
+                  <span class="span-blue">tanpa meninggalkan ahli waris dari jalur keluarganya</span> (misalnya, tidak
+                  memiliki anak,
+                  orang tua, atau
+                  kerabat lainnya), maka hak waris atas peninggalannya
+                  <span class="span-blue">diberikan kepada orang yang memerdekakannya (<i>muharriq</i>)</span>.
+                  Sebagaimana sabda Rasulullah: "Barang
+                  siapa
+                  yang memerdekakan
+                  seorang budak, maka dialah yang memiliki hak wala' dari budak tersebut." (Muttafaq 'alayh).
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="penghalang-warisan">
+            <h2>Penghalang Warisan</h2>
+            <ul>
+              <li>
+                <p>
+                  <span>Perbudakan</span> : Budak tidak mewarisi dari semua
+                  jenis warisan, sebagaimana sabda Rasulullah: "Budak yang
+                  menjual dirinya, maka dia tidak mewarisi apa pun kecuali ada
+                  syarat tertentu." (HR. Ibnu Majah).
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Pembunuhan</span> : Seorang pembunuh tidak mewarisi
+                  harta dari yang terbunuh. Rasulullah bersabda: "Tidak ada
+                  warisan bagi seorang pembunuh" (HR. Malik, Ahmad, Ibnu
+                  Majah).
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Perbedaan Agama</span> : Tidak ada warisan antara
+                  muslim dan kafir, sebagaimana sabda Rasulullah: "Seorang
+                  muslim tidak mewarisi dari orang kafir, dan orang kafir
+                  tidak mewarisi dari orang muslim" (Muttafaq 'alayh).
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="jenis-warisan">
+            <h2>Jenis-Jenis Warisan</h2>
+            <ul>
+              <li>
+                <p>
+                  <span>Fardh</span> : bagian yang telah ditentukan secara
+                  syariat bagi ahli waris.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Ta'shib</span> : bagian yang tidak ditentukan secara
+                  syariat bagi ahli waris.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="bab-3">
+        <div id="header-bab">
+          <h1>BAB 3</h1>
+          <h1>SEBAB-SEBAB WARISAN</h1>
+        </div>
+        <div class="materi3">
+          <h2>Pembagian berdasarkan sebab warisan</h2>
+          <p>
+            Melihat dari sebab-sebab warisan yang ada, terdapat tiga bagian
+            pewaris dibagi:
+          </p>
+          <ol style="list-style: none;">
+            <li class="list-sebab">
+              <h4><span>A. Kerabat</span></h4>
+              <ul type="square" class="list-kerabat">
+                <li>
+                  <p class="poin-kerabat"><i>Asl</i>(Asal-usul/Sesepuh)</p>
+                  <ol>
+                    <li>
+                      <p>Ayah.</p>
+                    </li>
+                    <li>
+                      <p>Ibu.</p>
+                    </li>
+                    <li>
+                      <p>Kakek(dari pihak ayah).</p>
+                    </li>
+                    <li>
+                      <p>Nenek(dari pihak ibu).</p>
+                    </li>
+                    <li>
+                      <p>Nenek(dari pihak ayah, dan seterusnya).</p>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <p class="poin-kerabat"><i>Furu'</i>(Keturunan)</p>
+                  <ol>
+                    <li>Anak laki-laki.</li>
+                    <li>Anak perempuan.</li>
+                    <li>Cucu laki-laki / perempuan dari anak laki-laki, dan keturunannya.</li>
+                  </ol>
+                </li>
+                <li>
+                  <p class="poin-kerabat">Kerabat Dekat</p>
+                  <ol>
+                    <li>
+                      <p>Saudara sekandung.</p>
+                    </li>
+                    <li>
+                      <p>Saudari sekandung.</p>
+                    </li>
+                    <li>
+                      <p>Saudara seayah.</p>
+                    </li>
+                    <li>
+                      <p>Saudari seayah.</p>
+                    </li>
+                    <li>
+                      <p>Saudara seibu.</p>
+                    </li>
+                    <li>
+                      <p>Saudari seibu, dan anak-anak mereka.</p>
+                    </li>
+                    <li>
+                      <p>Anak laki-laki dari saudara sekandung.</p>
+                    </li>
+                    <li>
+                      <p>Anak laki-laki dari saudara seayah.</p>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <p class="poin-kerabat">Kerabat Jauh</p>
+                  <ol>
+                    <li>
+                      <p>Paman sekandungan (saudara kandung dari ayah si mayit / kerabat jauh).</p>
+                    </li>
+                    <li>
+                      <p>Paman seayah (saudara ayah tapi berbeda ibu).</p>
+                    </li>
+                    <li>
+                      <p>Anak laki-laki dari paman sekandung.</p>
+                    </li>
+                    <li>
+                      <p>Anak laki-laki dari paman seayah.</p>
+                    </li>
+                  </ol>
+                </li>
+              </ul>
+              <h4><span>B. Suami Istri.</span></h4>
+              <h4><span>C. Budak yang dimerdekakan.</span></h4>
+            </li>
+          </ol>
+          <h2>Pembagian ahli waris dari pria dan wanita.</h2>
+          <ul type="square" class="list-ahli-waris">
+            <li>
+              <h4 class="pewaris-pria" style="color: #0a8138; font-weight: 500;">
+                Pewaris dari kalanagan <span>Pria</span> sebanyak 15 orang,
+                yaitu:
+              </h4>
+              <ul>
+                <li>
+                  <p>Ayah.</p>
+                </li>
+                <li>
+                  <p>Kakek.</p>
+                </li>
+                <li>
+                  <p>Anak laki-laki.</p>
+                </li>
+                <li>
+                  <p>Cucu laki-laki dari Anak laki-laki.</p>
+                </li>
+                <li>
+                  <p>Saudara sekandung.</p>
+                </li>
+                <li>
+                  <p>Saudara seayah.</p>
+                </li>
+                <li>
+                  <p>Saudara seibu.</p>
+                </li>
+                <li>
+                  <p>Anak laki-laki dari saudara kandung.</p>
+                </li>
+                <li>
+                  <p>Anak laki-laki dari saudara seayah.</p>
+                </li>
+                <li>
+                  <p>Paman sekandung.</p>
+                </li>
+                <li>
+                  <p>Paman seayah.</p>
+                </li>
+                <li>
+                  <p>Anak laki-laki dari paman sekandung.</p>
+                </li>
+                <li>
+                  <p>Anak laki-laki dari paman seayah.</p>
+                </li>
+                <li>
+                  <p>Suami.</p>
+                </li>
+                <li>
+                  <p>Lelaki yang  dimerdekakan.</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h4 class="pewaris-wanita" style="color: #0a8138; font-weight: 500;">
+                Pewaris dari kalangan <span>Wanita</span> sebanyak 10 orang,
+                yaitu:
+              </h4>
+              <ul>
+                <li>
+                  <p>Ibu.</p>
+                </li>
+                <li>
+                  <p>Nenek dari pihak ibu.</p>
+                </li>
+                <li>
+                  <p>Nenek dari pihak ayah.</p>
+                </li>
+                <li>
+                  <p>Anak Perempuan.</p>
+                </li>
+                <li>
+                  <p>Cucu perempuan dari Anak laki-laki.</p>
+                </li>
+                <li>
+                  <p>Saudari sekandung.</p>
+                </li>
+                <li>
+                  <p>Saudari seayah.</p>
+                </li>
+                <li>
+                  <p>Saudari seibu.</p>
+                </li>
+                <li>
+                  <p>Istri.</p>
+                </li>
+                <li>
+                  <p>Wanita merdeka.</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <h2>Jenis-jenis ahli waris</h2>
+          <ul class="list-jenis-ahli-waris">
+            <li>
+              <h4>
+                Ahli waris yang memperoleh bagian warisan yang sudah
+                ditentukan (berdasarkan ketentuan syariat):
+              </h4>
+            </li>
+
+            <p>
+              <span>Semua perempuan kecuali budak perempuan yang telah dimerdekakan</span>, dan dari kalangan
+              laki-laki
+              yakni: <span>suami, saudara laki-laki seibu, ayah, dan kakek dalam
+                beberapa kondisi tertentu</span>. Mereka inilah yang disebut sebagai
+              ahli waris yang memiliki bagian warisan yang sudah ditentukan.
+            </p>
+
+            <li>
+              <h4>Pewaris hanya melalui taʿṣīb:</h4>
+            </li>
+
+            <p>
+              <span>Semua laki-laki kecuali suami dan saudara laki-laki seibu, dan
+                tidak ada wanita yang mewarisi kecuali budak perempuan yang
+                dimerdekakan </span>. Mereka disebut <span><i>'Asabah</i></span>, dan mereka
+              mewarisi apa yang tersisa setelah bagian tetap
+              didistribusikan.
+            </p>
+
+            <li>
+              <h4>
+                Terkadang, dapat memperoleh bagian warisan melalui kedua jalur tersebut, bahkan seluruhnya: 
+              </h4>
+            </li>
+
+            <p>
+              Contohnya adalah ayah dan kakek.
+            </p>
+
+            <li>
+              <h4>
+                Terkadang, dapat memperoleh bagian warisan melalui kedua jalur tersebut, tetapi tidak seluruhnya: 
+              </h4>
+              <p>
+                Contohnya adalah <span>anak perempuan, cucu perempuan dari anak laki-laki, saudari sekandung, dan saudari seayah yang lebih anggotanya.</span>.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="bab-4">
+        <div id="header-bab">
+          <h1>BAB 4</h1>
+          <h1>PEMBAGIAN YANG DITETAPKAN DALAM ALQURAN</h1>
+        </div>
+        <div class="materi4">
+          <h2>FURUDH</h2>
+          <p class="furudh-header" style="font-size: 1.2rem; font-weight: 500;">Bagian Furudh yang telah Allah tetapkan
+            di dalam Al-Qur'an
+            ada 6:</p>
+          <ul class="list-furudh">
+            <li>
+              <p><span>1/2</span> (Separuh / Setengah).</p>
+            </li>
+            <li>
+              <p><span>1/4</span> (Seperempat).</p>
+            </li>
+            <li>
+              <p><span>1/8</span> (Seperdelapan).</p>
+            </li>
+            <li>
+              <p><span>2/3</span> (Dua Pertiga).</p>
+            </li>
+            <li>
+              <p><span>1/3</span> (Sepertiga).</p>
+            </li>
+            <li>
+              <p><span>1/6</span> (Seperenam).</p>
+            </li>
+          </ul>
+          <ol class="list-furudh">
+            <p><span class="green">Ahli waris dengan hak separuh (1/2)</span></p>
+            <ul>
+              <li>
+                <p><span>Suami</span>, jika tidak ada keturunan(anak).</span>
+              </li>
+              <li>
+                <p>
+                  <span>Anak Perempuan</span>, jika sendirian dan tidak ada anak laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Cucu Perempuan dari anak laki-laki</span>, jika sendirian, tidak ada 
+                  keturunan laki-laki dan tidak ada cucu laki-laki dari anak laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudari Kandung</span>, jika sendirian, tidak ada keturunan laki-laki, 
+                  tidak ada ayah dan tidak ada saudara sekandung.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudari seayah</span>, jika sendirian, tidak ada keturunan laki-laki, 
+                  tidak ada ayah dan tidak ada saudara seayah.
+                </p>
+              </li>
+            </ul>
+            <br>
+            <p><span class="green">Ahli waris dengan hak seperempat (1/4)</span></p>
+            <ul>
+              <li>
+                <p>
+                  <span>Suami</span>, jika istri memiliki keturunan yang mewarisi.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Istri atau istri-istri</span>, jika suami tidak memiliki
+                  keturunan yang mewarisi.
+                </p>
+              </li>
+            </ul>
+            <br>
+            <p><span class="green">Ahli waris dengan hak seperdelapan (1/8)</span></p>
+            <ul>
+              <li>
+                <p>
+                  <span>Istri atau Istri-istri</span>, jika suami memiliki keturunan
+                  yang mewarisi.
+                </p>
+              </li>
+            </ul>
+            <br>
+            <p><span class="green">Ahli waris dengan hak dua per tiga (2/3)</span></p>
+            <ul type="a">
+              <li>
+                <p>
+                  <span>Dua anak perempuan atau lebih</span>, jika tidak ada anak
+                  laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Dua cucu perempuan atau lebih dari anak laki-laki</span>,
+                  jika tidak ada anak laki-laki, anak perempuan dan cucu laki-laki dari anak laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Dua saudari kandung atau lebih</span>, jika tidak ayah, 
+                  tidak ada saudara sekandung,  dan tidak ada anak laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Dua saudari seayah atau lebih</span>, jika tidak ayah, 
+                  tidak ada saudara seayah, tidak ada saudara dan saudari sekandung, 
+                  dan tidak ada keturunan laki-laki.
+                </p>
+              </li>
+            </ul>
+            <br>
+            <p><span class="green">Ahli waris dengan hak sepertiga (1/3)</span></p>
+            <ul type="a">
+              <li>
+                <p>
+                  <span>Ibu</span>, Apabila yang meninggal tidak memiliki keturunan 
+                  atau saudara (sekandung ataupun seayah ataupun seibu) yang jumlahnya 
+                  2 orang atau lebih.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudara/i seibu 2 atau lebih</span>, 2 orang atau lebih, 
+                  jika mereka tidak terhalang (lihat materi 6: Hajb).
+                </p>
+              </li>
+            </ul>
+            <br>
+            <p><span class="green">Ahli waris dengan hak seperenam (1/6)</span></p>
+            <ul>
+              <li>
+                <p>
+                  <span>Ayah</span>, Jika yang meninggal memiliki keturunan ahli waris.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Kakek (Ayah Dari Ayah)</span>, jika yang meninggal memiliki
+                  keturunan laki-laki dan tidak mempunyai ayah.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Ibu</span>, jika yang meninggal memiliki anak, atau anak
+                  laki-laki dari anak anaknya, atau saudara (2 ataupun lebih)
+                  semuanya laki-laki / perempuan, atau salah satu diantaranya
+                  laki-laki dan perempuan (sekandung ataupun sebapak ataupun
+                  seibu).
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudari perempuan sebapak (2 orang atau lebih)</span>, jika
+                  yang meninggal hanya memiliki 1 saudari perempuan saja tanpa
+                  ada saudara laki-laki sekandung.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Cucu perempuan dari anak laki-laki (2 orang atau
+                    lebih)</span>, Jika yang meninggal hanya memiliki 1 anak perempuan saja 
+                    tanpa anak laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudara/i seibu</span>, jika sendirian dan tidak terhalang (lihat di materi 6: Hajb).
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Nenek / nenek-nenek</span>, saat tidak ada yang meng-hujubnya.
+                </p>
+              </li>
+            </ul>
+          </ol>
+          <br>
+          <p class="judul-tabel-bagi">Tabel Pembagian Ahli Waris</p>
+          <br>
+          <table class="tabel-pembagian-ahli-waris">
+            <tr>
+              <td>1/2</td>
+              <td>1/4</td>
+              <td>1/8</td>
+              <td>1/3</td>
+              <td>1/6</td>
+              <td>2/3</td>
+            </tr>
+            <tr>
+              <td>Suami</td>
+              <td>Suami</td>
+              <td>Istri / Istri-Istri</td>
+              <td>Ibu</td>
+              <td>Ayah</td>
+              <td>2 atau lebih Anak Perempuan</td>
+            </tr>
+            <tr>
+              <td>Anak Perempuan</td>
+              <td>Istri / Istri-Istri</td>
+              <td></td>
+              <td>2 atau lebih Saudara/i Seibu</td>
+              <td>Kakek</td>
+              <td>2 atau lebih Cucu Perempuan</td>
+            </tr>
+            <tr>
+              <td>Cucu Perempuan dari anak laki-laki</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Ibu</td>
+              <td>2 atau lebih Saudari Sekandung</td>
+            </tr>
+            <tr>
+              <td>Saudari Sekandung</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Cucu Perempuan dari anak laki-laki</td>
+              <td>2 atau lebih Saudari Seayah</td>
+            </tr>
+            <tr>
+              <td>Saudari Seayah</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>1 atau lebih Saudari Seayah</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Saudara/i Seibu</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Nenek / nenek-nenek</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div id="bab-5">
+        <div id="header-bab">
+          <h1>Bab 5</h1>
+          <h1>TA'SHIB</h1>
+        </div>
+        <div class="materi5">
+          <ol type="A">
+            <h2>Definisi</h2>
+            <table class="definisi">
+              <tr>
+                <td><span>Bahasa</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    berasal dari kata kerja dalam bahasa Arab yang berarti 
+                    “mengelilingi” atau “meliputi.” Istilah ini menggambarkan 
+                    hubungan erat antara seorang laki-laki dengan keluarga 
+                    dekatnya, khususnya melalui garis keturunan laki-laki, 
+                    seperti ayah, anak laki-laki, atau saudara laki-laki.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td><span>Istilah</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    Setiap ahli waris yang tidak mempunyai bagian yang
+                    ditentukan secara jelas dengan Al-Qur'an dan As-Sunnah.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td><span>Hukumnya</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    Dia memiliki seluruh uang ketika dia sendirian, atau sisa
+                    dari kewajiban- kewajibannya. jika tidak ada kewajiban
+                    furudh-nya tidak menyisakan sedikit pun dari harta warisan.
+                  </p>
+                </td>
+              </tr>
+            </table>
+            <table>
+              <h2>Pembagiannya</h2>
+              <p class="pembagian"><span><i>Ashabah</i> dibagi menjadi 3
+                  bagian:</span></p>
+              <ol class="list-tashib">
+                <li>
+                  <p>
+                    <span>Ashabah bil-nafs: </span>mereka semua adalah kaum lelaki
+                    kecuali suami dan saudara seibu, dan mereka terbagi menjadi
+                    7 arah martabat:
+                  </p>
+                  <ul type="a">
+                    <li>
+                      <p>
+                        <i>Banuwah: </i>anak laki-laki, cucu laki-laki, dan
+                        kebawahnya.
+                      </p>
+                    </li>
+                    <li>
+                      <p><i>Abuwah: </i>ayah, kakek, keatasnya.</p>
+                    </li>
+                    <li>
+                      <p><i>Ukhuwah: </i>saudara sekandungnya dan seayah.</p>
+                    </li>
+                    <li>
+                      <p>
+                        <i>Banuw Ukhuwah: </i>anak laki-laki dari saudara
+                        sekandung / seayah dan kebawahnya.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <i>Ummah: </i>paman sekandung / seayah, anak lelaki dari
+                        paman sekandung / seayah dan kebawahnya.
+                      </p>
+                    </li>
+                    <li>
+                      <p><i>Wala': </i>Pembebas Budak (pria / wanita).</p>
+                    </li>
+                    <li>
+                      <p><i>Baitu-l-mal </i>yang teratur / terorganisir.</p>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <p>
+                    <span>Ashabah bil-ghair: </span>mereka adalah kaum Wanita yang
+                    bertemu dengan lelaki sederajatnya maka diwariskan "milik
+                    lelaki seperti milik 2 perempuan". Mereka adalah:
+                  </p>
+                  <ul type="a">
+                    <li>
+                      <p>
+                        <span class="blue">Anak perempuan: </span><span>Ta'shib</span> dengan sederajatnya yaitu
+                        <span class="blue"> anak laki-laki.</span>
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="blue">Cucu perempuan dari anak laki-laki: </span><span>Ta'shib</span>
+                        dengan sederajatnya yaitu <span class="blue">cucu laki-laki dari anak
+                          laki-laki.</span>
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="blue">Saudari kandung: </span><span>Ta'shib</span> dengan sederajatnya
+                        yaitu <span class="blue">saudara kandung.</span>
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <span class="blue">Saudari seayah: </span><span>Ta'shib</span> dengan sederajatnya yaitu
+                        <span class="blue"> saudara seayah. </span>
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <ol></ol>
+                <li>
+                  <p style="text-align: justify; padding-right: 10px;">
+                    <span>Ashabah ma'-l-ghair: </span>mereka adalah saudara perempuan sekandung atau seayah, berbagi
+                    harta yang tersisa bersama anak perempuan atau cucu perempuan dari anak
+                    laki-laki setelah bagian tetap mereka dibagikan. <br>
+                    Konsep ini berlaku jika:
+                  </p>
+                  <ul>
+                    <li><span class="blue">Tidak ada saudara laki-laki yang menjadi 'asabah.</span></li>
+                    <li><span class="blue">Saudara perempuan menjadi 'asabah karena adanya anak perempuan atau cucu
+                        perempuan.</span></li>
+                  </ul>
+                  <p style="text-align: justify; padding-right: 10px;">
+                    <span>Contoh :</span>
+                  </p>
+                  <ul>
+                    <li><span class="blue">Saudara Perempuan Kandung</span> dengan <span class="blue">Anak Perempuan /
+                        Cucu
+                        Perempuan</span>, <span>Saudara Perempuan Kandung</span> menjadi <span>Ashabah</span>, sedangkan
+                      <span class="blue">Anak Perempuan /
+                        Cucu
+                        Perempuan</span> <span>tetap</span> pada bagian mereka.
+                    </li>
+                    <li><span class="blue">Saudara Perempuan Seayah</span> dengan <span class="blue">Anak Perempuan /
+                        Cucu
+                        Perempuan</span>, <span>Saudara Perempuan Seayah</span> menjadi <span>Ashabah</span>, sedangkan
+                      <span class="blue">Anak Perempuan /
+                        Cucu
+                        Perempuan</span> <span>tetap</span> pada bagian mereka.
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+            </table>
+          </ol>
+        </div>
+      </div>
+      <div id="bab-6">
+        <div id="header-bab">
+          <h1>Bab 6</h1>
+          <h1>HAJB</h1>
+        </div>
+        <div class="materi6">
+          <ol type="A">
+            <h2>Definisi</h2>
+            <table class="definisi">
+              <tr>
+                <td><span>Bahasa</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>Pencegahan dan perampasan.</p>
+                </td>
+              </tr>
+              <tr>
+                <td><span>Istilah</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    Mencegah ahli waris untuk mewarisi, seluruhnya atau sebagian, karena kehadiran 
+                    orang yang menghalangi untuk mendapatkannya.
+                  </p>
+                </td>
+              </tr>
+            </table>
+            <h2>Pembagiannya</h2>
+            <p class="header-hujub"><i>Hajb </i>terbagi menjadi 2 bagian:</p>
+            <ol class="list-hujub">
+              <li>
+                <p>
+                  <i>Hajb bi-l-wasf: </i>terdapat perilaku / sifat yang
+                  menjadikan ahli waris tidak mendapatkan warisan, seperti
+                  <span class="blue">pembunuhan, budak, perbedaan agama, dan murtad, dll.</span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <i>Hajb bi-l-saksh: </i>terdapat ahli waris yang membuat
+                  ahli waris tidak mendapatkan warisan, ini terbagi menjadi 2
+                  katagori:
+                </p>
+                <ol type="a">
+                  <li>
+                    <p>
+                      <i>Hajb nuqshan: </i>Menurunnya bagian ahli waris karena adanya orang lain, seperti 
+                      pemindahan hak suami dari ½ menjadi ¼ karena terdapat keturunan (anak-anak).</span>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <i>Hajb hirman: </i>Terhalangannya bagian ahli waris yang ada karena adanya orang lain 
+                      yang menghalanginya, seperti pemotongan dari hak warisan kakek karena ada ayah.</span>
+                    </p>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+            <h2>Ahli waris yang tidak terkena hujub</h2>
+            <p>Orang-orang yang <span class="blue">tidak terkena <i>hajb hirman </i></span>adalah:</p>
+            <ol class="list-hujub2">
+              <li>
+                <p>Ayah.</p>
+              </li>
+              <li>
+                <p>Ibu.</p>
+              </li>
+              <li>
+                <p>Anak laki-laki.</p>
+              </li>
+              <li>
+                <p>Anak perempuan.</p>
+              </li>
+              <li>
+                <p>Suami.</p>
+              </li>
+              <li>
+                <p>Istri.</p>
+              </li>
+            </ol>
+            <h2>Ahli waris pria yang terkena hujub hirman</h2>
+            <ol class="list-hujub">
+              <li>
+                <p>
+                  <span>Kakek: </span>terhalang oleh ayah, dan kakek dekat
+                  menghalang kakek jauh.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudara sekandung: </span>terhalang oleh ayah dari keturunan
+                  lelaki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudara seayah: </span>terhalang oleh saudara/i sekandung
+                  yang Ashabah bi-l-ghair, dan ahli waris yang menghalangi
+                  saudara sekandung.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudara seibu: </span>terhalan oleh ayah, kakek dan keturunan laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Cucu laki-laki: </span>terhalang oleh anak laki-laki, dan
+                  cicit laki-laki terhalang oleh cucu laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Anak laki-laki dari saudara sekandung: </span>terhalang oleh ayah,
+                  kakek, anak laki-laki, cucu laki-laki, saudara sekandung,
+                  dan saudara seayah.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Anak laki-laki dari saudara seayah: </span>terhalang oleh anak
+                  laki-laki dari saudara sekandung, dan ahli waris yang
+                  menghalangi anak laki-laki dari saudara sekandung.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Paman sekandung: </span>terhalang oleh anak laki-laki dari
+                  saudara seayah, dan ahli waris yang menghalangi anak
+                  laki-laki dari saudara seayah.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Paman seayah: </span>terhalang oleh paman sekandung dan ahli
+                  waris yang menghalangi paman sekandung.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Anak laki-laki dari paman sekandung: </span>terhalang oleh paman
+                  seayah dan ahli waris yang menghalangi paman seayah.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Anak laki-laki dari paman seayah: </span>terhalang oleh paman seayah
+                  dan ahli waris yang menghalangi anak dari paman sekandung.
+                </p>
+              </li>
+            </ol>
+            <h2>Ahli waris wanita yang terkena hujub hirman</h2>
+            <ol class="list-hujub">
+              <li>
+                <p><span>Nenek: </span>terhalang oleh ibu.</p>
+              </li>
+              <li>
+                <p>
+                  <span>Cucu perempuan: </span>terhalang oleh anak laki-laki, dan 2 anak perempuan atau lebih.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudari sekandung: </span>terhalang oleh ayah dan keturunan
+                  laki-laki.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudari seayah: </span>terhalang oleh ayah, keturunan
+                  lelaki, saudari sekandung jika dia
+                  <i>Ashabah ma'-l-ghoir</i>, dan 2 saudari sekandung jika
+                  mereka tidak <i>Ta'shib bi-l-ghoir</i>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  <span>Saudara seibu: </span>terhalang oleh ayah, kakek dan
+                  keturunan lelaki.
+                </p>
+              </li>
+            </ol>
+            <p></p>
+          </ol>
+        </div>
+      </div>
+      <div id="bab-12">
+        <div id="header-bab">
+          <H1>BAB 7</H1>
+          <h1>TABEL PEMBAGIAN TIAP AHLI WARIS</h1>
+        </div>
+        <table class="tabel-rasio">
+          <tr>
+            <td>No</td>
+            <td>Ahli Waris</td>
+            <td>Bagian</td>
+            <td>Keadaan</td>
+          </tr>
+          <tr>
+            <td rowspan="4">1</td>
+            <td rowspan="4">Ayah</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memiliki keturunan laki-laki</td>
+          </tr>
+          <tr>
+            <td>Ta'shib Mutlak</td>
+            <td>Jika yang meninggal tidak memiliki keturunan, baik laki-laki ataupun perempuan</td>
+          </tr>
+          <tr>
+            <td>1/6</td>
+            <td>Jika yang meninggal memiliki keturunan laki-laki</td>
+          </tr>
+          <tr>
+            <td>1/6 + Ashabah</td>
+            <td>Jika yang meninggal memiliki keturunan perempuan</td>
+          </tr>
+          <tr>
+            <td rowspan="4">2</td>
+            <td rowspan="4">Kakek</td>
+            <td>Ta'shib Mutlak</td>
+            <td>Jika yang meninggal tidak memiliki keturunan dan ayah</td>
+          </tr>
+          <tr>
+            <td>1/6</td>
+            <td>Jika yang meninggal memiliki keturunan laki-laki dan tanpa ada ayah (anaknya)</td>
+          </tr>
+          <tr>
+            <td>1/6 + Ashabah</td>
+            <td>Jika yang meninggal memiliki keturunan perempuan dan ayah (anaknya)</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki ayah</td>
+          </tr>
+          <tr>
+            <td rowspan="2">3</td>
+            <td rowspan="2">Ibu</td>
+            <td>1/3</td>
+            <td>Jika yang meninggal tidak memilik keturunan dan saudara-saudara</td>
+          </tr>
+          <tr>
+            <td>1/6</td>
+            <td>Jika yang meninggal memiliki anak, cucu atau 2 atau lebih dari saudara-saudara (Lelaki
+              ataupun perempuan) manapun
+            </td>
+          </tr>
+          <tr>
+            <td rowspan="2">4</td>
+            <td rowspan="2">Nenek (Dari ibu ataupun ayah)</td>
+            <td>1/6</td>
+            <td>Jika yang meninggal tidak memiliki ibu</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki ibu</td>
+          </tr>
+          <tr>
+            <td colspan="4">(Bila kedua nenek (dari ayah dan ibu) masih ada, maka dengan bagian 1/6, dibagi rata
+              pada keduanya)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">5</td>
+            <td rowspan="2">Suami</td>
+            <td>1/2</td>
+            <td>Jika yang meninggal tidak memiliki keturunan (laki-laki / perempuan)</td>
+          </tr>
+          <tr>
+            <td>1/4</td>
+            <td>Jika yang meninggal memiliki keturunan (laki-laki / perempuan)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">6</td>
+            <td rowspan="2">Istri</td>
+            <td>1/4</td>
+            <td>Jika yang meninggal tidak memiliki keturunan (laki-laki / perempuan)</td>
+          </tr>
+          <tr>
+            <td>1/8</td>
+            <td>Jika yang meninggal memiliki keturunan (laki-laki / perempuan)</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Anak Laki-Laki</td>
+            <td>Ashabah</td>
+            <td>1 atau lebih</td>
+          </tr>
+          <tr>
+            <td rowspan="3">8</td>
+            <td rowspan="3">Anak Perempuan</td>
+            <td>1/2</td>
+            <td>Jika dia sendiri, dan tidak memiliki mu'ashibnya (anak laki-laki)</td>
+          </tr>
+          <tr>
+            <td>2/3</td>
+            <td>2 atau lebih, dan jika yang meninggal tidak memiliki mu'ashibnya (anak laki-laki)</td>
+          </tr>
+          <tr>
+            <td>Ashabah</td>
+            <td>jika terdapat mu'ashibnya (anak laki-laki)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">9</td>
+            <td rowspan="2">Cucu Laki-Laki</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memiliki anak laki-laki</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki anak laki-laki</td>
+          </tr>
+          <tr>
+            <td rowspan="5">10</td>
+            <td rowspan="5">Cucu Perempuan</td>
+            <td>1/2</td>
+            <td>Jika dia sendiri, dan yang meninggal tidak memiliki anak (laki-laki / perempuan) dan tidak ada
+              mu'ashibnya (cucu laki-laki)</td>
+          </tr>
+          <tr>
+            <td>2/3</td>
+            <td>2 atau lebih, dan jika yang meninggal tidak memiliki mu'ashibnya (anak laki-laki)</td>
+          </tr>
+          <tr>
+            <td>1/6</td>
+            <td>1 atau lebih, dan jika yang meninggal memiliki 1 anak perempuan saja tanpa anak laki-laki</td>
+          </tr>
+          <tr>
+            <td>Ashabah</td>
+            <td>1 atau lebih, jika yang meninggal memiliki cucu laki-laki tanpa ada anak laki-laki</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki anak laki-laki dan tidak memilik mu'ashibnya (cucu laki-laki)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">11</td>
+            <td rowspan="2">Saudara Kandung</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memiliki keturunan (anak / cucu) laki-laki dan ayah</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki keturunan laki-laki (anak / cucu) atau ayah</td>
+          </tr>
+          <tr>
+            <td rowspan="4">12</td>
+            <td rowspan="4">Saudari Kandung</td>
+            <td>1/2</td>
+            <td>Jika dia sendiri, dan yang meninggal tidak memiliki mu'ashibnya (saudara sekandung) dan tidak memiliki
+              keturunan
+              (laki-laki / perempuan) dan ayah</td>
+          </tr>
+          <tr>
+            <td>2/3</td>
+            <td>2 atau lebih, dan jika yang meninggal tidak memiliki keturunan (laki-laki / perempuan) dan ayah, dan
+              tidak ada
+              mu'ashibnya (saudara sekandung)</td>
+          </tr>
+          <tr>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal memiliki mu'ashibnya (saudara sekandung atau keturunan (anak / cucu) perempuan)</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki keturunan laki-laki atau ayah dan 2 atau lebih keturunan perempuan</td>
+          </tr>
+          <tr>
+            <td rowspan="2">13</td>
+            <td rowspan="2">Saudara Seayah</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memiliki keturunan (anak / cucu) laki-laki, ayah dan saudara sekandung</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki keturunan (anak / cucu) laki-laki atau ayah atau saudara/i sekandung</td>
+          </tr>
+          <tr>
+            <td rowspan="5">14</td>
+            <td rowspan="5">Saudari Seayah</td>
+            <td>1/2</td>
+            <td>Jika dia sendiri, dan yang meninggal tidak memiliki mu'ashibnya (saudara seayah), keturunan (anak /
+              cucu) laki-laki, ayah
+              dan saudara/i sekandung</td>
+          </tr>
+          <tr>
+            <td>2/3</td>
+            <td>2 atau lebih, dan jika yang meninggal tidak memiliki keturunan (laki-laki / perempuan) dan ayah dan
+              saudara/i sekandung
+              (2 atau lebih) dan tidak ada mu'ashibnya (saudara seayah)</td>
+          </tr>
+          <tr>
+            <td>1/6</td>
+            <td>1 atau lebih, dan jika yang meninggal hanya memiliki 1 saudari sekandung, untuk saling memenuhi takaran
+              menjadi 2/3
+              tanpa ada mu'ashibnya (saudara seayah)</td>
+          </tr>
+          <tr>
+            <td>Ashabah</td>
+            <td>Jika terdapat mu'ashibnya (saudara sekandung atau keturunan (anak / cucu) perempuan) yang meninggal
+              tidak memiliki keturunan (anak / cucu) laki-laki, ayah dan saudara/i sekandung (2 atau lebih)</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki keturunan (anak / cucu) laki-laki atau ayah atau 2 atau lebih keturunan perempuan atau
+            saudara atau saudari sekandung (jika Ta'shib dengan yang lain) atau 2 atau lebih saudari sekandung</td>
+          </tr>
+          <tr>
+            <td rowspan="3">15</td>
+            <td rowspan="3">Saudara Seibu</td>
+            <td>1/6</td>
+            <td>Jika dia sendiri, tidak memiliki saudari seibu, dan yang meninggal tidak memiliki ayah, kakek dan
+              keturunan (laki-laki / perempuan)
+            </td>
+          </tr>
+          <tr>
+            <td>1/3</td>
+            <td>2 atau lebih, dan jika yang meninggal tidak memiliki ayah, kakek dan keturunan (laki-laki / perempuan).
+              Pembagian dibagi setara dengan saudari seibu jika ada
+            </td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki ayah atau kakek atau keturunan (laki-laki / perempuan)</td>
+          </tr>
+          <tr>
+            <td rowspan="3">16</td>
+            <td rowspan="3">Saudari Seibu</td>
+            <td>1/6</td>
+            <td>Jika dia sendiri, tidak memiliki saudara seibu, dan yang meninggal tidak memiliki ayah, kakek dan
+              keturunan (laki-laki / perempuan)
+            </td>
+          </tr>
+          <tr>
+            <td>1/3</td>
+            <td>2 atau lebih, dan jika yang meninggal tidak memiliki ayah, kakek dan keturunan (laki-laki / perempuan).
+              Pembagian dibagi setara dengan saudara seibu jika ada
+            </td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki ayah atau kakek atau keturunan (laki-laki / perempuan)</td>
+          </tr>
+          <tr>
+            <td rowspan="2">17</td>
+            <td rowspan="2">Putra Saudara Kandung</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memiliki keturunan (anak / cucu) laki-laki, ayah, kakek dan saudara sekandung
+              / seayah</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki keturunan laki-laki atau ayah atau kakek atau saudara sekandung atau seayah
+            </td>
+          </tr>
+          <tr>
+            <td rowspan="2">18</td>
+            <td rowspan="2">Putra Saudara Seayah</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memiliki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara
+              sekandung/seayah (1 atau
+              lebih) dan putra dari saudara sekandung</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki keturunan (anak / cucu) laki-laki atau ayah atau kakek atau saudara
+              sekandung / seayah atau
+              anak laki-laki dari saudara sekandung</td>
+          </tr>
+          <tr>
+            <td rowspan="2">19</td>
+            <td rowspan="2">Paman Sekandung</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memilki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara sekandung /
+              seayah dan putra dari saudara sekandung / seayah</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memiliki keturunan (anak / cucu) laki-laki atau ayah atau kakek atau saudara
+              sekandung / seayah atau putra dari saudara sekandung / seayah</td>
+          </tr>
+          <tr>
+            <td rowspan="2">20</td>
+            <td rowspan="2">Paman Seayah</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memilki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara sekandung /
+              seayah, putra dari saudara sekandung / seayah dan paman sekandung</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memilki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara sekandung /
+              seayah, putra
+              dari saudara sekandung / seayah dan paman sekandung</td>
+          </tr>
+          <tr>
+            <td rowspan="2">21</td>
+            <td rowspan="2">Putra Paman Kandung</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memilki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara sekandung /
+              seayah, putra dari saudara sekandung / seayah dan paman sekandung / sekakek</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memilki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara sekandung /
+              seayah, putra dari saudara sekandung / seayah dan paman sekandung / sekakek</td>
+          </tr>
+          <tr>
+            <td rowspan="2">22</td>
+            <td rowspan="2">Putra Paman Seayah</td>
+            <td>Ashabah</td>
+            <td>Jika yang meninggal tidak memilki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara sekandung /
+              seayah, putra dari saudara sekandung / seayah, paman sekandung / sekakek dan putra paman kandung</td>
+          </tr>
+          <tr>
+            <td>Mahjub</td>
+            <td>Jika yang meninggal memilki keturunan (anak / cucu) laki-laki, ayah, kakek, saudara sekandung /
+              seayah, putra dari saudara sekandung / seayah, paman sekandung / sekakek dan putra paman kandung</td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>Pembebasnya dari Perbudakan</td>
+            <td>Ashabah</td>
+            <td>Jika tidak ada ahli waris lainnya</td>
+          </tr>
+        </table>
+      </div>
+      <div id="bab-7">
+        <div id="header-bab">
+          <h1>Bab 8</h1>
+          <h1>METODE DASAR PEMBAGIAN WARISAN</h1>
+        </div>
+        <div class="materi7">
+          <p>
+            <span class="green">Distribusi </span>adalah menghitung angka terkecil yang dapat
+            diguanakan untuk menyelesaikan masalah baik dengan pembagian
+            maupun untuk menghitung bagian-bagiannya.
+          </p>
+          <br />
+          <p>
+            Mengetahui asal masalah merupakan hal penting bagi setiap peneliti
+            dalam ilmu waris. Tujuannya adalah untuk mengelompokkan pemilik
+            bagian tertentu sesuai dengan bagiannya masing-masing. Metode ini
+            harus dilakukan dengan teliti.
+          </p>
+          <br />
+          <p>
+            Angka yang digunakan dalam pembagian adalah <span>angka terkecil</span> yang
+            merupakan kelipatan dari penyebut bagian <span class="orange">(1/2, 1/3, 1/4, 1/6, 1/8,
+              1/12)</span>. Jika terdapat dua atau lebih dari penyebut itu, kita
+            mengambil angka yang paling besar dari angka-angka terbesar
+            tersebut sebagai penyebut utama <span>(KPK)</span>, kemudian menggunakan angka
+            tersebut sebagai dasar dalam pembagian rasio sesuai kebutuhan.
+          </p>
+          <br />
+          <p>
+            <span>Jika hasil masalah adalah ganjil atau genap</span>, maka bagiannya
+            dihitung sesuai dengan kebutuhan distribusi, seperti dalam aturan
+            pembagian warisan atau hitungan tertentu. Metode distribusinya
+            yaitu:
+          </p>
+          <ol class="list-distribusi">
+            <li>
+              <p>
+                <span>Jika ahli waris semuanya Ashabah</span>, maka asal masalahnya adalah
+                jumlah kepala ahli waris jika hanya lelaki saja, dan jika ahli
+                waris Ashabah nya lelaki dan Wanita, maka <span class="orange">penghitungannya 1
+                  lelaki dihitung 2 kepala dan 1 wanita dihitung 1 kepala</span>,
+                kemudian asal masalahnya adalah hasil jumlah diantaranya.
+              </p>
+            </li>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>5 Anak Laki-Laki</td>
+                <td>Ashabah</td>
+                <td>5</td>
+              </tr>
+            </table>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>2 Anak Laki-Laki</td>
+                <td rowspan="2">Ashabah</td>
+                <td>4</td>
+              </tr>
+              <td>3 Anak Perempuan</td>
+              <td>3</td>
+            </table>
+            <br>
+            <li>
+              <p>
+                <span>Jika ahli waris semuanya memiliki Furudhnya masing-masing</span>,
+                maka jika dalam suatu persoalan terdapat <span class="orange">satu Furudh</span>, maka
+                asal masalah persoalannya berasal dari sumbernya yaitu dari
+                asumsi tersebut diatas. Dan jika dalam isu tersebut terdapat
+                <span class="orange">lebih dari satu Furudh</span>, maka asal masalahnya adalah faktor
+                persekutuan diantara Furudh tersebut dengan menggunakan rumus KPK
+              </p>
+            </li>
+          </ol>
+          <ul style="list-style-type: none;">
+            <br>
+            <li><span>Saham => 1</span> / <span class="orange">4 <= Asal Masalah </span>
+            </li>
+          </ul>
+          <br />
+          <p>
+            Para Ulama’ telah mengembangkan aturan yang mudah dan
+            disederhanakan yang dapat diketahui oleh seseorang asal mula
+            permasalahannya tanpa usaha lebih, dengan membagi Furudh menjadi 2
+            jenis:
+          </p>
+          <ul class="list-distribusi">
+            <li>
+              <p>
+                <span>Tipe pertama: (1/2, 1/4, 1/8)</span> Setengah, seperempat,
+                seperdelapan
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>Tipe kedua: (2/3, 1/3, 1/6)</span> Dua per tiga, sepertiga,
+                seperenam
+              </p>
+            </li>
+          </ul>
+          <br />
+          <p>
+            Jika Furudh nya tipe pertama saja atau tipe kedua saja, maka yang
+            asal masalahnya adalah yang paling besar penyebutnya, misal:
+          </p>
+          <ul class="list-distribusi">
+            <li>
+              Jika permasalahannya <span class="orange">(1/2, 1/4)</span> maka asal masalahnya adalah <span
+                class="orange">4</span>
+            </li>
+            <li>
+              Jika permasalahannya <span class="orange">(2/3, 1/6)</span> maka asal masalahnya adalah <span
+                class="orange">6</span>
+            </li>
+          </ul>
+          <br />
+          <p>
+            Tetapi, jika terdapat dua atau lebih Furudh dengan tipe yang
+            berbeda dalam suatu permasalahan, salah satunya adalah tipe
+            pertama yang lainnya adalah tipe kedua, sebagai berikut:
+          </p>
+          <ul class="list-distribusi">
+            <li>
+              Jika <span class="orange">(1/2)</span> tipe pertama tercampur dengan seluruh atau Sebagian
+              tipe kedua, maka asal masalahnya adalah <span class="orange">6</span>
+            </li>
+            <li>
+              Jika <span class="orange">(1/4)</span> tipe pertama tercampur dengan seluruh atau Sebagian
+              tipe kedua, maka asal masalahnya adalah <span class="orange">12</span>
+            </li>
+            <li>
+              Jika <span class="orange">(1/8)</span> tipe pertama tercampur dengan seluruh atau Sebagian
+              tipe kedua, maka asal masalahnya adalah <span class="orange">24</span>
+            </li>
+          </ul>
+          <br />
+          <table class="tabel">
+            <tr>
+              <td colspan="2">Asl Masalah</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>Suami</td>
+              <td>1/2</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Saudari Seibu</td>
+              <td>1/6</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Ibu</td>
+              <td>1/3</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Paman Sekandung</td>
+              <td>Ashabah</td>
+              <td>-</td>
+            </tr>
+          </table>
+          <br>
+          <table class="tabel">
+            <tr>
+              <td colspan="2">Asl Masalah</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Istri</td>
+              <td>1/4</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Ibu</td>
+              <td>1/6</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>2 Saudari Seibu</td>
+              <td>1/3</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Saudara Sekandung</td>
+              <td>Ashabah</td>
+              <td>3</td>
+            </tr>
+          </table>
+          <br>
+          <table class="tabel">
+            <tr>
+              <td colspan="2">Asl Masalah</td>
+              <td>24</td>
+            </tr>
+            <tr>
+              <td>Istri</td>
+              <td>1/8</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Ibu</td>
+              <td>1/6</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Cucu Perempuan</td>
+              <td>1/6</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Anak Perempuan</td>
+              <td>1/2</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Saudara Kandung</td>
+              <td>Ashabah</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <br>
+          <p>
+            Untuk menetapkan metode distribusi, perlu diketahui perbandingan
+            antara empat sudut pandang, yaitu: (<i>Tamatsul, Tadakhul, Tawafuq, Tabayyun)</i>
+          </p>
+          <ol class="list-distribusi">
+            <li>
+              <p>
+                <span>Tamatsul </span>adalah Ketika salah satu dari dua angka
+                tersebut mirip dengan yang lain seperti 3 dengan 3. Cara distribusi: <span class="orange">cukup
+                  diambil penyebutnya</span>
+              </p>
+            </li>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Suami</td>
+                <td>1/2</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Saudari Kandung</td>
+                <td>1/2</td>
+                <td>1</td>
+              </tr>
+            </table>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>2 Saudari Kandung</td>
+                <td>2/3</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>2 Saudara Seibu</td>
+                <td>1/2</td>
+                <td>1</td>
+              </tr>
+            </table>
+            <br>
+            <li>
+              <p>
+                <span>Tadakhul </span>adalah Ketika salah satu dari dua angka lebih
+                besar dari yang lain, tetapi angka besar ini merupakan dua
+                kali lipat dari angka kecil. Artinya jika yang lebih besar
+                dikurangi dengan yang lebih kecil sebanyak dua kali atau
+                lebih, maka tidak ada yang tersisa. Seperti 2 dengan 4 atau
+                dengan 8. Cara distribusi: <span class="orange">mengambil angka yang lebih besar
+                  dan menempatkan yang lebih kecil di bawah yang lebih besar.</span>
+              </p>
+            </li>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Istri</td>
+                <td>1/4</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Saudari Kandung</td>
+                <td>1/2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Paman</td>
+                <td>Ashabah</td>
+                <td>1</td>
+              </tr>
+            </table>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Anak Perempuan</td>
+                <td>1/2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Ibu</td>
+                <td>1/6</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Saudara Kandung</td>
+                <td>Ashabah</td>
+                <td>2</td>
+              </tr>
+            </table>
+            <br>
+            <li>
+              <p>
+                <span>Tawafuq </span>adalah Ketika dua angka sepakat dalam satu
+                bagian bilangan bulat, misalnya 4 dengan 6. Cara distribusi:
+                <span class="orange"> mengalikan keseluruhan dengan yang lain</span>
+              </p>
+            </li>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>Ibu</td>
+                <td>1/6</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Suami</td>
+                <td>1/4</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Anak Laki-Laki</td>
+                <td>Ashabah</td>
+                <td>7</td>
+              </tr>
+            </table>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>24</td>
+              </tr>
+              <tr>
+                <td>Istri</td>
+                <td>1/8</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Ibu</td>
+                <td>1/6</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Anak Laki-Laki</td>
+                <td>Ashabah</td>
+                <td>17</td>
+              </tr>
+            </table>
+            <br>
+            <li>
+              <p>
+                <span>Tabayyun </span>adalah tidak ada persamaan antara kedua
+                bilangan tersebut, tidak ada <i>Tamatsul, Tadakhul </i>dan
+                <i> Tabayyun</i> pada salah satu bagiannya. Artinya salah satu
+                dari dua bilangan tersebut tidak habis dibagi dengan bilangan
+                yang lain. Mereka tidak dibagi dengan nomer lain karena tidak
+                ada hubungannya diantara mereka. Missal 2 dengan 3. Cara
+                distribusi: <span class="orange">mengalikan semua yang satu dengan keseluruhan.</span>
+              </p>
+            </li>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Ibu</td>
+                <td>1/3</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Saudari Sekandung</td>
+                <td>1/2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Paman Kandung</td>
+                <td>Ashabah</td>
+                <td>1</td>
+              </tr>
+            </table>
+            <br>
+            <table class="tabel">
+              <tr>
+                <td colspan="2">Asl Masalah</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>Istri</td>
+                <td>1/4</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Ibu</td>
+                <td>1/3</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Saudara Sekandung</td>
+                <td>Ashabah</td>
+                <td>5</td>
+              </tr>
+            </table>
+            <br>
+          </ol>
+        </div>
+      </div>
+      <div id="bab-8">
+        <div id="header-bab">
+          <h1>Bab 9</h1>
+          <h1>'Aul</h1>
+        </div>
+        <div class="materi8">
+          <ol type="A">
+            <h2>Definisi</h2>
+            <table class="definisi">
+              <tr>
+                <td><span class="green">Bahasa</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>peningkatan atau tambahan</p>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="green">Istilah</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    Peningkatan atau penambahan dari asal masalah yang keluar
+                    dari aslinya, untuk memenuhi kebutuhan bagian waris yang
+                    lebih besar dari jumlah aslinya karena adanya keterkaitan
+                    dan ketergantungan dalam bagian.
+                  </p>
+                </td>
+              </tr>
+            </table>
+            <br />
+            <p><span>Asal yang dapat mengalami 'Aul</span></p>
+            <p>
+              Asal yang mendapatkan ‘aul adalah: [<span class="orange">6, 12, 24</span>]. Setiap asal
+              memiliki asal usul jenis ketergantungannya:
+            </p>
+            <ul class="list-aul">
+              <li>
+                <p><span>Asal 6</span> sampai <span class="orange">7, 8, 9, dan 10</span></p>
+              </li>
+              <li>
+                <p><span>Asal 12 </span>sampai <span class="orange">13, 15, dan 17</span></p>
+              </li>
+              <li>
+                <p><span>Asal 24</span> sampai <span class="orange">27</span></p>
+              </li>
+            </ul>
+            <br />
+            <p><span>Asal yang tidak mendapatkan 'Aul:</span></p>
+            <p>
+              <span class="orange">Asal 2, 3, 4, dan seterusnya, tidak dapat mengalami 'Aul</span> karena
+              tidak mungkin jumlah bagian melebihi aslinya.
+            </p>
+            <br />
+          </ol>
+          <h2>Soal pertanyaan yang terselesaikan</h2>
+          <p>
+            Seorang <span> wanita </span>meninggal dan meninggalkan <span>4 anak perempuan,
+              seorang ibu</span>, dan <span>seorang suami</span>; serta meninggalkan warisan sebanyak
+            <span class="orange">Rp. 260.000.000 </span>. Semua hutang & kebutuhan jenazah sudah terlunasi, dan tidak
+            ada
+            wasiat. Berapa bagian masing-masing ahli waris?
+          </p>
+          <br />
+          <p><span>Penyelesaian Masalah</span></p>
+          <p>
+            Masalah ini termasuk dalam kategori aul (permasalahan dengan
+            kelebihan saham) karena jumlah sahamnya meningkat dari 12 menjadi
+            13. Jadi, asal masalah yang digunakan untu k perhitungan adalah 13.
+            Maka bagian:
+          </p>
+          <br>
+          <table class="tabel-aul">
+            <tr>
+              <td></td>
+              <td></td>
+              <td>(3,6,4)=>12</td>
+              <td>8+2+3=13</td>
+              <td>12 => 13</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Ibu</td>
+              <td>1/6</td>
+              <td>2/12</td>
+              <td>2/13</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Suami</td>
+              <td>1/4</td>
+              <td>3/12</td>
+              <td>3/13</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Anak Perempuan</td>
+              <td>2/3</td>
+              <td>8/12</td>
+              <td>8/13</td>
+            </tr>
+          </table>
+          <br />
+          <table class="tabel-hitung-aul">
+            <tr>
+              <td>Ibu</td>
+              <td>=></td>
+              <td>2/13 x Rp.260.000.000</td>
+              <td>=</td>
+              <td>Rp.40.000.000</td>
+            </tr>
+            <tr>
+              <td>Suami</td>
+              <td>=></td>
+              <td>3/13 x Rp.260.000.000</td>
+              <td>=</td>
+              <td>Rp.60.000.000</td>
+            </tr>
+            <tr>
+              <td>Anak Perempuan</td>
+              <td>=></td>
+              <td>8/13 x Rp.260.000.000</td>
+              <td>=</td>
+              <td>Rp.160.000.000</td>
+            </tr>
+            <tr>
+              <td>Masing Anak Perempuan</td>
+              <td>=></td>
+              <td>Rp.160.000.000 : 4</td>
+              <td>=</td>
+              <td>Rp.40.000.000</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div id="bab-9">
+        <div id="header-bab">
+          <h1>Bab 10</h1>
+          <h1>Koreksi Masalah</h1>
+        </div>
+        <div class="materi9">
+          <p>
+            <span>Koreksi masalah </span>adalah mencari jumlah terkecil dari angka
+            yang mana setiap bagian dari warisan dapat dibagi darinya <span class="orange">(KPK)</span>. Pada
+            kenyataannya, ini adalah <span class="blue"> pembagian dari pembilang pecahan jika
+              bagian tersebut terbagi dengan mudah kepada ahli waris</span>. Jika tidak
+            terbagi dengan mudah, maka butuh dilakukan koreksi masalah untuk
+            menghindari terjadinya pecahan.
+          </p>
+          <p>
+            Koreksi ini <span class="blue">dilakukan ketika saham ahli waris tidak terbagi dengan mudah
+              kepada ahli waris atau terjadi pembagian yang tidak setara, atau
+              pecahan</span>, dalam pembagian warisan. Koreksi ini dilakukan untuk
+            menghindari terjadinya ketidakseimbangan pembagian antara para
+            ahli waris.
+          </p>
+          <br />
+          <p><span>Cara Melakukan Koreksi</span></p>
+          <ol class="list-koreksi">
+            <li>
+              Jika terjadi pecahan pada satu kelompok, perhatikan antara
+              kelompok tersebut dan bagian-bagiannya dengan <span class="blue">meninjau
+                kesesuaian dan perbedaan</span>.
+            </li>
+            <li>
+              Jika terdapat <span class="orange">kesesuaian</span> dalam
+              bagian, maka <span class="blue">kalikan jumlahnya dengan asal dari bagian
+                tersebut atau jumlah total</span>.
+            </li>
+            <li>
+              Jika terdapat <span class="orange">perbedaan</span> dalam bagian, <span class="blue">kalikan semua ahli
+                waris
+                dalam asal masalah atau total, lalu koreksi masalah dengan
+                hasil perkalian</span>.
+            </li>
+            <li>
+              Jika terjadi <span class="orange">pecahan dalam 2 kelompok atau lebih</span>, <span
+                class="blue">perhatikan perbedaan, dan kesesuaian di antara kelompok tersebut.</span>
+            </li>
+          </ol>
+          <p class="contoh-koreksi-masalah">Contoh</p>
+          <table class="tabel-koreksi-masalah">
+            <tr>
+              <td></td>
+              <td>Pengalian rasio : 3x</td>
+              <td></td>
+              <td>6</td>
+              <td>18</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Ibu</td>
+              <td>1/6</td>
+              <td>1/6</td>
+              <td>3/18</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Anak Perempuan</td>
+              <td>2/3</td>
+              <td>4/6</td>
+              <td>12/18</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Cucu Laki-Laki</td>
+              <td>Ashabah</td>
+              <td>1/6</td>
+              <td>3/18</td>
+            </tr>
+          </table>
+          <br>
+          <p><span class="blue">Asal dari keseluruhan rasio adalah 6</span>, dan disini nampak terdapat <span
+              class="blue"> 6 Anak
+              Perempuan</span>,
+            namun pembagian <span class="blue">saham
+              Anak Perempuan(4/6) sedikit sulit untuk
+              membaginya kepada 6 orang</span> secara langsung. Dengan menggunakan <span class="orange">rumus KPK 4, 6
+              (saham, jumlah ahli waris)</span> maka
+            ditetapkanlah <span class="orange">12 sebagai saham Anak Perempuan</span>. Kemudian kita <span
+              class="orange">mengalikan
+              keseluruhan rasio saham Ibu dan Cucu
+              Laki-Laki dengan 12/4 = 3 (saham baru/saham lama)</span>. Sehingga, didapatilah <span class="blue">Ibu
+              [3/18], Anak perempuan [12/18],
+              Cucu Laki-Laki [3/18]</span>. Dengan begitu mudahlah pembagian saham <span class="blue">6 Anak
+              Perempuan
+              [12/18] menjadi [2/18] tiap
+              masing-masing
+              individu</span>.
+          </p>
+        </div>
+      </div>
+      <div id="bab-10">
+        <div id="header-bab">
+          <h1>Bab 11</h1>
+          <h1>Ar-Radd</h1>
+        </div>
+        <div class="materi10">
+          <ol>
+            <h2>Definisi</h2>
+            <table class="definisi">
+              <tr>
+                <td><span>Bahasa</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>mengembalikan atau kembali.</p>
+                </td>
+              </tr>
+              <tr>
+                <td><span>Istilah</span></td>
+                <td>
+                  <p>:</p>
+                </td>
+                <td>
+                  <p>
+                    Pembagian sisa harta kepada ahli waris yang memiliki hak
+                    warisan dengan menyesuaikan bagiannya, jika tidak ada ahli
+                    waris 'Ashabah (ahli waris yang mendapatkan bagian tanpa
+                    batas).
+                  </p>
+                </td>
+              </tr>
+            </table>
+            <br />
+            <p>
+              Jadi, <span class="blue">'Radd' adalah kebalikan dari 'Aul' (penambahan bagian)</span>.
+              Ketika <span class="orange"> terdapat kelebihan dari warisan</span> setelah ahli waris yang
+              memiliki bagian tertentu menerima bagiannya, dan <span class="orange">tidak ada ahli
+                waris 'Ashabah</span>, maka kelebihan tersebut diberikan kepada ahli
+              waris yang menerima bagian tertentu sesuai dengan besar bagian
+              yang diterimanya.
+            </p>
+            <br />
+            <h2>Syarat-syarat Radd</h2>
+            <ol class="list-radd">
+              <p>
+                Tidak ada penerapan 'Radd' dalam suatu kasus kecuali jika
+                terpenuhi tiga syarat berikut:
+              </p>
+              <li>
+                <p class="blue">Tidak adanya ahli waris 'Ashabah.</p>
+              </li>
+              <li>
+                <p class="blue">Tidak adanya wali Ashabah.</p>
+              </li>
+              <li>
+                <p class="blue">Terdapat sisa dari warisan.</p>
+              </li>
+            </ol>
+            <br />
+            <h2>
+              Ahli waris yang mendapatkan Radd dan Ahli waris yang tidak
+              mendapatkan Radd
+            </h2>
+            <ol class="list-radd">
+              <p>
+                Ahli waris yang mendapat 'Radd' adalah semua ahli waris yang
+                memiliki bagian tetap kecuali pasangan suami istri, yaitu:
+              </p>
+              <li>
+                <p class="blue">Anak perempuan</p>
+              </li>
+              <li>
+                <p class="blue">Anak perempuan dari anak laki-laki</p>
+              </li>
+              <li>
+                <p class="blue">Ibu</p>
+              </li>
+              <li>
+                <p class="blue">Nenek (ibu dari ibu)</p>
+              </li>
+              <li>
+                <p class="blue">Saudara perempuan seibu</p>
+              </li>
+              <li>
+                <p class="blue">Saudara perempuan sekandung</p>
+              </li>
+              <li>
+                <p class="blue">Saudara perempuan seayah</p>
+              </li>
+              <li>
+                <p class="blue">Anak perempuan dari saudara laki-laki</p>
+              </li>
+              <p>
+                Pasangan <span class="blue"> Suami-Istri</span> <span class="red"> menerima bagian tetap terlebih
+                  dahulu</span>. <span>Jika tidak ada
+                  ahli waris lain yang berhak,
+                  sebagian dari
+                  mereka menjadi ashabah untuk menerima sisa harta</span>. Suami yang awalnya mendapat 1/2 akan
+                memperoleh
+                seluruh sisa harta,
+                sedangkan istri yang mendapat 1/4 atau 1/8 akan mendapatkan bagian tambahan hingga menghabiskan seluruh
+                sisa harta,
+                disesuaikan dengan jumlah istri. Prinsip ini mencegah adanya harta yang tersisa tanpa penerima
+              </p>
+              <br />
+            </ol>
+            <h2>Pembagian</h2>
+            <ol class="list-radd">
+              <p>
+                Pembagian sisa harta warisan <i>Radd</i> terbagi menjadi empat
+                bagian, namun salah satunya memiliki cara khusus.
+                Bagian-bagian tersebut adalah:
+              </p>
+              <li>
+                <p class="green">
+                  Jika ahli waris yang ada hanya satu golongan penerima bagian
+                  tetap, tanpa salah satu dari pasangan suami-istri.
+                </p>
+                <p>Cara: <span class="red"> Maka warisan dibagi berdasarkan jumlah orang.</span></p>
+
+                <p>
+                  Contoh: Jika seseorang meninggal dengan meninggalkan 6 anak
+                  perempuan saja, maka bagian dihitung dari 6, dan jumlah anak
+                  perempuan adalah 6, sehingga masing-masing anak perempuan
+                  mendapatkan bagian keseluruhan (6/6).
+                </p>
+              </li>
+              <br>
+              <table class="tabel">
+                <tr>
+                  <td></td>
+                  <td colspan="2">2/3 <i>Radd</i> menjadi 6/6</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Anak Perempuan</td>
+                  <td>2/3</td>
+                  <td>6</td>
+                </tr>
+              </table>
+              <br>
+              <li>
+                <p class="green">
+                  Jika ahli waris terdiri dari beberapa penerima bagian tetap,
+                  tanpa salah satu dari suami/istri.
+                </p>
+
+                <p>
+                  Cara: <span class="red"> Maka warisan dibagi berdasarkan jumlah bagian tetap,
+                    bukan berdasarkan jumlah orang</span>.
+                </p>
+
+                <p>
+                  Contoh: Jika seseorang meninggal dengan meninggalkan 1
+                  ibu dan 2 saudara seibu, maka pembagiannya adalah sebagai
+                  berikut:
+                </p>
+                <br />
+                <table class="tabel">
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>6</td>
+                    <td>1 + 2 = 3</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Ibu</td>
+                    <td>1/6</td>
+                    <td>1/6</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Saudara seibu</td>
+                    <td>1/3</td>
+                    <td>2/6</td>
+                    <td>2</td>
+                  </tr>
+                </table>
+                <br>
+              </li>
+
+              <li>
+                <p class="green">
+                  Jika dalam pembagian terdapat suami/istri bersama seorang ahli waris dengan bagian tertentu, serta
+                  masih terdapat sisa
+                </p>
+
+                <p>
+                  Cara: <span class="red"> Pembagian dilakukan berdasarkan bagian utama dari
+                    pasangan suami-istri, yang lain dihitung berdasarkan sisa dari bagian suami / istri</span>
+                </p>
+
+                <p>
+                  Contoh: Jika seorang wanita meninggal dengan meninggalkan
+                  1 suami dan 1 ibu, maka pembagiannya adalah sebagai berikut:
+                </p>
+                <br>
+                <table class="tabel">
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>6</td>
+                    <td>6</td>
+                    <td>6</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Suami</td>
+                    <td>1/2</td>
+                    <td>3</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Ibu</td>
+                    <td>1/3</td>
+                    <td>2</td>
+                    <td>3</td>
+                  </tr>
+                </table>
+                <br>
+              </li>
+
+              <li>
+                <p class="green">
+                  Jika dalam pembagian terdapat
+                  suami/istri bersama 2 atau lebih ahli waris dengan bagian tertentu serta
+                  terdapat sisa.
+                </p>
+
+                <p>
+                  Cara: <span class="red"> Pembagian dilakukan berdasarkan bagian utama dari
+                    suami/istri, yang lain dihitung berdasarkan sisa dari bagian suami/istri</span>
+                </p>
+
+                <p>
+                  Contoh 1: Jika seorang Wanita meninggal dengan meninggalkan
+                  1 Suami, 1 Anak Perempuan, dan 1 Cucu Perempuan (dari anak laki-laki), maka pembagiannya adalah
+                  sebagai berikut:
+                </p>
+                <br>
+                <table class="tabel">
+
+                  <tr>
+                    <td>1</td>
+                    <td>Suami</td>
+                    <td>1/4</td>
+                    <td colspan="2"></td>
+                    <td>1/4 x 4/4</td>
+                    <td>4/16</td>
+                    <td>1/4 total</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Anak Perempuan</td>
+                    <td rowspan="2">3/4</td>
+                    <td>1/2</td>
+                    <td>3/6</td>
+                    <td>3/4 x 3/4</td>
+                    <td>9/16</td>
+                    <td rowspan="2">3/4 sisa</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Cucu Perempuan</td>
+                    <td>1/6</td>
+                    <td>1/6</td>
+                    <td>1/4 x 3/4</td>
+                    <td>3/16</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>4/4</td>
+                    <td>6</td>
+                    <td>6 => 4</td>
+                    <td>4/4 x 3/4</td>
+                    <td>12/16</td>
+                    <td>16/16</td>
+                  </tr>
+                </table>
+                <br>
+
+                <p>
+                  Contoh 2: Jika seorang Pria meninggal dunia, meninggalkan
+                  1 Istri, 1 Ibu, dan 2 anak perempuan, maka hitungannya sebagai berikut:
+                </p>
+                <br />
+                <table class="tabel">
+                  <tr>
+                    <td>1</td>
+                    <td>Istri</td>
+                    <td>1/8</td>
+                    <td colspan="2"></td>
+                    <td>1/8 x 5/5</td>
+                    <td>5/40</td>
+                    <td>1/8 total</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Ibu</td>
+                    <td rowspan="2">7/8</td>
+                    <td>1/6</td>
+                    <td>1/6</td>
+                    <td>1/5 x 7/8</td>
+                    <td>7/40</td>
+                    <td rowspan="2">7/8 sisa</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Anak Perempuan</td>
+                    <td>2/3</td>
+                    <td>4/6</td>
+                    <td>4/5 x 7/8</td>
+                    <td>28/40</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>8/8</td>
+                    <td>6</td>
+                    <td>6 => 5</td>
+                    <td>5/5 x 7/8</td>
+                    <td>35/40</td>
+                    <td>40/40</td>
+                  </tr>
+                </table>
+                <br>
+                <p>
+                  Jika kita melihat kedua contoh tersebut, suami/istri mendapat bagian tetap dari total keseluruhan
+                  harta warisan, kemudian yang lain mengalami <i>Radd</i> untuk berbagi sisa harta warisan dari bagian
+                  suami/istri.
+                </p>
+                <br>
+              </li>
+            </ol>
+          </ol>
+        </div>
+      </div>
+      <div id="bab-11">
+        <div id="header-bab">
+          <h1>Bab 12</h1>
+          <h1>Permasalahan pembagian yang terkenal</h1>
+        </div>
+        <div class="materi11">
+          <ol class="list-terkenal" style="list-style-type: none;">
+            <li>
+              <h3><span>Al-'Umriyatain</span></h3>
+              <p>
+                Asal dari warisan ibu adalah ketika didapati bahwa ibu
+                mewarisi sepertiga dari seluruh harta, dengan syarat tidak ada
+                sisa ahli waris lain. Masalah ini muncul <span class="blue"> jika ibu mewarisi
+                  bersama ayah atau suami, atau bersama ayah dan istri</span>.
+                Mayoritas sahabat telah menetapkan ketetapan ini dalam dua
+                masalah, yang dikenal dengan sebutan Al-‘Umariyyatain
+              </p>
+              <p>
+                <span>Pertama</span>: <span class="blue">Jika seorang wanita meninggal dunia, meninggalkan
+                  suami, ibu, dan ayah</span>. <span class="orange">Maka bagian ibu adalah sepertiga dari
+                  sisa harta setelah bagian suami</span>. (Lihat tabel pada Gambar
+                Nomor 1).
+              </p>
+              <br>
+              <table class="tabel">
+                <tr>
+                  <td colspan="2">Asl Masalah</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Ibu</td>
+                  <td>1/3</td>
+                  <td>4</td>
+                  <td rowspan="2">4+5 = 9</td>
+                  <td>1/3 x 9 = 3</td>
+                  <td>3/12</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Ayah</td>
+                  <td>Ashabah</td>
+                  <td>5</td>
+                  <td>2/3 x 9 = 6</td>
+                  <td>6/12</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Istri</td>
+                  <td>1/4</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3/12</td>
+                </tr>
+              </table>
+              <br>
+              <p>
+                <span>Kedua</span>: <span class="blue">Jika seorang pria meninggal dunia, meninggalkan istri,
+                  ibu, dan ayah</span>. <span class="orange">Maka bagian ibu adalah sepertiga dari sisa
+                  harta setelah bagian istri</span>. Sisanya untuk ayah. (Lihat tabel
+                pada Gambar Nomor 1).
+              </p>
+              <br>
+              <table class="tabel">
+                <tr>
+                  <td colspan="2">Asl Masalah</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>(x3) => 18</td>
+                  <td>18</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Ibu</td>
+                  <td>1/3</td>
+                  <td>2</td>
+                  <td rowspan="2">2+1 = 3</td>
+                  <td>1/3 x 3/6 = 3/18</td>
+                  <td>3/18</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Ayah</td>
+                  <td>Ashabah</td>
+                  <td>1</td>
+                  <td>2/3 x 3/6 = 6/18</td>
+                  <td>6/18</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Suami</td>
+                  <td>1/2</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>9/18</td>
+                </tr>
+              </table>
+              <br>
+            </li>
+            <li>
+              <h3><span>Al-Musytarakah</span></h3>
+              <p class="orange">
+                Memecah bagian saudara seibu untuk dibagikan kepada saudara kandung berdasarkan pendapat Umar bin
+                Khattab
+                R.A.
+              </p>
+              <p>
+                Yaitu ketika <span class="blue">seorang wanita meninggal dunia dan meninggalkan
+                  suami, ibu atau nenek, 2 atau lebih saudara laki-laki/perempuan seibu, saudara laki-laki dan saudara
+                  perempuan</span>,
+              </p>
+
+              <br>
+              <table class="tabel">
+                <tr>
+                  <td colspan="2">Asl Masalah</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>(x2) => 12</td>
+                  <td>(x3) => 36</td>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Suami</td>
+                  <td>1/2</td>
+                  <td>3</td>
+                  <td>6/12</td>
+                  <td>6/12 x 3/3</td>
+                  <td>18/36</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Ibu</td>
+                  <td>1/6</td>
+                  <td>1</td>
+                  <td>2/12</td>
+                  <td>2/12 x 3/3</td>
+                  <td>6/36</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Saudara Seibu</td>
+                  <td>1/3</td>
+                  <td>2</td>
+                  <td rowspan="3">4/12</td>
+                  <td>2/12 x 3/3</td>
+                  <td>6/36</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Saudara Kandung</td>
+                  <td>Ashabah</td>
+                  <td>-</td>
+                  <td>2/3 x 2/12</td>
+                  <td>4/36</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Saudari Kandung</td>
+                  <td>Ashabah</td>
+                  <td>-</td>
+                  <td>1/3 x 2/12</td>
+                  <td>2/36</td>
+                </tr>
+              </table>
+              <br>
+
+              <p>table</p>
+              <br />
+            </li>
+            <li>
+              <h3><span>Al-Akdariyah</span></h3>
+              <p>
+                Kasus ini adalah salah satu contoh masalah dalam ilmu warisan,
+                di mana terdapat suatu bentuk pembagian khusus. Pada kasus
+                ini, <span class="blue"> seorang Wanita wafat dan meninggalkan suami, ibu,
+                  kakek, dan saudari kandung. Maka, berdasarkan aturan biasa, suami
+                  mendapatkan 1/2 dari harta, ibu mendapatkan
+                  1/3, kakek 1/6, dan tidak ada sisa </span>.
+              </p>
+              <p>
+                Akan tetapi, hal tersebut tidak mungkin dilakukan, karena
+                bagian yang dibagi melebihi jumlah total yang ada. Oleh karena
+                itu, <span class="orange"> menurut pandangan Zaid Bin Tsabit merubahnya,
+                  bagian ibu dikurangi sehingga menjadi seperenam (1/6)</span>, agar
+                pembagian dapat disesuaikan dan seluruh ahli waris bisa
+                mendapatkan bagiannya. Ini dinamakan "kasus Karkhiyyah".
+              </p>
+              <br />
+
+              <table class="tabel">
+                <tr>
+                  <td colspan="2">Asl Masalah</td>
+                  <td>6</td>
+                  <td>6 => 9</td>
+                  <td>9</td>
+                  <td>x 3</td>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Suami</td>
+                  <td>1/2</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>3 x 3</td>
+                  <td>9/27</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Ibu</td>
+                  <td>1/3</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>2 x 3</td>
+                  <td>6/27</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Kakek</td>
+                  <td>1/6</td>
+                  <td>1</td>
+                  <td rowspan="2">4</td>
+                  <td>2/3 x 4/9</td>
+                  <td>8/27</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Saudari Kandung</td>
+                  <td>1/2</td>
+                  <td>3</td>
+                  <td>1/3 x 4/9</td>
+                  <td>4/27</td>
+                </tr>
+              </table>
+              <br>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Warisan</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kalkulator Pembagian Harta Warisan</h1>
+    <form id="warisanForm">
+        <div class="form-group">
+            <label for="totalHarta">Total Harta (Rp):</label>
+            <input type="number" id="totalHarta" required>
+        </div>
+        <div class="form-group">
+            <label for="utang">Utang (Rp):</label>
+            <input type="number" id="utang" required>
+        </div>
+        <div class="form-group">
+            <label for="wasiat">Wasiat (Rp):</label>
+            <input type="number" id="wasiat" required>
+        </div>
+        <div class="form-group">
+            <label for="tajhiz">Biaya Pemakaman (Tajhiz) (Rp):</label>
+            <input type="number" id="tajhiz" required>
+        </div>
+        <div class="form-group">
+            <label>Jumlah Ahli Waris:</label>
+            <label for="istri">Istri:</label>
+            <input type="number" id="istri" value="1" min="0" required>
+            <label for="anakLaki">Anak Laki-Laki:</label>
+            <input type="number" id="anakLaki" value="0" min="0" required>
+            <label for="anakPerempuan">Anak Perempuan:</label>
+            <input type="number" id="anakPerempuan" value="0" min="0" required>
+            <label for="ayah">Ayah:</label>
+            <input type="number" id="ayah" value="1" min="0" required>
+            <label for="ibu">Ibu:</label>
+            <input type="number" id="ibu" value="1" min="0" required>
+        </div>
+        <button type="button" id="calculateBtn">Hitung</button>
+    </form>
+    <div class="result" id="result"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#calculateBtn").click(function () {
+                const totalHarta = parseFloat($("#totalHarta").val()) || 0;
+                const utang = parseFloat($("#utang").val()) || 0;
+                const wasiat = parseFloat($("#wasiat").val()) || 0;
+                const tajhiz = parseFloat($("#tajhiz").val()) || 0;
+
+                const istri = parseInt($("#istri").val()) || 0;
+                const anakLaki = parseInt($("#anakLaki").val()) || 0;
+                const anakPerempuan = parseInt($("#anakPerempuan").val()) || 0;
+                const ayah = parseInt($("#ayah").val()) || 0;
+                const ibu = parseInt($("#ibu").val()) || 0;
+
+                // Hitung harta bersih
+                const maxWasiat = totalHarta / 3;
+                const validWasiat = Math.min(wasiat, maxWasiat);
+                const nirst = totalHarta - utang - validWasiat - tajhiz;
+
+                if (nirst <= 0) {
+                    $("#result").html("Harta tidak mencukupi setelah dikurangi utang, wasiat, dan tajhiz.");
+                    return;
+                }
+
+                let result = "";
+                let sisaHarta = nirst;
+
+                // Pembagian ahli waris
+                if (istri > 0) {
+                    const bagianIstri = (1 / 8) * nirst;
+                    sisaHarta -= bagianIstri;                                        
+                    result += `<p>Istri: Rp ${bagianIstri.toFixed(2)}</p>`;
+                }
+
+                if (ayah > 0) {
+                    const bagianAyah = (1 / 6) * nirst;
+                    sisaHarta -= bagianAyah;
+                    result += `<p>Ayah: Rp ${bagianAyah.toFixed(2)}</p>`;
+                }
+
+                if (ibu > 0) {
+                    const bagianIbu = (1 / 6) * nirst;
+                    sisaHarta -= bagianIbu;
+                    result += `<p>Ibu: Rp ${bagianIbu.toFixed(2)}</p>`;
+                }
+
+                if (anakLaki > 0 || anakPerempuan > 0) {
+                    const totalAnak = (2 * anakLaki) + anakPerempuan;
+                    const bagianPerUnit = sisaHarta / totalAnak;
+
+                    if (anakLaki > 0) {
+                        const bagianAnakLaki = 2 * bagianPerUnit * anakLaki;
+                        result += `<p>Anak Laki-Laki (Masing-Masing): Rp ${(2 * bagianPerUnit).toFixed(2)}</p>`;
+                    }
+
+                    if (anakPerempuan > 0) {
+                        result += `<p>Anak Perempuan (Masing-Masing): Rp ${bagianPerUnit.toFixed(2)}</p>`;
+                    }
+                } else {
+                    // Jika tidak ada anak, sisa dibagi kepada ashabah (ayah)
+                    result += `<p>Sisa Harta ke Ayah: Rp ${sisaHarta.toFixed(2)}</p>`;
+                }
+
+                $("#result").html(result);
+            });
+        });
+    </script>
+</body>
+</html>

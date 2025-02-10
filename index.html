@@ -4,28 +4,34 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>WARISTMATE</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="images/icon.png" />
 	<link rel="stylesheet" href="css/index.css" />
-	<!-- Google Font Poppins -->
-	<link rel="icon" type="image/png" sizes="32x32" href="images/logo_white.png" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
 		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 		rel="stylesheet" />
-	<title>WARISTMATE</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/src/notiflix.min.css">
+	<!-- jQuery 3.x -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- jQuery Migrate 3.5.0 -->
+	<script src="https://code.jquery.com/jquery-migrate-3.5.0.min.js"></script>
+	<script src="js/index.js"></script>
 </head>
 
 <body>
 	<!-- navbar start -->
 	<header>
-		`
 		<nav class="navbar">
-			<h1>WARISTMATE.</h1>
+			<a href="index.html">
+				<h1>WARISTMATE.</h1>
+			</a>
 			<div class="navbar-nav">
-				<a class="a" href="#ayat">Ayat</a>
-				<a class="b" href="#hadits">Hadits</a>
-				<a class="c" href="#peta">Peta Waris</a>
-				<a class="d" href="#tentang">Tentang</a>
+				<a class="a" href="index.html">Beranda</a>
+				<a class="b" href="calculator.html">Kalkulator</a>
+				<a class="c" href="modul.html">Pembelajaran</a>
+				<a class="d" href="tentang.html">Tentang</a>
 			</div>
 			<div class="navbar-menu">
 				<a href="#" id="menu-icon">
@@ -40,22 +46,24 @@
 			<div class="welcome">
 				<div class="title">
 					<h1 class="title_up">
-						WaristMate, Bagi <br />
-						Warisan Islam Secara <br />Akurat dan Mudah
+						WaristMate,
 					</h1>
+					<p class="title_up2">
+						Bagi Warisan Islam Secara Akurat dan Mudah
+					</p>
 					<p class="title_down">
 						WaristMate memudahkan pembagian warisan sesuai hukum Islam dengan
 						cepat dan akurat. Dengan kalkulasi otomatis, Anda bisa membagi
 						harta secara adil sesuai syariah
 					</p>
-					<div class="welcome-button">
-						<div class="hitung">
-							<a href="calculator.html">mulai berhitung</a>
-						</div>
-						<div class="belajar">
-							<a href="modul.html">mulai belajar</a>
-						</div>
-					</div>
+					<ul class="welcome-button">
+						<li class="belajar">
+							<a href="modul.html">belajar waris</a>
+						</li>
+						<li class="hitung">
+							<a href="calculator.html">hitung waris</a>
+						</li>
+					</ul>
 				</div>
 				<div class="balancer">
 					<img src="images/balance-removebg-preview.png" alt="" />
@@ -80,6 +88,7 @@
 							tua dan kerabatnya, dan bagi perempuan ada hak bagian (pula)
 							dari harta peninggalan kedua orang tua dan kerabatnya, baik
 							sedikit atau banyak menurut bagian yang telah ditetapkan.
+							[Q.S 4:An-Nisa'(7)]
 						</p>
 					</h1>
 					<h1 class="ca2">
@@ -89,6 +98,7 @@
 							Allah mensyariatkan (mewajibkan) kepadamu tentang (pembagian
 							warisan untuk) anak-anakmu, (yaitu) bagian seorang anak
 							laki-laki sama dengan bagian dua orang anak perempuan.
+							[Q.S 4:An-Nisa'(11)]
 						</p>
 					</h1>
 				</div>
@@ -139,6 +149,81 @@
 			</div>
 		</section>
 	</main>
+	<footer>
+		<section class="under">
+			<div class="branding">
+				<div class="brandingLogo">
+					<div class="textLogo">
+						<div class="logo">
+							<img src="images/icon.png" alt="">
+						</div>
+						<div class="logoText">
+							<h1>WARISMATE | HITUNG WARIS</h1>
+							<h4>Bagi Warisan Islam Secara Akurat dan Mudah</h4>
+						</div>
+					</div>
+				</div>
+				<div class="brandingKontak">
+					<p>Untuk Pertanyaan Lebih Lanjut Tentang</p>
+					<p>- Kewarisan Islam, dapat menghubungi:</p>
+					<ul class="kontakButton">
+						<li class="Button">
+							<a href="https://wa.me/6281323111004">
+								<img src="images/whatsapp-icon.png" alt="">
+								<p>+6281323111004</p>
+							</a>
+						</li>
+						<li class="Button">
+							<a href="https://shorturl.at/jAn3I">
+								<img src="images/instagram.png" alt="">
+								<p>@cms_unida_gontor</p>
+							</a>
+						</li>
+					</ul>
+					<p>- Website, Konten, dan kalkulator waris dapat menghubungi:</p>
+					<ul class="kontakButton">
+						<li class="Button">
+							<a href="https://wa.me/6281232505308">
+								<img src="images/whatsapp-icon.png" alt="">
+								<p>+6281232505308</p>
+							</a>
+						</li>
+						<li class="Button">
+							<a href="https://shorturl.at/HZGMv">
+								<img src="images/instagram.png" alt="">
+								<p>@pkmkc_warismate</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="brandingSupport">
+					<ul>
+						<li class="unida">
+							<img src="images/LOGO-UNIDA.png"" alt="">
+						</li>
+						<li class="lpi">
+							<img src="images/Logo-LPI.png" alt="">
+						</li>
+						<li class="pkm">
+							<img src="images/Logo-PKM.png" alt="">
+						</li>
+						<li class="TI">
+							<img src="images/logo-TI.png" alt="">
+						</li>
+						<li class="Syariah">
+							<img src="images/Logo-Syariah.png" alt="">
+						</li>
+						<li class="cms">
+							<img src="images/LogoCMS.png" alt="">
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="copyright">
+				<p>Copyright &copy; 2025 WARISMATE All right reserved.</p>
+			</div>
+		</section>
+	</footer>
 </body>
 
 </html>

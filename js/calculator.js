@@ -38,7 +38,7 @@ $(document).ready(function () {
 		let wasiat = parseFloat($('#nWasiat').val()) || 0;
 		let tajhiz = parseFloat($('#nTajhiz').val()) || 0;
 
-		let maxWasiat = tirkah / 3 - hutang - tajhiz;
+		let maxWasiat = (tirkah - hutang - tajhiz) / 3;
 		if (wasiat > maxWasiat) {
 			wasiat = maxWasiat;
 			$('#nWasiat').val(maxWasiat.toFixed(2));
@@ -78,13 +78,56 @@ $(document).ready(function () {
 		return true;
 	}
 
+	function adjustValue(change, id, min, max) {
+		const $input = $('#' + id);
+		let newValue = parseInt($input.val() || 0) + change;
+		newValue = Math.min(Math.max(newValue, min), max);
+		$input.val(newValue).trigger('input'); // Set value dan trigger event input
+	}
+
+	$(document).on('click', 'button.minus, button.plus', function () {
+		const change = parseInt($(this).data('change'), 10);
+		const target = $(this).data('target');
+		adjustValue(change, target, 0, 50); // min=0, max=50 bisa diubah sesuai kebutuhan
+	});
+
+	$(document).on('input', '.numeric', function () {
+		// Hanya izinkan input angka
+		this.value = this.value.replace(/[^0-9]/g, '');
+	});
+
 	// Fungsi untuk menyimpan data checkbox
-	function updateCheckboxData() {
+	function updateAyahData() {
 		nilai_ayah = $('#cb_ayah').is(':checked');
-		nilai_ibu = $('#cb_ibu').is(':checked');
 		$('#saham_ayah').text(nilai_ayah ? 1 : 0);
+	}
+
+	function updateIbuData() {
+		nilai_ibu = $('#cb_ibu').is(':checked');
 		$('#saham_ibu').text(nilai_ibu ? 1 : 0);
 	}
+
+	$('#cb_ayah').on('change', function () {
+		updateAyahData();
+		checkBlockingConditions2();
+	});
+
+	$('#cb_ibu').on('change', function () {
+		updateIbuData();
+		checkBlockingConditions2();
+	});
+
+	// function updateCheckboxAyah() {
+	// 	nilai_ayah = $('#cb_ayah').is(':checked');
+	// 	checkBlockingConditions2();
+	// 	$('#saham_ayah').text(nilai_ayah ? 1 : 0);
+	// }
+
+	// function updateCheckboxIbu() {
+	// 	nilai_ibu = $('#cb_ibu').is(':checked');
+	// 	checkBlockingConditions2();
+	// 	$('#saham_ibu').text(nilai_ibu ? 1 : 0);
+	// }
 
 	function updateHusbandData() {
 		nilai_suami = $('#cb_suami').is(':checked');
@@ -106,6 +149,10 @@ $(document).ready(function () {
 		$('#saham_anakperempuan').text(nilai_anakperempuan);
 	}
 
+	$(document).on('input change', '#nilai_istri', updateWifeData);
+	$(document).on('input change', '#nilai_anaklaki', updateSonData);
+	$(document).on('input change', '#nilai_anakperempuan', updateDaughterData);
+
 	// Fungsi untuk mengontrol tampilan suami/istri berdasarkan muwarrits
 	function toggleSpouseFields1(muwarrits) {
 		if (muwarrits === 'wanita') {
@@ -121,7 +168,8 @@ $(document).ready(function () {
 	$('#legacy1').show();
 	$('#legacy2').hide();
 	CalculateIrts();
-	updateCheckboxData();
+	updateAyahData();
+	updateIbuData();
 	updateHusbandData();
 	updateWifeData();
 	updateSonData();
@@ -135,18 +183,16 @@ $(document).ready(function () {
 		toggleSpouseFields1(muwarrits);
 	});
 
-	$('#cb_ayah, #cb_ibu').on('change', updateCheckboxData);
 	$('#cb_suami').on('change', updateHusbandData);
+	checkBlockingConditions2();
 	$('#nilai_istri').on('input', updateWifeData);
 	$('#nilai_anaklaki').on('input', function () {
 		updateSonData();
-
-		checkBlockingConditions(); // Tambahkan fungsi pengecekan di sini
+		checkBlockingConditions2();
 	});
 	$('#nilai_anakperempuan').on('input', function () {
 		updateDaughterData();
-
-		checkBlockingConditions(); // Tambahkan fungsi pengecekan di sini
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button0').click(function (e) {
@@ -199,13 +245,13 @@ $(document).ready(function () {
 	// Event handler untuk perubahan nilai pada range cucu laki-laki
 	$('#nilai_cuculaki').on('input', function () {
 		updatenilai_cuculakiData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	// Event handler untuk perubahan nilai pada range cucu perempuan
 	$('#nilai_cucuperempuan').on('input', function () {
 		updatenilai_cucuperempuanData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button2').click(function (e) {
@@ -233,12 +279,10 @@ $(document).ready(function () {
 
 	$(document).on('change', '#cb_ayah', function () {
 		toggleSpouseFieldskakeknenek();
-		checkBlockingConditions();
 	});
 
 	$(document).on('change', '#cb_ibu', function () {
 		toggleSpouseFieldskakeknenek();
-		checkBlockingConditions();
 	});
 
 	function updateKakekData() {
@@ -258,17 +302,17 @@ $(document).ready(function () {
 
 	$('#cb_kakek').on('change', function () {
 		updateKakekData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#cb_nenekayah').on('change', function () {
 		updateNenekAyahData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#cb_nenekibu').on('change', function () {
 		updateNenekIbuData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button3').click(function (e) {
@@ -310,13 +354,13 @@ $(document).ready(function () {
 	// Event Listener untuk input Saudara Laki Kandung
 	$('#nilai_saudaralakikandung').on('input', function () {
 		updateSaudaraLakiKandungData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	// Event Listener untuk input Saudara Perempuan Kandung
 	$('#nilai_saudaraperempuankandung').on('input', function () {
 		updateSaudaraPerempuanKandungData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button4').click(function (e) {
@@ -371,25 +415,25 @@ $(document).ready(function () {
 	// Event Listener untuk input Saudara Laki Kandung
 	$('#nilai_saudaralakiseayah').on('input', function () {
 		updateSaudaraLakiSeayahData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	// Event Listener untuk input Saudara Perempuan Kandung
 	$('#nilai_saudaraperempuanseayah').on('input', function () {
 		updateSaudaraPerempuanSeayahData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	// Event Listener untuk input Saudara Laki Kandung
 	$('#nilai_saudaralakiseibu').on('input', function () {
 		updateSaudaraLakiSeibuData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	// Event Listener untuk input Saudara Perempuan Kandung
 	$('#nilai_saudaraperempuanseIbu').on('input', function () {
 		updateSaudaraPerempuanSeibuData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button5').click(function (e) {
@@ -429,12 +473,12 @@ $(document).ready(function () {
 
 	$('#nilai_anaklakisaudarakandung').on('input', function () {
 		updateAnakLakiSaudaraKandungData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#nilai_anaklakisaudaraseayah').on('input', function () {
 		updateAnakLakiSaudaraSeayahData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button6').click(function (e) {
@@ -472,12 +516,12 @@ $(document).ready(function () {
 
 	$('#nilai_pamankandungayah').on('input', function () {
 		updatePamanKandungData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#nilai_pamansekakekayah').on('input', function () {
 		updatePamanSekakekAyahData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button7').click(function (e) {
@@ -507,7 +551,7 @@ $(document).ready(function () {
 		$('#saham_anaklakipamankandung').text(nilai_anaklakipamankandung);
 	}
 
-	function updatePamanSekakekData() {
+	function updateAnakPamanSekakekData() {
 		nilai_anaklakipamansekakek =
 			parseInt($('#nilai_anaklakipamansekakek').val(), 10) || 0;
 		$('#saham_anaklakipamansekakek').text(nilai_anaklakipamansekakek);
@@ -515,12 +559,12 @@ $(document).ready(function () {
 
 	$('#nilai_anaklakipamankandung').on('input', function () {
 		updateAnakPamanKandungData();
-		checkBlockingConditions();
+		checkBlockingConditions2();
 	});
 
 	$('#nilai_anaklakipamansekakek').on('input', function () {
-		updatePamanSekakekData();
-		checkBlockingConditions();
+		updateAnakPamanSekakekData();
+		checkBlockingConditions2();
 	});
 
 	$('#img-next-button8').click(function (e) {
@@ -556,9 +600,9 @@ $(document).ready(function () {
 	});
 
 	updateAnakPamanKandungData();
-	updatePamanSekakekData();
+	updateAnakPamanSekakekData();
 
-	function checkBlockingConditions() {
+	function checkBlockingConditions2() {
 		const nilai_anaklaki = parseInt($('#nilai_anaklaki').val(), 10) || 0;
 		const nilai_anakperempuan =
 			parseInt($('#nilai_anakperempuan').val(), 10) || 0;
@@ -570,6 +614,8 @@ $(document).ready(function () {
 			parseInt($('#nilai_saudaralakikandung').val(), 10) || 0;
 		const nilai_saudaralakiseayah =
 			parseInt($('#nilai_saudaralakiseayah').val(), 10) || 0;
+		const nilai_saudaraperempuanseayah =
+			parseInt($('#nilai_saudaraperempuanseayah').val(), 10) || 0;
 		const nilai_anaklakisaudarakandung =
 			parseInt($('#nilai_anaklakisaudarakandung').val(), 10) || 0;
 		const nilai_anaklakisaudaraseayah =
@@ -582,304 +628,557 @@ $(document).ready(function () {
 			parseInt($('#nilai_anaklakipamankandung').val(), 10) || 0;
 		const nilai_saudaraperempuankandung =
 			parseInt($('#nilai_saudaraperempuankandung').val(), 10) || 0;
+		const nilai_cucuperempuan =
+			parseInt($('#nilai_cucuperempuan').val(), 10) || 0;
 
-		if (nilai_anaklaki > 0) {
-			$('#info_penghalang_1').show();
-			$('#field_cucu').hide();
-			if (nilai_anakperempuan > 1) {
-				$('#info_penghalang_1a').hide();
-			}
-		} else {
-			$('#info_penghalang_1').hide();
-		}
-
-		if (nilai_anaklaki === 0 && nilai_anakperempuan > 1) {
-			$('#info_penghalang_1a').show();
-			$('#field_cucu').hide();
-		} else if (nilai_anaklaki === 0 && nilai_anakperempuan <= 1) {
-			$('#info_penghalang_1a').hide();
-			$('#field_cucu').show();
-		}
-
-		if (nilai_ayah && nilai_ibu) {
-			// Jika Ayah dan Ibu dicentang
+		// kakek
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_2b').show();
+			$('#si_penghalang').text('Ayah');
 			$('#field_kakek').hide();
+			updateKakekData(nilai_kakek);
+		} else {
+			$('#info_penghalang_2b').hide();
+			$('#field_kakek').show();
+		}
+		// Nenek
+		if (nilai_ibu > 0) {
+			console.log('na/nb');
 			$('#field_nenekayah').hide();
 			$('#field_nenekibu').hide();
-			$('#info_penghalang_2').show();
+			$('#info_penghalang_2c').show();
 		} else {
-			$('#field_kakek').toggle(!nilai_ayah);
-			$('#field_nenekayah').toggle(!nilai_ibu);
-			$('#field_nenekibu').toggle(!nilai_ibu);
-			$('#info_penghalang_2').hide();
+			$('#field_nenekayah').show();
+			$('#field_nenekibu').show();
+			$('#info_penghalang_2c').hide();
 		}
 
+		// Cucu Laki
 		if (nilai_anaklaki > 0) {
-			$('#info_penghalang_1').show();
-			$('#field_cucu').hide();
-			if (nilai_anakperempuan > 1) {
-				$('#info_penghalang_1a').hide();
-			}
+			$('#field_cuculaki').hide();
+			$('#info_penghalang_1a').show();
 		} else {
-			$('#info_penghalang_1').hide();
+			$('#field_cuculaki').show();
+			$('#info_penghalang_1a').hide();
 		}
 
-		if (nilai_anaklaki > 0 && nilai_ayah > 0) {
-			$('#info_penghalang_3').show();
-			$('#si_penghalang').text('Ayah & Anak Laki-Laki');
-			$('#field_saudaraperempuankandung').hide();
+		// Cucu Perempuan
+		if (nilai_anaklaki > 0) {
+			$('#field_cucuperempuan').hide();
+			$('#info_penghalang_1b').show();
+			$('#si_penghalang_1b').text('Anak Laki-Laki');
+		} else if (nilai_anakperempuan > 1) {
+			$('#field_cucuperempuan').hide();
+			$('#info_penghalang_1b').show();
+			$('#si_penghalang_1b').text('2 Anak Perempuan atau lebih');
+		} else {
+			$('#field_cucuperempuan').show();
+			$('#info_penghalang_1b').hide();
+		}
+
+		// Saudara kandung
+		if (nilai_ayah > 0) {
 			$('#field_saudaralakikandung').hide();
-		} else if (nilai_ayah > 0) {
-			$('#info_penghalang_3').show();
-			$('#si_penghalang').text('Ayah');
-			$('#field_saudaraperempuankandung').hide();
-			$('#field_saudaralakikandung').hide();
+			$('#info_penghalang_3a').show();
+			$('#si_penghalang3a').text('Ayah');
 		} else if (nilai_anaklaki > 0) {
-			$('#info_penghalang_3').show();
-			$('#si_penghalang').text('Anak Laki-laki');
-			$('#field_saudaraperempuankandung').hide();
 			$('#field_saudaralakikandung').hide();
+			$('#info_penghalang_3a').show();
+			$('#si_penghalang3a').text('Anak Laki-Laki');
+		} else if (nilai_cuculaki > 0) {
+			$('#field_saudaralakikandung').hide();
+			$('#info_penghalang_3a').show();
+			$('#si_penghalang3a').text('Cucu Laki-Laki');
+		} else if (nilai_kakek > 0) {
+			$('#field_saudaralakikandung').hide();
+			$('#info_penghalang_3a').show();
+			$('#si_penghalang3a').text('Kakek');
+		} else {
+			$('#field_saudaralakikandung').show();
+			$('#info_penghalang_3a').hide();
+		}
+
+		// Saudari kandung
+		if (nilai_ayah > 0) {
+			$('#field_saudaraperempuankandung').hide();
+			$('#info_penghalang_3b').show();
+			$('#si_penghalang3b').text('Ayah');
+		} else if (nilai_anaklaki > 0) {
+			$('#field_saudaraperempuankandung').hide();
+			$('#info_penghalang_3b').show();
+			$('#si_penghalang3b').text('Anak Laki-Laki');
+		} else if (nilai_cuculaki > 0) {
+			$('#field_saudaraperempuankandung').hide();
+			$('#info_penghalang_3b').show();
+			$('#si_penghalang3b').text('Cucu Laki-Laki');
+		} else if (nilai_kakek > 0) {
+			$('#field_saudaraperempuankandung').hide();
+			$('#info_penghalang_3b').show();
+			$('#si_penghalang3b').text('Kakek');
+		} else if (nilai_anakperempuan > 1) {
+			$('#field_saudaraperempuankandung').hide();
+			$('#info_penghalang_3b').show();
+			$('#si_penghalang3b').text('2 atau lebih Anak Perempuan');
+		} else if (nilai_cucuperempuan > 1) {
+			$('#field_saudaraperempuankandung').hide();
+			$('#info_penghalang_3b').show();
+			$('#si_penghalang3b').text('2 atau lebih Cucu Perempuan');
 		} else {
 			$('#field_saudaraperempuankandung').show();
-			$('#field_saudaralakikandung').show();
+			$('#info_penghalang_3b').hide();
 		}
 
+		// Saudara Seayah
 		if (nilai_ayah > 0) {
 			$('#info_penghalang_4a').show();
 			$('#si_penghalang_4a').text('Ayah');
 			$('#field_saudaralakiseayah').hide();
-			$('#field_saudaraperempuanseayah').hide();
-			$('#info_penghalang_4b').show();
-			$('#si_penghalang_4b').text('Ayah');
-			$('#field_saudaralakiseibu').hide();
-			$('#field_saudaraperempuanseibu').hide();
-			$('#info_penghalang_5a').show();
-			$('#si_penghalang_5a').text('Ayah');
-			$('#info_penghalang_5b').show();
-			$('#si_penghalang_5b').text('Ayah');
-			$('#field_anaklakisaudarakandung').hide();
-			$('#field_anaklakisaudaraseayah').hide();
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Ayah');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Ayah');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Ayah');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Ayah');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
 		} else if (nilai_anaklaki > 0) {
 			$('#info_penghalang_4a').show();
 			$('#si_penghalang_4a').text('Anak Laki-Laki');
 			$('#field_saudaralakiseayah').hide();
-			$('#field_saudaraperempuanseayah').hide();
-			$('#info_penghalang_4b').show();
-			$('#si_penghalang_4b').text('Anak Laki-Laki');
-			$('#field_saudaralakiseibu').hide();
-			$('#field_saudaraperempuanseibu').hide();
-			$('#info_penghalang_5a').show();
-			$('#si_penghalang_5a').text('Anak Laki-Laki');
-			$('#info_penghalang_5b').show();
-			$('#si_penghalang_5b').text('Anak Laki-Laki');
-			$('#field_anaklakisaudarakandung').hide();
-			$('#field_anaklakisaudaraseayah').hide();
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Anak Laki-Laki');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Anak Laki-Laki');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Anak Laki-Laki');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Anak Laki-Laki');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
 		} else if (nilai_kakek > 0) {
-			$('#info_penghalang_4b').show();
+			$('#info_penghalang_4a').show();
 			$('#si_penghalang_4a').text('Kakek');
-			$('#field_saudaraperempuanseibu').hide();
-			$('#field_saudaralakiseibu').hide();
-			$('#info_penghalang_5a').show();
-			$('#si_penghalang_5a').text('Kakek');
-			$('#info_penghalang_5b').show();
-			$('#si_penghalang_5b').text('Kakek');
-			$('#field_anaklakisaudarakandung').hide();
-			$('#field_anaklakisaudaraseayah').hide();
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Kakek');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Kakek');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Kakek');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Kakek');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
-		} else if (nilai_cuculaki > 0) {
-			$('#info_penghalang_3').show();
-			$('#si_penghalang').text('Cucu Laki-laki');
-			$('#field_saudaraperempuankandung').hide();
-			$('#field_saudaralakikandung').hide();
+			$('#field_saudaralakiseayah').hide();
+		} else if (nilai_cuculaki) {
 			$('#info_penghalang_4a').show();
 			$('#si_penghalang_4a').text('Cucu Laki-Laki');
-			$('#info_penghalang_4b').show();
-			$('#si_penghalang_4b').text('Cucu Laki-Laki');
 			$('#field_saudaralakiseayah').hide();
-			$('#field_saudaraperempuanseayah').hide();
-			$('#field_saudaraperempuanseibu').hide();
-			$('#field_saudaralakiseibu').hide();
-			$('#info_penghalang_5a').show();
-			$('#si_penghalang_5a').text('Cucu Laki-Laki');
-			$('#info_penghalang_5b').show();
-			$('#si_penghalang_5b').text('Cucu Laki-Laki');
-			$('#field_anaklakisaudarakandung').hide();
-			$('#field_anaklakisaudaraseayah').hide();
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Cucu Laki-Laki');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Cucu Laki-Laki');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Cucu Laki-Laki');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Cucu Laki-Laki');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
 		} else if (nilai_saudaralakikandung > 0) {
 			$('#info_penghalang_4a').show();
-			$('#si_penghalang_4a').text('Saudara Laki-Laki Kandung');
-			$('#field_saudaraperempuanseayah').hide();
+			$('#si_penghalang_4a').text('Saudara Laki Kandung');
 			$('#field_saudaralakiseayah').hide();
-			$('#info_penghalang_5a').show();
-			$('#si_penghalang_5a').text('Saudara Laki-Laki Kandung');
-			$('#info_penghalang_5b').show();
-			$('#si_penghalang_5b').text('Saudara Laki-Laki Kandung');
-			$('#field_anaklakisaudarakandung').hide();
-			$('#field_anaklakisaudaraseayah').hide();
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Saudara Laki-Laki Kandung');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Saudara Laki-Laki Kandung');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Saudara Laki-Laki Kandung');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Saudara Laki-Laki Kandung');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
-		} else if (nilai_saudaralakiseayah > 0) {
-			$('#info_penghalang_5a').show();
-			$('#si_penghalang_5a').text('Saudara Laki-Laki Seayah');
-			$('#info_penghalang_5b').show();
-			$('#si_penghalang_5b').text('Saudara Laki-Laki Seayah');
-			$('#field_anaklakisaudarakandung').hide();
-			$('#field_anaklakisaudaraseayah').hide();
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Saudara Laki-Laki Seayah');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Saudara Laki-Laki Seayah');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Saudara Laki-Laki Seayah');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Saudara Laki-Laki Seayah');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
-		} else if (nilai_saudaraperempuankandung > 1) {
-			$('#info_penghalang_4c').show();
-			$('#si_penghalang_4c').text('Saudara Perempuan Kandung lebih dari 1');
-			$('#field_saudaraperempuanseayah').hide();
-		} else if (nilai_saudaraperempuankandung == 1 && nilai_anakperempuan > 0) {
-			$('#info_penghalang_4c').show();
-			$('#si_penghalang_4c').text(
-				'Saudara Perempuan Kandung Ashabah dengan yang lain'
-			);
-			$('#field_saudaraperempuanseayah').hide();
-		} else if (nilai_anaklakisaudarakandung > 0) {
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Anak Laki-Laki Saudara Kandung');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Anak Laki-Laki Saudara Kandung');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Anak Laki-Laki Saudara Kandung');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Anak Laki-Laki Saudara Kandung');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
-		} else if (nilai_anaklakisaudaraseayah > 0) {
-			$('#info_penghalang_5b').show();
-			$('#si_penghalang_5b').text('Anak Laki-Laki Saudara Kandung');
-			$('#field_anaklakisaudaraseayah').hide();
-			$('#info_penghalang_6a').show();
-			$('#si_penghalang_6a').text('Anak Laki-Laki Saudara Seayah');
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Anak Laki-Laki Saudara Seayah');
-			$('#field_pamankandung').hide();
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Anak Laki-Laki Saudara Seayah');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Anak Laki-Laki Saudara Seayah');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
-		} else if (nilai_pamankandungayah > 0) {
-			$('#info_penghalang_6b').show();
-			$('#si_penghalang_6b').text('Paman Kandung (dari Ayah)');
-			$('#field_pamansekakekayah').hide();
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Paman Kandung (dari Ayah)');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
-		} else if (nilai_pamansekakekayah > 0) {
-			$('#info_penghalang_7a').show();
-			$('#si_penghalang_7a').text('Paman Sekakek (dari Ayah)');
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Paman Sekakek (dari Ayah)');
-			$('#field_anaklakipamansekandung').hide();
-			$('#field_anaklakipamansekakek').hide();
-		} else if (nilai_anaklakipamankandung > 0) {
-			$('#info_penghalang_7b').show();
-			$('#si_penghalang_7b').text('Paman Sekakek (dari Ayah)');
-			$('#field_anaklakipamansekakek').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_4a').show();
+			$('#si_penghalang_4a').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_saudaralakiseayah').hide();
 		} else {
 			$('#info_penghalang_4a').hide();
 			$('#field_saudaralakiseayah').show();
-			$('#field_saudaraperempuanseayah').show();
+		}
+
+		// Saudari Seayah
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_4b').show();
+			$('#si_penghalang_4b').text('Ayah');
+			$('#field_saudaraperempuanseayah').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_4b').show();
+			$('#si_penghalang_4b').text('Anak Laki-Laki');
+			$('#field_saudaraperempuanseayah').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_4b').show();
+			$('#si_penghalang_4b').text('Kakek');
+			$('#field_saudaraperempuanseayah').hide();
+		} else if (nilai_anakperempuan > 1) {
+			$('#info_penghalang_4a').show();
+			$('#si_penghalang_4a').text('2 atau lebih Anak Perempuan');
+			$('#field_saudaralakiseayah').hide();
+		} else if (nilai_cuculaki) {
+			$('#info_penghalang_4b').show();
+			$('#si_penghalang_4b').text('Cucu Laki-Laki');
+			$('#field_saudaraperempuanseayah').hide();
+		} else if (nilai_cucuperempuan > 1) {
+			$('#info_penghalang_4a').show();
+			$('#si_penghalang_4a').text('2 atau lebih Cucu Perempuan');
+			$('#field_saudaralakiseayah').hide();
+		} else if (nilai_saudaralakikandung > 0) {
+			$('#info_penghalang_4b').show();
+			$('#si_penghalang_4b').text('Saudara Laki Kandung');
+			$('#field_saudaraperempuanseayah').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_4b').show();
+			$('#si_penghalang_4b').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_saudaraperempuanseayah').hide();
+		} else if (nilai_saudaraperempuankandung > 1) {
+			$('#info_penghalang_4b').show();
+			$('#si_penghalang_4b').text('2 atau lebih Saudara Perempuan Kandung');
+			$('#field_saudaraperempuanseayah').hide();
+		} else {
 			$('#info_penghalang_4b').hide();
+			$('#field_saudaraperempuanseayah').show();
+		}
+
+		// Saudara Seibu
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_4c').show();
+			$('#si_penghalang_4c').text('Ayah');
+			$('#field_saudaralakiseibu').hide();
+			$('#field_saudaraperempuanseibu').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_4c').show();
+			$('#si_penghalang_4c').text('Anak Laki-Laki');
+			$('#field_saudaralakiseibu').hide();
+			$('#field_saudaraperempuanseibu').hide();
+		} else if (nilai_anakperempuan > 0) {
+			$('#info_penghalang_4c').show();
+			$('#si_penghalang_4c').text('Anak Perempuan');
+			$('#field_saudaralakiseibu').hide();
+			$('#field_saudaraperempuanseibu').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_4c').show();
+			$('#si_penghalang_4c').text('Kakek');
+			$('#field_saudaralakiseibu').hide();
+			$('#field_saudaraperempuanseibu').hide();
+		} else if (nilai_cuculaki > 0) {
+			$('#info_penghalang_4c').show();
+			$('#si_penghalang_4c').text('Cucu Laki-Laki');
+			$('#field_saudaralakiseibu').hide();
+			$('#field_saudaraperempuanseibu').hide();
+		} else if (nilai_cucuperempuan > 0) {
+			$('#info_penghalang_4c').show();
+			$('#si_penghalang_4c').text('Cucu Perempuan');
+			$('#field_saudaralakiseibu').hide();
+			$('#field_saudaraperempuanseibu').hide();
+		} else {
 			$('#field_saudaralakiseibu').show();
 			$('#field_saudaraperempuanseibu').show();
+			$('#info_penghalang_4c').hide();
+		}
+
+		// Putra Saudara Kandung
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Ayah');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Anak Laki-Laki');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Kakek');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (nilai_cuculaki) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Cucu Laki-Laki');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (nilai_saudaralakikandung > 0) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Saudara Laki Kandung');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (nilai_saudaraperempuankandung > 0) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (nilai_saudaralakiseayah > 0) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Saudara Perempuan Seayah');
+			$('#field_anaklakisaudarakandung').hide();
+		} else if (nilai_saudaraperempuanseayah > 0) {
+			$('#info_penghalang_5a').show();
+			$('#si_penghalang_5a').text('Saudara Perempuan Seayah');
+			$('#field_anaklakisaudarakandung').hide();
+		} else {
 			$('#info_penghalang_5a').hide();
-			$('#info_penghalang_5b').hide();
 			$('#field_anaklakisaudarakandung').show();
+		}
+
+		// Putra Saudara Seayah
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Ayah');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Anak Laki-Laki');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Kakek');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_cuculaki) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Cucu Laki-Laki');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_saudaralakikandung > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Saudara Laki Kandung');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_saudaraperempuankandung > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_saudaralakiseayah > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Saudara Perempuan Seayah');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_saudaraperempuanseayah > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Saudara Perempuan Seayah');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else if (nilai_anaklakisaudarakandung > 0) {
+			$('#info_penghalang_5b').show();
+			$('#si_penghalang_5b').text('Anak Laki Saudara Kandung');
+			$('#field_anaklakisaudaraseayah').hide();
+		} else {
+			$('#info_penghalang_5b').hide();
 			$('#field_anaklakisaudaraseayah').show();
+		}
+
+		// Paman Kandung
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Ayah');
+			$('#field_pamankandung').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Anak Laki-Laki');
+			$('#field_pamankandung').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Kakek');
+			$('#field_pamankandung').hide();
+		} else if (nilai_cuculaki) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Cucu Laki-Laki');
+			$('#field_pamankandung').hide();
+		} else if (nilai_saudaralakikandung > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Saudara Laki Kandung');
+			$('#field_pamankandung').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_pamankandung').hide();
+		} else if (nilai_saudaraperempuankandung > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_pamankandung').hide();
+		} else if (nilai_saudaralakiseayah > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Saudara Perempuan Seayah');
+			$('#field_pamankandung').hide();
+		} else if (nilai_saudaraperempuanseayah > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Saudara Perempuan Seayah');
+			$('#field_pamankandung').hide();
+		} else if (nilai_anaklakisaudarakandung > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Anak Laki Saudara Kandung');
+			$('#field_pamankandung').hide();
+		} else if (nilai_anaklakisaudaraseayah > 0) {
+			$('#info_penghalang_6a').show();
+			$('#si_penghalang_6a').text('Anak Laki Saudara Seayah');
+			$('#field_pamankandung').hide();
+		} else {
 			$('#info_penghalang_6a').hide();
-			$('#info_penghalang_6b').hide();
 			$('#field_pamankandung').show();
+		}
+		// Paman Seayah
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Ayah');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Anak Laki-Laki');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Kakek');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_cuculaki) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Cucu Laki-Laki');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_saudaralakikandung > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Saudara Laki Kandung');
+			$('#field_pamansekakekayah').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_saudaraperempuankandung > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_saudaralakiseayah > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Saudara Perempuan Seayah');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_saudaraperempuanseayah > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Saudara Perempuan Seayah');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_anaklakisaudarakandung > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Anak Laki Saudara Kandung');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_anaklakisaudaraseayah > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Anak Laki Saudara Seayah');
+			$('#field_pamansekakekayah').hide();
+		} else if (nilai_pamankandungayah > 0) {
+			$('#info_penghalang_6b').show();
+			$('#si_penghalang_6b').text('Paman Kandung');
+			$('#field_pamansekakekayah').hide();
+		} else {
+			$('#info_penghalang_6b').hide();
 			$('#field_pamansekakekayah').show();
+		}
+		// Anak Paman Kandung
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Ayah');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Anak Laki-Laki');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Kakek');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_cuculaki) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Cucu Laki-Laki');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_saudaralakikandung > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Saudara Laki Kandung');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_saudaraperempuankandung > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_saudaralakiseayah > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Saudara Perempuan Seayah');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_saudaraperempuanseayah > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Saudara Perempuan Seayah');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_anaklakisaudarakandung > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Anak Laki Saudara Kandung');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_anaklakisaudaraseayah > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Anak Laki Saudara Seayah');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_pamankandungayah > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Paman Kandung');
+			$('#field_anaklakipamansekandung').hide();
+		} else if (nilai_pamansekakekayah > 0) {
+			$('#info_penghalang_7a').show();
+			$('#si_penghalang_7a').text('Paman Sekakek');
+			$('#field_anaklakipamansekandung').hide();
+		} else {
 			$('#info_penghalang_7a').hide();
-			$('#info_penghalang_7b').hide();
 			$('#field_anaklakipamansekandung').show();
+		}
+		// Anak Paman sekakek
+		if (nilai_ayah > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Ayah');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_anaklaki > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Anak Laki-Laki');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_kakek > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Kakek');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_cuculaki) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Cucu Laki-Laki');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_saudaralakikandung > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Saudara Laki Kandung');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (
+			nilai_saudaraperempuankandung > 0 &&
+			(nilai_anakperempuan > 0 || nilai_cucuperempuan > 0)
+		) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_saudaraperempuankandung > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Saudara Perempuan Kandung Ashabah');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_saudaralakiseayah > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Saudara Perempuan Seayah');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_saudaraperempuanseayah > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Saudara Perempuan Seayah');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_anaklakisaudarakandung > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Anak Laki Saudara Kandung');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_anaklakisaudaraseayah > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Anak Laki Saudara Seayah');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_pamankandungayah > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Paman Kandung');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_pamansekakekayah > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Paman Sekakek');
+			$('#field_anaklakipamansekakek').hide();
+		} else if (nilai_anaklakipamankandung > 0) {
+			$('#info_penghalang_7b').show();
+			$('#si_penghalang_7b').text('Anak Laki Paman Kandung');
+			$('#field_anaklakipamansekakek').hide();
+		} else {
+			$('#info_penghalang_7b').hide();
 			$('#field_anaklakipamansekakek').show();
 		}
 	}
 
 	function toRp(amount) {
-		// Konversi angka ke format Rupiah
+		if (isNaN(amount) || amount === '' || amount === null) {
+			return 'Rp.0'; // Mengembalikan 'Rp.0' jika nilai tidak valid atau kosong
+		}
 		let formattedString = parseInt(Math.round(amount), 10)
 			.toString()
 			.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-		return 'Rp.' + formattedString;
+		return 'Rp.' + formattedString; // Mengembalikan format Rupiah dengan angka yang benar
 	}
 
 	$(document).on('click', '#img-next-button8', function () {
@@ -902,12 +1201,18 @@ $(document).ready(function () {
 			nilai_saudaraperempuanseayah +
 			nilai_saudaralakiseibu +
 			nilai_saudaraperempuanseIbu;
-		let nilai_saudaraseibu =
-			nilai_saudaralakiseibu + nilai_saudaraperempuanseIbu;
+		let paman = nilai_pamankandungayah + nilai_pamansekakekayah;
+		let anakpaman = nilai_anaklakipamankandung + nilai_anaklakipamansekakek;
+		let keponakan = nilai_anaklakisaudarakandung + nilai_anaklakisaudaraseayah;
+		let pojok = anakpaman + paman + keponakan;
+		let saudaraseayah = nilai_saudaralakiseayah + nilai_saudaraperempuanseayah;
+		let saudaraseibu = nilai_saudaralakiseibu + nilai_saudaraperempuanseIbu;
 		let Rayah = 0;
 		let Ribu = 0;
 		let Rsuami = 0;
 		let Ristri = 0;
+		let Ranaklaki = 0;
+		let Rcuculaki = 0;
 		let Ranakperempuan = 0;
 		let Rcucuperempuan = 0;
 		let Rkakek = 0;
@@ -916,8 +1221,15 @@ $(document).ready(function () {
 		let Rnenekibu = 0;
 		let Rsaudaraperempuankandung;
 		let Rsaudaraperempuanseayah = 0;
-		let Rsaudaralakiseibu = 0;
-		let RsaudaraperempuanseIbu = 0;
+		let Rsaudaraseibu = 0;
+		let Rsaudaralakikandung = 0;
+		let Rsaudaralakiseayah = 0;
+		let Ranaklakisaudarakandung = 0;
+		let Ranaklakisaudaraseayah = 0;
+		let Rpamankandungayah = 0;
+		let Rpamansekakekayah = 0;
+		let Ranaklakipamankandung = 0;
+		let Ranaklakipamansekakek = 0;
 
 		console.log(sisawarisan);
 
@@ -932,7 +1244,13 @@ $(document).ready(function () {
 				nilai_kakek > 0 &&
 				nilai_ibu > 0 &&
 				nilai_suami > 0 &&
-				nilai_saudaraperempuankandung > 1
+				nilai_saudaraperempuankandung > 1 &&
+				//
+				nilai_saudaralakikandung == 0 &&
+				keturunan == 0 &&
+				saudaraseayah == 0 &&
+				saudaraseibu == 0 &&
+				pojok == 0
 			) {
 				hasilKPK = 27;
 				const bagianIbu = (3 / hasilKPK) * totalwarisan;
@@ -940,11 +1258,11 @@ $(document).ready(function () {
 				const bagianKakek = (10 / hasilKPK) * totalwarisan;
 				const bagianSaudaraPerempuanKandung =
 					((5 / hasilKPK) * totalwarisan) / nilai_saudaraperempuankandung;
-				$('#hasil_ibu').text(toRp(bagianIbu));
-				$('#hasil_suami').text(toRp(bagianSuami));
-				$('#hasil_kakek').text(toRp(bagianKakek));
+				$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+				$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+				$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
 				$('#hasil_saudaraperempuankandung').text(
-					toRp(bagianSaudaraPerempuanKandung)
+					toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 				);
 				$('#bagian_ibu').text('3/27');
 				$('#bagian_suami').text('9/27');
@@ -954,85 +1272,118 @@ $(document).ready(function () {
 				nilai_kakek > 0 &&
 				nilai_ibu > 0 &&
 				nilai_suami > 0 &&
-				nilai_saudaraperempuankandung == 1
+				nilai_saudaraperempuankandung == 1 &&
+				//
+				nilai_saudaralakikandung == 0 &&
+				keturunan == 0 &&
+				saudaraseayah == 0 &&
+				saudaraseibu == 0 &&
+				pojok == 0
 			) {
-				hasilKPK = 24;
-				const bagianIbu = (3 / hasilKPK) * totalwarisan;
+				hasilKPK = 27;
+				const bagianIbu = (6 / hasilKPK) * totalwarisan;
 				const bagianSuami = (9 / hasilKPK) * totalwarisan;
 				const bagianKakek = (8 / hasilKPK) * totalwarisan;
 				const bagianSaudaraPerempuanKandung =
 					((4 / hasilKPK) * totalwarisan) / nilai_saudaraperempuankandung;
-				$('#hasil_ibu').text(toRp(bagianIbu));
-				$('#hasil_suami').text(toRp(bagianSuami));
-				$('#hasil_kakek').text(toRp(bagianKakek));
+				$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+				$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+				$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
 				$('#hasil_saudaraperempuankandung').text(
-					toRp(bagianSaudaraPerempuanKandung)
+					toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 				);
-				$('#bagian_ibu').text('3/24');
-				$('#bagian_suami').text('9/24');
-				$('#bagian_kakek').text('8/24');
-				$('#bagian_saudaraperempuankandung').text('4/24');
+				$('#bagian_ibu').text('6/27');
+				$('#bagian_suami').text('9/27');
+				$('#bagian_kakek').text('8/27');
+				$('#bagian_saudaraperempuankandung').text('4/27');
 			} else if (
 				nilai_kakek > 0 &&
 				nilai_ibu > 0 &&
 				nilai_istri > 0 &&
-				nilai_saudaraperempuankandung == 1
+				nilai_saudaraperempuankandung == 1 &&
+				//
+				nilai_saudaralakikandung == 0 &&
+				keturunan == 0 &&
+				saudaraseayah == 0 &&
+				saudaraseibu == 0 &&
+				pojok == 0
 			) {
-				hasilKPK = 39;
-				const bagianIbu = (6 / hasilKPK) * totalwarisan;
+				hasilKPK = 45;
+				const bagianIbu = (12 / hasilKPK) * totalwarisan;
 				const bagianIstri = (9 / hasilKPK) * totalwarisan;
 				const bagianKakek = (16 / hasilKPK) * totalwarisan;
 				const bagianSaudaraPerempuanKandung = (8 / hasilKPK) * totalwarisan;
-				$('#hasil_ibu').text(toRp(bagianIbu));
-				$('#hasil_istri').text(toRp(bagianIstri));
-				$('#hasil_kakek').text(toRp(bagianKakek));
+				$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+				$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
+				$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
 				$('#hasil_saudaraperempuankandung').text(
-					toRp(bagianSaudaraPerempuanKandung)
+					toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 				);
-				$('#bagian_ibu').text('6/39');
-				$('#bagian_istri').text('9/39');
-				$('#bagian_kakek').text('16/39');
-				$('#bagian_saudaraperempuankandung').text('8/39');
+				$('#bagian_ibu').text('12/45');
+				$('#bagian_istri').text('9/45');
+				$('#bagian_kakek').text('16/45');
+				$('#bagian_saudaraperempuankandung').text('8/45');
 			} else if (
 				nilai_ibu > 0 &&
 				nilai_istri > 0 &&
 				nilai_kakek > 0 &&
-				nilai_saudaraperempuankandung > 1
+				nilai_saudaraperempuankandung > 1 &&
+				//
+				nilai_saudaralakikandung == 0 &&
+				keturunan == 0 &&
+				saudaraseayah == 0 &&
+				saudaraseibu == 0 &&
+				pojok == 0
 			) {
 				hasilKPK = 45;
 				const bagianIbu = (3 / hasilKPK) * totalwarisan;
 				const bagianIstri = (9 / hasilKPK) * totalwarisan;
 				const bagianKakek = (20 / hasilKPK) * totalwarisan;
 				const bagianSaudaraPerempuanKandung = (10 / hasilKPK) * totalwarisan;
-				$('#hasil_ibu').text(toRp(bagianIbu));
-				$('#hasil_istri').text(toRp(bagianIstri));
-				$('#hasil_kakek').text(toRp(bagianKakek));
+				$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+				$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
+				$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
 				$('#hasil_saudaraperempuankandung').text(
-					toRp(bagianSaudaraPerempuanKandung)
+					toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 				);
 				$('#bagian_ibu').text('3/45');
 				$('#bagian_istri').text('9/45');
 				$('#bagian_kakek').text('20/45');
 				$('#bagian_saudaraperempuankandung').text('10/45');
-			} else if (nilai_ayah > 0 && nilai_ibu > 0 && nilai_istri > 0) {
+			} else if (
+				nilai_ayah > 0 &&
+				nilai_ibu > 0 &&
+				nilai_istri > 0 &&
+				//
+				keturunan == 0 &&
+				saudara == 0 &&
+				pojok == 0
+			) {
 				hasilKPK = 12;
 				const bagianAyah = (6 / hasilKPK) * totalwarisan;
 				const bagianIbu = (3 / hasilKPK) * totalwarisan;
 				const bagianIstri = ((3 / hasilKPK) * totalwarisan) / nilai_istri;
-				$('#hasil_ayah').text(toRp(bagianAyah));
-				$('#hasil_ibu').text(toRp(bagianIbu));
-				$('#hasil_istri').text(toRp(bagianIstri));
+				$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+				$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+				$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
 				$('#bagian_ayah').text('6/12');
 				$('#bagian_ibu').text('3/12');
 				$('#bagian_istri').text('3/12');
-			} else if (nilai_ayah > 0 && nilai_ibu > 0 && nilai_suami > 0) {
+			} else if (
+				nilai_ayah > 0 &&
+				nilai_ibu > 0 &&
+				nilai_suami > 0 &&
+				keturunan == 0 &&
+				saudara == 0 &&
+				pojok == 0
+			) {
 				hasilKPK = 6;
 				const bagianAyah = (2 / hasilKPK) * totalwarisan;
 				const bagianIbu = (1 / hasilKPK) * totalwarisan;
 				const bagianSuami = (3 / hasilKPK) * totalwarisan;
-				$('#hasil_ayah').text(toRp(bagianAyah));
-				$('#hasil_ibu').text(toRp(bagianIbu));
-				$('#hasil_suami').text(toRp(bagianSuami));
+				$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+				$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+				$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
 				$('#bagian_ayah').text('2/6');
 				$('#bagian_ibu').text('1/6');
 				$('#bagian_suami').text('3/6');
@@ -1041,47 +1392,123 @@ $(document).ready(function () {
 				nilai_suami > 0 &&
 				nilai_saudaralakikandung > 0 &&
 				nilai_saudaraperempuankandung > 0 &&
-				nilai_saudaraseibu > 1
+				saudaraseibu > 1 &&
+				//
+				keturunan == 0 &&
+				pojok == 0
 			) {
-				hasilKPK = 36;
-				const bagianIbu = (6 / hasilKPK) * totalwarisan;
-				const bagianSuami = (18 / hasilKPK) * totalwarisan;
+				hasilKPK = 24;
+				const bagianIbu = (4 / hasilKPK) * totalwarisan;
+				const bagianSuami = (12 / hasilKPK) * totalwarisan;
 				const bagianSaudaraLakiSeibu =
-					((6 / hasilKPK) * totalwarisan) / nilai_saudaraseibu;
+					((4 / hasilKPK) * totalwarisan) / saudaraseibu;
 				const bagianSaudaraPerempuanSeIbu =
-					((6 / hasilKPK) * totalwarisan) / nilai_saudaraseibu;
-				const bagianSaudaraLakiKandung = (4 / hasilKPK) * totalwarisan;
+					((4 / hasilKPK) * totalwarisan) / saudaraseibu;
+				const bagianSaudaraLakiKandung = (2 / hasilKPK) * totalwarisan;
 				const bagianSaudaraPerempuanKandung = (2 / hasilKPK) * totalwarisan;
-				$('#hasil_ibu').text(toRp(bagianIbu));
-				$('#hasil_suami').text(toRp(bagianSuami));
+				$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+				$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
 
-				$('#hasil_saudaralakikandung').text(toRp(bagianSaudaraLakiKandung));
-				$('#hasil_saudaraperempuankandung').text(
-					toRp(bagianSaudaraPerempuanKandung)
+				$('#hasil_saudaralakikandung').text(
+					toRp(bagianSaudaraLakiKandung) + ' / Orang'
 				);
-				$('#bagian_ibu').text('6/36');
-				$('#bagian_suami').text('18/6');
-				$('#bagian_saudaralakikandung').text('4/36');
-				$('#bagian_saudaraperempuankandung').text('2/36');
+				$('#hasil_saudaraperempuankandung').text(
+					toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
+				);
+				$('#bagian_ibu').text('4/24');
+				$('#bagian_suami').text('12/24');
+				$('#bagian_saudaralakikandung').text('2/24');
+				$('#bagian_saudaraperempuankandung').text('2/24');
 				if (nilai_saudaralakiseibu > 0 && nilai_saudaraperempuanseIbu > 0) {
-					$('#hasil_saudaralakiseibu').text(toRp(bagianSaudaraLakiSeibu));
-					$('#bagian_saudaralakiseibu').text('6/36 B');
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeibu) + ' / Orang'
+					);
+					$('#bagian_saudaralakiseibu').text('2/24');
 					$('#hasil_saudaraperempuanseibu').text(
-						toRp(bagianSaudaraPerempuanSeIbu)
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
 					);
-					$('#bagian_saudaraperempuanseibu').text('6/36 B');
-					$('#kolom_rasiobersama').show();
-					$('#info_bersama').text(
-						'Bagian berlabel B berarti bagian tersebut dibagi rata dengan sepasangnya'
-					);
+					$('#bagian_saudaraperempuanseibu').text('2/24');
 				} else if (nilai_saudaralakiseibu > 0) {
-					$('#hasil_saudaralakiseibu').text(toRp(bagianSaudaraLakiSeibu));
-					$('#bagian_saudaralakiseibu').text('6/36');
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeibu) + ' / Orang'
+					);
+					$('#bagian_saudaralakiseibu').text('4/24');
 				} else if (nilai_saudaraperempuanseIbu > 0) {
 					$('#hasil_saudaraperempuanseibu').text(
-						toRp(bagianSaudaraPerempuanSeIbu)
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
 					);
-					$('#bagian_saudaraperempuanseibu').text('6/36');
+					$('#bagian_saudaraperempuanseibu').text('4/24');
+				}
+			} else if (
+				nilai_nenek2 > 0 &&
+				nilai_suami > 0 &&
+				nilai_saudaralakikandung > 0 &&
+				nilai_saudaraperempuankandung > 0 &&
+				saudaraseibu > 1 &&
+				//
+				keturunan == 0 &&
+				pojok == 0
+			) {
+				hasilKPK = 24;
+				const bagianSuami = (12 / hasilKPK) * totalwarisan;
+				const bagianSaudaraLakiSeibu =
+					((4 / hasilKPK) * totalwarisan) / saudaraseibu;
+				const bagianSaudaraPerempuanSeIbu =
+					((4 / hasilKPK) * totalwarisan) / saudaraseibu;
+				const bagianSaudaraLakiKandung = (2 / hasilKPK) * totalwarisan;
+				const bagianSaudaraPerempuanKandung = (2 / hasilKPK) * totalwarisan;
+				$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+				$('#hasil_saudaralakikandung').text(
+					toRp(bagianSaudaraLakiKandung) + ' / Orang'
+				);
+				$('#hasil_saudaraperempuankandung').text(
+					toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
+				);
+				$('#bagian_suami').text('12/24');
+				$('#bagian_saudaralakikandung').text('2/24');
+				$('#bagian_saudaraperempuankandung').text('2/24');
+				if (nilai_nenekayah > 0 && nilai_nenekibu > 0) {
+					const bagianNenek2 = ((1 / 6) * totalwarisan) / nilai_nenek2;
+					const ratioNenek2 = (1 / 6) * hasilKPK;
+					$('#hasil_nenekayah').text(toRp(bagianNenek2) + ' / Orang');
+					$('#hasil_nenekibu').text(toRp(bagianNenek2) + ' / Orang');
+					$('#bagian_nenekayah').text(
+						ratioNenek2 + '/' + hasilKPK + ' Bersama'
+					);
+					$('#bagian_nenekibu').text(ratioNenek2 + '/' + hasilKPK + ' Bersama');
+				} else {
+					if (nilai_nenekayah > 0 && nilai_nenekibu == 0) {
+						const bagianNenekAyah = ((1 / 6) * totalwarisan) / nilai_nenekayah;
+						const ratioNenekAyah = (1 / 6) * hasilKPK;
+						$('#hasil_nenekayah').text(toRp(bagianNenekAyah) + ' / Orang');
+						$('#bagian_nenekayah').text(ratioNenekAyah + '/' + hasilKPK);
+					}
+					if (nilai_nenekibu > 0 && nilai_nenekayah == 0) {
+						const bagianNenekIbu = ((1 / 6) * totalwarisan) / nilai_nenekibu;
+						const ratioNenekIbu = (1 / 6) * hasilKPK;
+						$('#hasil_nenekibu').text(toRp(bagianNenekIbu) + ' / Orang');
+						$('#bagian_nenekibu').text(ratioNenekIbu + '/' + hasilKPK);
+					}
+				}
+				if (nilai_saudaralakiseibu > 0 && nilai_saudaraperempuanseIbu > 0) {
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeibu) + ' / Orang'
+					);
+					$('#bagian_saudaralakiseibu').text('4/24 B');
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
+					);
+					$('#bagian_saudaraperempuanseibu').text('4/24 B');
+				} else if (nilai_saudaralakiseibu > 0) {
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeibu) + ' / Orang'
+					);
+					$('#bagian_saudaralakiseibu').text('4/24');
+				} else if (nilai_saudaraperempuanseIbu > 0) {
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
+					);
+					$('#bagian_saudaraperempuanseibu').text('4/24');
 				}
 			} else {
 				CalculateMasalah();
@@ -1089,11 +1516,14 @@ $(document).ready(function () {
 		}
 
 		function CalculateMasalah() {
+			console.log('Cmasalah');
 			if (nilai_suami > 0) {
 				if (keturunan > 0) {
 					masalah.push(4);
+					console.log('suami');
 				} else {
 					masalah.push(2);
+					console.log('dapet 2');
 				}
 			}
 
@@ -1108,14 +1538,15 @@ $(document).ready(function () {
 			if (nilai_ayah > 0) {
 				if (nilai_anaklaki > 0 || nilai_cuculaki > 0) {
 					masalah.push(6);
-				} else if (nilai_anakperempuan > 0) {
+				} else if (keturunanPerempuan > 0) {
 					totalashobah = totalashobah + 2;
+					masalah.push(6);
 				} else {
 					totalashobah = totalashobah + 2;
 				}
 			}
 			if (nilai_ibu > 0) {
-				if (keturunan > 0 || saudara > 0) {
+				if (keturunan > 0 || saudara > 1) {
 					masalah.push(6);
 				} else {
 					masalah.push(3);
@@ -1127,6 +1558,7 @@ $(document).ready(function () {
 					masalah.push(6);
 				} else if (keturunanPerempuan > 0) {
 					totalashobah = totalashobah + 2;
+					masalah.push(6);
 				} else {
 					totalashobah = totalashobah + 2;
 				}
@@ -1151,7 +1583,7 @@ $(document).ready(function () {
 					totalashobah = totalashobah + nilai_anakperempuan;
 				} else if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
 					masalah.push(3);
-				} else if ((nilai_anakperempuan = 1 && nilai_anaklaki == 0)) {
+				} else if (nilai_anakperempuan == 1 && nilai_anaklaki == 0) {
 					masalah.push(2);
 				}
 			}
@@ -1174,19 +1606,29 @@ $(document).ready(function () {
 				totalashobah = totalashobah + 2 * nilai_saudaralakikandung;
 			}
 			if (nilai_saudaraperempuankandung > 0) {
-				if (nilai_saudaralakikandung > 0 && nilai_anakperempuan > 0) {
+				if (
+					nilai_saudaralakikandung > 0 ||
+					nilai_anakperempuan > 0 ||
+					nilai_cucuperempuan > 0
+				) {
 					totalashobah = totalashobah + nilai_saudaraperempuankandung;
 				} else if (nilai_saudaraperempuankandung == 1) {
 					masalah.push(2);
+					console.log('2');
 				} else if (nilai_saudaraperempuankandung > 1) {
 					masalah.push(3);
+					console.log('3');
 				}
 			}
 			if (nilai_saudaralakiseayah > 0) {
 				totalashobah = totalashobah + 2 * nilai_saudaralakiseayah;
 			}
 			if (nilai_saudaraperempuanseayah > 0) {
-				if (nilai_saudaralakiseayah > 0) {
+				if (
+					nilai_anakperempuan > 0 ||
+					nilai_cucuperempuan > 0 ||
+					nilai_saudaralakiseayah > 0
+				) {
 					totalashobah = totalashobah + nilai_saudaraperempuanseayah;
 				} else if (nilai_saudaraperempuanseayah == 0) {
 					masalah.push(2);
@@ -1204,28 +1646,47 @@ $(document).ready(function () {
 			if (nilai_saudaraperempuanseIbu > 0) {
 				if (nilai_saudaraperempuanseIbu == 1) {
 					masalah.push(3);
+					console.log('push');
 				} else if (nilai_saudaraperempuanseIbu > 1) {
 					masalah.push(3);
+					console.log('push');
 				}
 			}
 
 			if (nilai_anaklakisaudarakandung > 0) {
 				totalashobah = totalashobah + 2 * nilai_anaklakisaudarakandung;
 			}
+
 			if (nilai_anaklakisaudaraseayah > 0) {
-				totalashobah = totalashobah + 2 * nilai_anaklakisaudaraseayah;
+				if (nilai_anaklakisaudarakandung > 0) {
+					nilai_anaklakisaudaraseayah = 0;
+				} else {
+					totalashobah = totalashobah + 2 * nilai_anaklakisaudaraseayah;
+				}
 			}
+
 			if (nilai_pamankandungayah > 0) {
 				totalashobah = totalashobah + 2 * nilai_pamankandungayah;
 			}
+
 			if (nilai_pamansekakekayah > 0) {
-				totalashobah = totalashobah + 2 * nilai_pamansekakekayah;
+				if (nilai_pamankandungayah > 0) {
+					nilai_pamansekakekayah = 0;
+				} else {
+					totalashobah = totalashobah + 2 * nilai_pamansekakekayah;
+				}
 			}
+
 			if (nilai_anaklakipamankandung > 0) {
 				totalashobah = totalashobah + 2 * nilai_anaklakipamankandung;
 			}
+
 			if (nilai_anaklakipamansekakek > 0) {
-				totalashobah = totalashobah + 2 * nilai_anaklakipamansekakek;
+				if (nilai_anaklakipamankandung > 0) {
+					nilai_anaklakipamansekakek = 0;
+				} else {
+					totalashobah = totalashobah + 2 * nilai_anaklakipamansekakek;
+				}
 			}
 
 			if (masalah.length > 0) {
@@ -1233,8 +1694,11 @@ $(document).ready(function () {
 				console.log('Array masalah:', masalah);
 				console.log('KPK dari array masalah:', hasilKPK);
 				CalculateRatio();
+				console.log('kpk');
+				console.log(totalashobah);
 			} else if (masalah.length === 0) {
 				CalculateAshabah();
+				console.log('ashabah');
 			}
 		}
 
@@ -1250,7 +1714,9 @@ $(document).ready(function () {
 		}
 
 		function CalculateRatio() {
+			console.log('Cratio');
 			console.log(hasilKPK);
+			console.log(totalashobah);
 			if (nilai_suami > 0) {
 				if (keturunan > 0) {
 					Rsuami = (1 / 4) * hasilKPK;
@@ -1260,7 +1726,6 @@ $(document).ready(function () {
 					totalratio += Rsuami;
 				}
 			}
-
 			if (nilai_istri > 0) {
 				if (keturunan > 0) {
 					Ristri = (1 / 8) * hasilKPK;
@@ -1270,15 +1735,19 @@ $(document).ready(function () {
 					totalratio += Ristri;
 				}
 			}
-
 			if (nilai_ayah > 0) {
-				if (nilai_anaklaki > 0 || nilai_cuculaki > 0) {
+				if (
+					nilai_anaklaki > 0 ||
+					nilai_cuculaki > 0 ||
+					nilai_anakperempuan > 0 ||
+					nilai_cucuperempuan > 0
+				) {
 					Rayah = (1 / 6) * hasilKPK;
 					totalratio += Rayah;
 				}
 			}
 			if (nilai_ibu > 0) {
-				if (keturunan > 0 || saudara > 0) {
+				if (keturunan > 0 || saudara > 1) {
 					Ribu = (1 / 6) * hasilKPK;
 					totalratio += Ribu;
 				} else {
@@ -1308,7 +1777,10 @@ $(document).ready(function () {
 			}
 
 			if (nilai_anakperempuan > 0) {
-				if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
+				if (nilai_anaklaki > 0) {
+					Ranakperempuan = 0;
+					totalratio += Ranakperempuan;
+				} else if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
 					Ranakperempuan = (2 / 3) * hasilKPK;
 					totalratio += Ranakperempuan;
 				} else if (nilai_anakperempuan == 1 && nilai_anaklaki == 0) {
@@ -1319,6 +1791,140 @@ $(document).ready(function () {
 
 			if (nilai_cucuperempuan > 0) {
 				if (nilai_anakperempuan > 0) {
+					Rcucuperempuan = 0;
+					totalratio += Rcucuperempuan;
+				} else if (nilai_cucuperempuan == 1) {
+					Rcucuperempuan = (1 / 2) * hasilKPK;
+					totalratio += Rcucuperempuan;
+				} else if (nilai_cucuperempuan > 1) {
+					Rcucuperempuan = (2 / 3) * hasilKPK;
+					totalratio += Rcucuperempuan;
+				}
+			}
+
+			if (nilai_saudaraperempuankandung > 0) {
+				if (nilai_saudaralakikandung > 0) {
+					Rsaudaraperempuankandung = 0;
+					totalratio += Rsaudaraperempuankandung;
+				} else if (
+					nilai_saudaraperempuankandung == 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
+					Rsaudaraperempuankandung = (1 / 2) * hasilKPK;
+					totalratio += Rsaudaraperempuankandung;
+				} else if (
+					nilai_saudaraperempuankandung > 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
+					Rsaudaraperempuankandung = (2 / 3) * hasilKPK;
+					totalratio += Rsaudaraperempuankandung;
+				}
+			}
+
+			if (nilai_saudaraperempuanseayah > 0) {
+				if (nilai_saudaralakiseayah > 0) {
+					Rsaudaraperempuanseayah = 0;
+					totalratio += Rsaudaraperempuanseayah;
+				} else if (
+					nilai_saudaraperempuanseayah == 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
+					Rsaudaraperempuanseayah = (1 / 2) * hasilKPK;
+					totalratio += Rsaudaraperempuanseayah;
+				} else if (
+					nilai_saudaraperempuanseayah > 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
+					Rsaudaraperempuanseayah = (2 / 3) * hasilKPK;
+					totalratio += Rsaudaraperempuanseayah;
+				}
+			}
+			if (saudaraseibu > 0) {
+				if (saudaraseibu == 1) {
+					Rsaudaraseibu = (1 / 6) * hasilKPK;
+					totalratio += Rsaudaraseibu;
+				} else if (saudaraseibu > 1) {
+					Rsaudaraseibu = (1 / 3) * hasilKPK;
+					totalratio += Rsaudaraseibu;
+				}
+			}
+			if (totalratio > hasilKPK) {
+				CalculateAulRadd();
+				console.log(totalratio);
+				console.log('satu aul ');
+			} else if (totalratio != hasilKPK && totalashobah == 0) {
+				CalculateAulRadd();
+				console.log(totalratio);
+				console.log('dua radd');
+			} else if (totalashobah > 0) {
+				CalculateShare();
+				console.log(totalratio);
+				console.log('tiga share');
+			}
+		}
+
+		function CalculateRatio2() {
+			console.log('Cratio2');
+			console.log(hasilKPK);
+			totalratio = 0;
+			if (nilai_ayah > 0) {
+				if (nilai_anaklaki > 0 || nilai_cuculaki > 0) {
+					Rayah = (1 / 6) * hasilKPK;
+					totalratio += Rayah;
+				}
+			}
+			if (nilai_ibu > 0) {
+				if (keturunan > 0 || saudara > 1) {
+					Ribu = (1 / 6) * hasilKPK;
+					totalratio += Ribu;
+				} else {
+					Ribu = (1 / 3) * hasilKPK;
+					totalratio += Ribu;
+				}
+			}
+
+			if (nilai_kakek > 0) {
+				if (keturunanLaki > 0) {
+					Rkakek = (1 / 6) * hasilKPK;
+					totalratio += Rkakek;
+				}
+			}
+			if (nilai_nenekayah > 0 && nilai_nenekibu > 0) {
+				Rnenek2 = (1 / 6) * hasilKPK;
+				totalratio += Rnenek2;
+			} else {
+				if (nilai_nenekayah > 0 && nilai_nenekibu == 0) {
+					Rnenekayah = (1 / 6) * hasilKPK;
+					totalratio += Rnenekayah;
+				}
+				if (nilai_nenekibu > 0 && nilai_nenekayah == 0) {
+					Rnenekibu = (1 / 6) * hasilKPK;
+					totalratio += Rnenekibu;
+				}
+			}
+
+			if (nilai_anakperempuan > 0) {
+				if (nilai_anaklaki > 0) {
+					Ranakperempuan = 0;
+					totalratio += Ranakperempuan;
+				} else if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
+					Ranakperempuan = (2 / 3) * hasilKPK;
+					totalratio += Ranakperempuan;
+				} else if (nilai_anakperempuan == 1 && nilai_anaklaki == 0) {
+					Ranakperempuan = (1 / 2) * hasilKPK;
+					totalratio += Ranakperempuan;
+				}
+			}
+
+			if (nilai_cucuperempuan > 0) {
+				if (nilai_cuculaki > 0) {
+					Rcucuperempuan = 0;
+					totalratio += Rcucuperempuan;
+				} else if (nilai_anakperempuan > 0) {
 					Rcucuperempuan = (1 / 6) * hasilKPK;
 					totalratio += Rcucuperempuan;
 				} else if (nilai_cucuperempuan == 1) {
@@ -1331,181 +1937,861 @@ $(document).ready(function () {
 			}
 
 			if (nilai_saudaraperempuankandung > 0) {
-				if (nilai_saudaraperempuankandung == 1) {
+				if (nilai_saudaralakikandung > 0) {
+					Rsaudaraperempuankandung = 0;
+					totalratio += Rsaudaraperempuankandung;
+				} else if (
+					nilai_saudaraperempuankandung == 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
 					Rsaudaraperempuankandung = (1 / 2) * hasilKPK;
 					totalratio += Rsaudaraperempuankandung;
-				} else if (nilai_saudaraperempuankandung > 1) {
+				} else if (
+					nilai_saudaraperempuankandung > 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
 					Rsaudaraperempuankandung = (2 / 3) * hasilKPK;
 					totalratio += Rsaudaraperempuankandung;
 				}
 			}
 
 			if (nilai_saudaraperempuanseayah > 0) {
-				if (nilai_saudaraperempuanseayah == 1) {
+				if (nilai_saudaralakiseayah > 0) {
+					Rsaudaraperempuanseayah = 0;
+					totalratio += Rsaudaraperempuanseayah;
+				} else if (
+					nilai_saudaraperempuanseayah == 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
 					Rsaudaraperempuanseayah = (1 / 2) * hasilKPK;
 					totalratio += Rsaudaraperempuanseayah;
-				} else if (nilai_saudaraperempuanseayah > 1) {
+				} else if (
+					nilai_saudaraperempuanseayah > 1 &&
+					nilai_anakperempuan == 0 &&
+					nilai_cucuperempuan == 0
+				) {
 					Rsaudaraperempuanseayah = (2 / 3) * hasilKPK;
 					totalratio += Rsaudaraperempuanseayah;
 				}
 			}
-			if (nilai_saudaralakiseibu > 0) {
-				if (nilai_saudaralakiseibu == 1) {
-					Rsaudaralakiseibu = (1 / 6) * hasilKPK;
-					totalratio += Rsaudaralakiseibu;
-				} else if (nilai_saudaralakiseibu > 1) {
-					Rsaudaralakiseibu = (1 / 3) * hasilKPK;
-					totalratio += Rsaudaralakiseibu;
+			if (saudaraseibu > 0) {
+				if (saudaraseibu == 1) {
+					Rsaudaraseibu = (1 / 6) * hasilKPK;
+					totalratio += Rsaudaraseibu;
+				} else if (saudaraseibu > 1) {
+					Rsaudaraseibu = (1 / 3) * hasilKPK;
+					totalratio += Rsaudaraseibu;
 				}
 			}
-			if (nilai_saudaraperempuanseIbu > 0) {
-				if (nilai_saudaraperempuanseIbu == 1) {
-					RsaudaraperempuanseIbu = (1 / 3) * hasilKPK;
-					totalratio += RsaudaraperempuanseIbu;
-				} else if (nilai_saudaraperempuanseIbu > 1) {
-					RsaudaraperempuanseIbu = (1 / 3) * hasilKPK;
-					totalratio += RsaudaraperempuanseIbu;
-				}
-			}
-			if (totalashobah == 0) {
-				CalculateAulRadd();
-			} else {
-				CalculateAshabah();
+			if (totalratio > 0) {
+				console.log(totalratio);
+				CalculateRaddSuamiIstri();
 			}
 		}
 
 		function CalculateAulRadd() {
+			if (totalashobah > 0 && totalratio <= hasilKPK) {
+				CalculateAshabah();
+				console.log('ashabah');
+			} else if (totalratio > hasilKPK) {
+				hasilKPK = totalratio;
+				let nilai_ashabah = sisawarisan / totalashobah;
+				console.log('aul');
+				if (nilai_suami > 0) {
+					if (keturunan > 0) {
+						const bagianSuami = (Rsuami / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSuami;
+						$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+						$('#bagian_suami').text(Rsuami + '/' + hasilKPK);
+					} else {
+						const bagianSuami = (Rsuami / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSuami;
+						$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+						$('#bagian_suami').text(Rsuami + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_istri > 0) {
+					if (keturunan > 0) {
+						const bagianIstri =
+							((Ristri / hasilKPK) * totalwarisan) / nilai_istri;
+						sisawarisan -= bagianIstri * nilai_istri;
+						$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
+						$('#bagian_istri').text(Ristri + '/' + hasilKPK);
+					} else {
+						const bagianIstri =
+							((Ristri / hasilKPK) * totalwarisan) / nilai_istri;
+						sisawarisan -= bagianIstri * nilai_istri;
+						masalah.pop(4);
+						hasilKPK = CalculateKPK(masalah);
+						$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
+						$('#bagian_istri').text(Ristri + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_ayah > 0) {
+					if (nilai_anaklaki > 0 || nilai_cuculaki > 0) {
+						const bagianAyah = (Rayah / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianAyah;
+						$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+						$('#bagian_ayah').text(Rayah + '/' + hasilKPK);
+					} else if (nilai_anakperempuan > 0 || nilai_cucuperempuan > 0) {
+						const bagianAyah = (Rayah / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianAyah;
+						$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+						$('#bagian_ayah').text(Rayah + '/' + hasilKPK + ' + Ashabah');
+					} else {
+						const bagianAyah = nilai_ashabah * 2;
+						$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+						$('#bagian_ayah').text('Ashabah');
+					}
+				}
+				if (nilai_ibu > 0) {
+					if (keturunan > 0 || saudara > 1) {
+						const bagianIbu = (Ribu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianIbu;
+						$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+						$('#bagian_ibu').text(Ribu + '/' + hasilKPK);
+					} else {
+						const bagianIbu = (Ribu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianIbu;
+						$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+						$('#bagian_ibu').text(Ribu + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_kakek > 0) {
+					if (keturunanLaki > 0) {
+						const bagianKakek = (Rkakek / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianKakek;
+						$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
+						$('#bagian_kakek').text(Rkakek + '/' + hasilKPK);
+					} else if (keturunanPerempuan > 0) {
+						const bagianKakek = (Rkakek / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianKakek;
+						$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
+						$('#bagian_kakek').text(Rkakek + '/' + hasilKPK + ' + Ashabah');
+					} else {
+						const bagianKakek = (Rkakek / hasilKPK) * totalwarisan;
+						$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
+						$('#bagian_kakek').text('Ashabah');
+					}
+				}
+				if (nilai_nenekayah > 0 && nilai_nenekibu > 0) {
+					const bagianNenek2 =
+						((Rnenek2 / hasilKPK) * totalwarisan) / nilai_nenek2;
+					sisawarisan -= bagianNenek2 * nilai_nenek2;
+					$('#hasil_nenekayah').text(toRp(bagianNenek2) + ' / Orang');
+					$('#hasil_nenekibu').text(toRp(bagianNenek2) + ' / Orang');
+					$('#bagian_nenekayah').text(Rnenek2 + '/' + hasilKPK + ' Bersama');
+					$('#bagian_nenekibu').text(Rnenek2 + '/' + hasilKPK + ' Bersama');
+				} else {
+					if (nilai_nenekayah > 0 && nilai_nenekibu == 0) {
+						const bagianNenekAyah = (Rnenekayah / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianNenekAyah;
+						$('#hasil_nenekayah').text(toRp(bagianNenekAyah) + ' / Orang');
+						$('#bagian_nenekayah').text(Rnenekayah + '/' + hasilKPK);
+					}
+					if (nilai_nenekibu > 0 && nilai_nenekayah == 0) {
+						const bagianNenekIbu = (Rnenekibu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianNenekIbu;
+						$('#hasil_nenekibu').text(toRp(bagianNenekIbu) + ' / Orang');
+						$('#bagian_nenekibu').text(Rnenekibu + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_anaklaki > 0) {
+					const bagianAnakLaki = (Ranaklaki / hasilKPK) * totalwarisan;
+					$('#hasil_anaklaki').text(toRp(bagianAnakLaki) + ' / Orang');
+					$('#bagian_anaklaki').text('Ashabah');
+				}
+
+				if (nilai_anakperempuan > 0) {
+					if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
+						const bagianAnakPerempuan =
+							((Ranakperempuan / hasilKPK) * totalwarisan) /
+							nilai_anakperempuan;
+						sisawarisan -= bagianAnakPerempuan * nilai_anakperempuan;
+						$('#hasil_anakperempuan').text(
+							toRp(bagianAnakPerempuan) + ' / Orang'
+						);
+						$('#bagian_anakperempuan').text(Ranakperempuan + '/' + hasilKPK);
+					} else if (nilai_anakperempuan == 1 && nilai_anaklaki == 0) {
+						const bagianAnakPerempuan =
+							(Ranakperempuan / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianAnakPerempuan * nilai_anakperempuan;
+						$('#hasil_anakperempuan').text(
+							toRp(bagianAnakPerempuan) + ' / Orang'
+						);
+						$('#bagian_anakperempuan').text(Ranakperempuan + '/' + hasilKPK);
+					} else if (nilai_anaklaki > 0) {
+						const bagianAnakPerempuan =
+							(Ranakperempuan / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianAnakPerempuan * nilai_anakperempuan;
+						$('#hasil_anakperempuan').text(
+							toRp(bagianAnakPerempuan) + ' / Orang'
+						);
+						$('#bagian_anakperempuan').text(Ranakperempuan + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_cucuperempuan > 0) {
+					if (nilai_anakperempuan > 0) {
+						const bagianCucuPerempuan =
+							((Rcucuperempuan / hasilKPK) * totalwarisan) /
+							nilai_cucuperempuan;
+						sisawarisan -= bagianCucuPerempuan * nilai_cucuperempuan;
+						$('#hasil_cucuperempuan').text(
+							toRp(bagianCucuPerempuan) + ' / Orang'
+						);
+						$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+					} else if (nilai_cucuperempuan == 1) {
+						const bagianCucuPerempuan =
+							(Rcucuperempuan / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianCucuPerempuan;
+						$('#hasil_cucuperempuan').text(
+							toRp(bagianCucuPerempuan) + ' / Orang'
+						);
+						$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+					} else if (nilai_cucuperempuan > 1) {
+						const bagianCucuPerempuan =
+							((Rcucuperempuan / hasilKPK) * totalwarisan) /
+							nilai_cucuperempuan;
+						sisawarisan -= bagianCucuPerempuan * nilai_cucuperempuan;
+						$('#hasil_cucuperempuan').text(
+							toRp(bagianCucuPerempuan) + ' / Orang'
+						);
+						$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_cuculaki > 0) {
+					const bagianCucuLaki = (Rcuculaki / hasilKPK) * totalwarisan;
+					$('#hasil_cuculaki').text(toRp(bagianCucuLaki) + ' / Orang');
+					$('#bagian_cuculaki').text('Ashabah');
+				}
+
+				if (nilai_saudaraperempuankandung > 0) {
+					if (nilai_saudaraperempuankandung == 1) {
+						const bagianSaudaraPerempuanKandung =
+							(Rsaudaraperempuankandung / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraPerempuanKandung;
+						$('#hasil_saudaraperempuankandung').text(
+							toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuankandung').text(
+							Rsaudaraperempuankandung + '/' + hasilKPK
+						);
+					} else if (nilai_saudaraperempuankandung > 1) {
+						const bagianSaudaraPerempuanKandung =
+							((Rsaudaraperempuankandung / hasilKPK) * totalwarisan) /
+							nilai_saudaraperempuankandung;
+						sisawarisan -=
+							bagianSaudaraPerempuanKandung * nilai_saudaraperempuankandung;
+						$('#hasil_saudaraperempuankandung').text(
+							toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuankandung').text(
+							Rsaudaraperempuankandung + '/' + hasilKPK
+						);
+					}
+				}
+
+				if (nilai_saudaralakikandung > 0) {
+					const bagianSaudaraLakiKandung =
+						(Rsaudaralakikandung / hasilKPK) * totalwarisan;
+					$('#hasil_saudaralakikandung').text(
+						toRp(bagianSaudaraLakiKandung) + ' / Orang'
+					);
+					$('#bagian_saudaralakikandung').text('Ashabah');
+				}
+
+				if (nilai_saudaraperempuanseayah > 0) {
+					if (nilai_saudaraperempuanseayah == 1) {
+						const bagianSaudaraPerempuanSeAyah =
+							(Rsaudaraperempuanseayah / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraPerempuanSeAyah;
+						$('#hasil_saudaraperempuanseayah').text(
+							toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseayah').text(
+							Rsaudaraperempuanseayah + '/' + hasilKPK
+						);
+					} else if (nilai_saudaraperempuanseayah > 1) {
+						const bagianSaudaraPerempuanSeAyah =
+							((Rsaudaraperempuanseayah / hasilKPK) * totalwarisan) /
+							nilai_saudaraperempuanseayah;
+						sisawarisan -=
+							bagianSaudaraPerempuanSeAyah * nilai_saudaraperempuanseayah;
+						$('#hasil_saudaraperempuanseayah').text(
+							toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseayah').text(
+							Rsaudaraperempuanseayah + '/' + hasilKPK
+						);
+					}
+				}
+
+				if (nilai_saudaralakiseayah > 0) {
+					const bagianSaudaraLakiSeAyah =
+						(Rsaudaralakiseayah / hasilKPK) * totalwarisan;
+					$('#hasil_saudaralakiseayah').text(
+						toRp(bagianSaudaraLakiSeAyah) + ' / Orang'
+					);
+					$('#bagian_saudaralakiseayah').text('Ashabah');
+				}
+
+				if (saudaraseibu > 0) {
+					if (nilai_saudaralakiseibu > 0 && nilai_saudaraperempuanseIbu > 0) {
+						const bagianSaudaraSeIbu =
+							((Rsaudaraseibu / hasilKPK) * totalwarisan) / saudaraseibu;
+						sisawarisan -= bagianSaudaraSeIbu * saudaraseibu;
+						$('#hasil_saudaralakiseibu').text(
+							toRp(bagianSaudaraSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaralakiseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK + ' Bersama'
+						);
+						$('#hasil_saudaraperempuanseibu').text(
+							toRp(bagianSaudaraSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK + ' Bersama'
+						);
+					} else if (nilai_saudaralakiseibu == 1) {
+						const bagianSaudaraLakiSeIbu =
+							(Rsaudaraseibu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraLakiSeIbu;
+						$('#hasil_saudaralakiseibu').text(
+							toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaralakiseibu').text(Rsaudaraseibu + '/' + hasilKPK);
+						console.log('aulradd');
+					} else if (nilai_saudaralakiseibu > 1) {
+						const bagianSaudaraLakiSeIbu =
+							((Rsaudaraseibu / hasilKPK) * totalwarisan) /
+							nilai_saudaralakiseibu;
+						sisawarisan -= bagianSaudaraLakiSeIbu * nilai_saudaralakiseibu;
+						$('#hasil_saudaralakiseibu').text(
+							toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaralakiseibu').text(Rsaudaraseibu + '/' + hasilKPK);
+						console.log('aulradd');
+					} else if (nilai_saudaraperempuanseIbu == 1) {
+						const bagianSaudaraPerempuanSeIbu =
+							(Rsaudaraseibu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraPerempuanSeIbu;
+						$('#hasil_saudaraperempuanseibu').text(
+							toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK
+						);
+						console.log('itu');
+					} else if (nilai_saudaraperempuanseIbu > 1) {
+						const bagianSaudaraPerempuanSeIbu =
+							((Rsaudaraseibu / hasilKPK) * totalwarisan) /
+							nilai_saudaraperempuanseIbu;
+						sisawarisan -=
+							bagianSaudaraPerempuanSeIbu * nilai_saudaraperempuanseIbu;
+						$('#hasil_saudaraperempuanseibu').text(
+							toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK
+						);
+						console.log('ini');
+					}
+				}
+
+				if (nilai_anaklakisaudarakandung > 0) {
+					const bagianAnakLakiSaudaraKandung =
+						(Ranaklakisaudarakandung / hasilKPK) * totalwarisan;
+					$('#hasil_anaklakisaudarakandung').text(
+						toRp(bagianAnakLakiSaudaraKandung) + ' / Orang'
+					);
+					$('#bagian_anaklakisaudarakandung').text('Ashabah');
+				}
+				if (nilai_anaklakisaudaraseayah > 0) {
+					const bagianAnakLakiSaudaraSeAyah =
+						(Ranaklakisaudaraseayah / hasilKPK) * totalwarisan;
+					$('#hasil_anaklakisaudaraseayah').text(
+						toRp(bagianAnakLakiSaudaraSeAyah) + ' / Orang'
+					);
+					$('#bagian_anaklakisaudaraseayah').text('Ashabah');
+				}
+				if (nilai_pamankandungayah > 0) {
+					const bagianPamanKandungAyah =
+						(Rpamankandungayah / hasilKPK) * totalwarisan;
+					$('#hasil_pamankandungayah').text(
+						toRp(bagianPamanKandungAyah) + ' / Orang'
+					);
+					$('#bagian_pamankandungayah').text('Ashabah');
+					console.log('paman');
+				}
+				if (nilai_pamansekakekayah > 0) {
+					const bagianPamanSeKakekAyah =
+						(Rpamansekakekayah / hasilKPK) * totalwarisan;
+					$('#hasil_pamansekakekayah').text(
+						toRp(bagianPamanSeKakekAyah) + ' / Orang'
+					);
+					$('#bagian_pamansekakekayah').text('Ashabah');
+				}
+				if (nilai_anaklakipamankandung > 0) {
+					const bagianAnakLakiPamanKandung =
+						(Ranaklakipamankandung / hasilKPK) * totalwarisan;
+					$('#hasil_anaklakipamankandung').text(
+						toRp(bagianAnakLakiPamanKandung) + ' / Orang'
+					);
+					$('#bagian_anaklakipamankandung').text('Ashabah');
+				}
+				if (nilai_anaklakipamansekakek > 0) {
+					const bagianAnakLakiPamanSeKakek =
+						(Ranaklakipamansekakek / hasilKPK) * totalwarisan;
+					$('#hasil_anaklakipamansekakek').text(
+						toRp(bagianAnakLakiPamanSeKakek) + ' / Orang'
+					);
+					$('#bagian_anaklakipamansekakek').text('Ashabah');
+				}
+			} else if (
+				totalratio < hasilKPK &&
+				(nilai_suami > 0 || nilai_istri > 0)
+			) {
+				console.log('Radd Suami/Istri');
+				Rayah = 0;
+				Ribu = 0;
+				Rsuami = 0;
+				Ristri = 0;
+				Ranakperempuan = 0;
+				Rcucuperempuan = 0;
+				Rkakek = 0;
+				Rnenek2 = 0;
+				Rnenekayah = 0;
+				Rnenekibu = 0;
+				Rsaudaraperempuankandung;
+				Rsaudaraperempuanseayah = 0;
+				Rsaudaraseibu = 0;
+
+				if (
+					nilai_suami > 0 &&
+					(nilai_ayah > 0 ||
+						nilai_ibu > 0 ||
+						nilai_anakperempuan > 0 ||
+						nilai_cucuperempuan > 0 ||
+						nilai_nenek2 > 0 ||
+						nilai_saudaraperempuankandung > 0 ||
+						nilai_saudaraperempuanseayah > 0 ||
+						nilai_saudaralakiseibu > 0 ||
+						nilai_saudaraperempuanseIbu > 0)
+				) {
+					if (keturunan > 0) {
+						masalah = masalah.filter(item => item !== 4);
+						hasilKPK = CalculateKPK(masalah);
+						console.log(hasilKPK);
+						const bagianSuami = (1 / 4) * totalwarisan;
+						sisawarisan -= bagianSuami;
+						$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+						$('#bagian_suami').text('1/4 total');
+						CalculateRatio2();
+					} else {
+						masalah = masalah.filter(item => item !== 2);
+						hasilKPK = CalculateKPK(masalah);
+						console.log(hasilKPK);
+						const bagianSuami = (1 / 2) * totalwarisan;
+						sisawarisan -= bagianSuami;
+						$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+						$('#bagian_suami').text('1/2 total');
+						CalculateRatio2();
+					}
+				} else {
+					const bagianSuami = 1 * totalwarisan;
+					$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
+					$('#bagian_suami').text('1/1 total');
+				}
+				if (
+					nilai_istri > 0 &&
+					(nilai_ayah > 0 ||
+						nilai_ibu > 0 ||
+						nilai_anakperempuan > 0 ||
+						nilai_cucuperempuan > 0 ||
+						nilai_nenek2 > 0 ||
+						nilai_saudaraperempuankandung > 0 ||
+						nilai_saudaraperempuanseayah > 0 ||
+						nilai_saudaralakiseibu > 0 ||
+						nilai_saudaraperempuanseIbu > 0)
+				) {
+					if (keturunan > 0) {
+						masalah = masalah.filter(item => item !== 8);
+						hasilKPK = CalculateKPK(masalah);
+						console.log(hasilKPK);
+						const bagianIstri = ((1 / 8) * totalwarisan) / nilai_istri;
+						sisawarisan -= bagianIstri * nilai_istri;
+						$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
+						$('#bagian_istri').text('1/8 total');
+						CalculateRatio2();
+					} else {
+						masalah = masalah.filter(item => item !== 4);
+						hasilKPK = CalculateKPK(masalah);
+						console.log(hasilKPK);
+						const bagianIstri = ((1 / 4) * totalwarisan) / nilai_istri;
+						sisawarisan -= bagianIstri * nilai_istri;
+						$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
+						$('#bagian_istri').text('1/4 total');
+						CalculateRatio2();
+					}
+				} else {
+					const bagianIstri = (1 * totalwarisan) / nilai_istri;
+					$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
+					$('#bagian_istri').text('1/1 total');
+				}
+			} else {
+				hasilKPK = totalratio;
+				console.log('Radd biasa');
+
+				if (nilai_ayah > 0) {
+					if (nilai_anaklaki > 0 || nilai_cuculaki > 0) {
+						const bagianAyah = (Rayah / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianAyah;
+						$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+						$('#bagian_ayah').text(Rayah + '/' + hasilKPK);
+					}
+				}
+				if (nilai_ibu > 0) {
+					if (keturunan > 0 || saudara > 1) {
+						const bagianIbu = (Ribu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianIbu;
+						$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+						$('#bagian_ibu').text(Ribu + '/' + hasilKPK);
+					} else {
+						const bagianIbu = (Ribu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianIbu;
+						$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+						$('#bagian_ibu').text(Ribu + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_kakek > 0) {
+					if (keturunanLaki > 0) {
+						const bagianKakek = (Rkakek / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianKakek;
+						$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
+						$('#bagian_kakek').text(Rkakek + '/' + hasilKPK);
+					}
+				}
+				if (nilai_nenekayah > 0 && nilai_nenekibu > 0) {
+					const bagianNenek2 =
+						((Rnenek2 / hasilKPK) * totalwarisan) / nilai_nenek2;
+					sisawarisan -= bagianNenek2 * nilai_nenek2;
+					$('#hasil_nenekayah').text(toRp(bagianNenek2) + ' / Orang');
+					$('#hasil_nenekibu').text(toRp(bagianNenek2) + ' / Orang');
+					$('#bagian_nenekayah').text(Rnenek2 + '/' + hasilKPK + ' Bersama');
+					$('#bagian_nenekibu').text(Rnenek2 + '/' + hasilKPK + ' Bersama');
+				} else {
+					if (nilai_nenekayah > 0 && nilai_nenekibu == 0) {
+						const bagianNenekAyah = (Rnenekayah / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianNenekAyah;
+						$('#hasil_nenekayah').text(toRp(bagianNenekAyah) + ' / Orang');
+						$('#bagian_nenekayah').text(Rnenekayah + '/' + hasilKPK);
+					}
+					if (nilai_nenekibu > 0 && nilai_nenekayah == 0) {
+						const bagianNenekIbu = (Rnenekibu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianNenekIbu;
+						$('#hasil_nenekibu').text(toRp(bagianNenekIbu) + ' / Orang');
+						$('#bagian_nenekibu').text(Rnenekibu + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_anakperempuan > 0) {
+					if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
+						const bagianAnakPerempuan =
+							((Ranakperempuan / hasilKPK) * totalwarisan) /
+							nilai_anakperempuan;
+						sisawarisan -= bagianAnakPerempuan * nilai_anakperempuan;
+						$('#hasil_anakperempuan').text(
+							toRp(bagianAnakPerempuan) + ' / Orang'
+						);
+						$('#bagian_anakperempuan').text(Ranakperempuan + '/' + hasilKPK);
+					} else if (nilai_anakperempuan == 1 && nilai_anaklaki == 0) {
+						const bagianAnakPerempuan =
+							(Ranakperempuan / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianAnakPerempuan * nilai_anakperempuan;
+						$('#hasil_anakperempuan').text(
+							toRp(bagianAnakPerempuan) + ' / Orang'
+						);
+						$('#bagian_anakperempuan').text(Ranakperempuan + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_cucuperempuan > 0) {
+					if (nilai_anakperempuan > 0) {
+						const bagianCucuPerempuan =
+							((Rcucuperempuan / hasilKPK) * totalwarisan) /
+							nilai_cucuperempuan;
+						sisawarisan -= bagianCucuPerempuan * nilai_cucuperempuan;
+						$('#hasil_cucuperempuan').text(
+							toRp(bagianCucuPerempuan) + ' / Orang'
+						);
+						$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+					} else if (nilai_cucuperempuan == 1) {
+						const bagianCucuPerempuan =
+							(Rcucuperempuan / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianCucuPerempuan;
+						$('#hasil_cucuperempuan').text(
+							toRp(bagianCucuPerempuan) + ' / Orang'
+						);
+						$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+					} else if (nilai_cucuperempuan > 1) {
+						const bagianCucuPerempuan =
+							((Rcucuperempuan / hasilKPK) * totalwarisan) /
+							nilai_cucuperempuan;
+						sisawarisan -= bagianCucuPerempuan * nilai_cucuperempuan;
+						$('#hasil_cucuperempuan').text(
+							toRp(bagianCucuPerempuan) + ' / Orang'
+						);
+						$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+					}
+				}
+
+				if (nilai_saudaraperempuankandung > 0) {
+					if (nilai_saudaraperempuankandung == 1) {
+						const bagianSaudaraPerempuanKandung =
+							(Rsaudaraperempuankandung / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraPerempuanKandung;
+						$('#hasil_saudaraperempuankandung').text(
+							toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuankandung').text(
+							Rsaudaraperempuankandung + '/' + hasilKPK
+						);
+					} else if (nilai_saudaraperempuankandung > 1) {
+						const bagianSaudaraPerempuanKandung =
+							((Rsaudaraperempuankandung / hasilKPK) * totalwarisan) /
+							nilai_saudaraperempuankandung;
+						sisawarisan -=
+							bagianSaudaraPerempuanKandung * nilai_saudaraperempuankandung;
+						$('#hasil_saudaraperempuankandung').text(
+							toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuankandung').text(
+							Rsaudaraperempuankandung + '/' + hasilKPK
+						);
+					}
+				}
+
+				if (nilai_saudaraperempuanseayah > 0) {
+					if (nilai_saudaraperempuanseayah == 1) {
+						const bagianSaudaraPerempuanSeAyah =
+							(Rsaudaraperempuanseayah / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraPerempuanSeAyah;
+						$('#hasil_saudaraperempuanseayah').text(
+							toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseayah').text(
+							Rsaudaraperempuanseayah + '/' + hasilKPK
+						);
+					} else if (nilai_saudaraperempuanseayah > 1) {
+						const bagianSaudaraPerempuanSeAyah =
+							((Rsaudaraperempuanseayah / hasilKPK) * totalwarisan) /
+							nilai_saudaraperempuanseayah;
+						sisawarisan -=
+							bagianSaudaraPerempuanSeAyah * nilai_saudaraperempuanseayah;
+						$('#hasil_saudaraperempuanseayah').text(
+							toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseayah').text(
+							Rsaudaraperempuanseayah + '/' + hasilKPK
+						);
+					}
+				}
+				if (saudaraseibu > 0) {
+					if (nilai_saudaralakiseibu > 0 && nilai_saudaraperempuanseIbu > 0) {
+						const bagianSaudaraSeIbu =
+							((Rsaudaraseibu / hasilKPK) * totalwarisan) / saudaraseibu;
+						sisawarisan -= bagianSaudaraSeIbu * saudaraseibu;
+						$('#hasil_saudaralakiseibu').text(
+							toRp(bagianSaudaraSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaralakiseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK + ' Bersama'
+						);
+						$('#hasil_saudaraperempuanseibu').text(
+							toRp(bagianSaudaraSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK + ' Bersama'
+						);
+					} else if (nilai_saudaralakiseibu == 1) {
+						const bagianSaudaraLakiSeIbu =
+							(Rsaudaraseibu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraLakiSeIbu;
+						$('#hasil_saudaralakiseibu').text(
+							toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaralakiseibu').text(Rsaudaraseibu + '/' + hasilKPK);
+						console.log('aulradd');
+					} else if (nilai_saudaralakiseibu > 1) {
+						const bagianSaudaraLakiSeIbu =
+							((Rsaudaraseibu / hasilKPK) * totalwarisan) /
+							nilai_saudaralakiseibu;
+						sisawarisan -= bagianSaudaraLakiSeIbu * nilai_saudaralakiseibu;
+						$('#hasil_saudaralakiseibu').text(
+							toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaralakiseibu').text(Rsaudaraseibu + '/' + hasilKPK);
+						console.log('aulradd');
+					} else if (nilai_saudaraperempuanseIbu == 1) {
+						const bagianSaudaraPerempuanSeIbu =
+							(Rsaudaraseibu / hasilKPK) * totalwarisan;
+						sisawarisan -= bagianSaudaraPerempuanSeIbu;
+						$('#hasil_saudaraperempuanseibu').text(
+							toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK
+						);
+						console.log('itu');
+					} else if (nilai_saudaraperempuanseIbu > 1) {
+						const bagianSaudaraPerempuanSeIbu =
+							((Rsaudaraseibu / hasilKPK) * totalwarisan) /
+							nilai_saudaraperempuanseIbu;
+						sisawarisan -=
+							bagianSaudaraPerempuanSeIbu * nilai_saudaraperempuanseIbu;
+						$('#hasil_saudaraperempuanseibu').text(
+							toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
+						);
+						$('#bagian_saudaraperempuanseibu').text(
+							Rsaudaraseibu + '/' + hasilKPK
+						);
+						console.log('ini');
+					}
+				}
+			}
+		}
+
+		function CalculateRaddSuamiIstri() {
 			hasilKPK = totalratio;
 			console.log(hasilKPK);
-			if (nilai_suami > 0) {
-				if (keturunan > 0) {
-					const bagianSuami = (Rsuami / hasilKPK) * totalwarisan;
-					$('#hasil_suami').text(toRp(bagianSuami));
-					$('#bagian_suami').text(Rsuami + '/' + hasilKPK);
-				} else {
-					const bagianSuami = (Rsuami / hasilKPK) * totalwarisan;
-					$('#hasil_suami').text(toRp(bagianSuami));
-					$('#bagian_suami').text(Rsuami + '/' + hasilKPK);
-				}
-			}
-
-			if (nilai_istri > 0) {
-				if (keturunan > 0) {
-					const bagianIstri =
-						((Ristri / hasilKPK) * totalwarisan) / nilai_istri;
-					$('#hasil_istri').text(toRp(bagianIstri));
-					$('#bagian_istri').text(Ristri + '/' + hasilKPK);
-				} else {
-					const bagianIstri =
-						((Ristri / hasilKPK) * totalwarisan) / nilai_istri;
-					$('#hasil_istri').text(toRp(bagianIstri));
-					$('#bagian_istri').text(Ristri + '/' + hasilKPK);
-				}
-			}
-
+			console.log(sisawarisan);
 			if (nilai_ayah > 0) {
 				if (nilai_anaklaki > 0 || nilai_cuculaki > 0) {
-					const bagianAyah = (Rayah / hasilKPK) * totalwarisan;
-					$('#hasil_ayah').text(toRp(bagianAyah));
-					$('#bagian_ayah').text(Rayah + '/' + hasilKPK);
+					const bagianAyah = (Rayah / hasilKPK) * sisawarisan;
+					$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+					$('#bagian_ayah').text(Rayah + '/' + hasilKPK + ' sisa');
 				}
 			}
 			if (nilai_ibu > 0) {
-				if (keturunan > 0 || saudara > 0) {
-					const bagianIbu = (Ribu / hasilKPK) * totalwarisan;
-					$('#hasil_ibu').text(toRp(bagianIbu));
-					$('#bagian_ibu').text(Ribu + '/' + hasilKPK);
+				if (keturunan > 0 || saudara > 1) {
+					const bagianIbu = (Ribu / hasilKPK) * sisawarisan;
+					$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+					$('#bagian_ibu').text(Ribu + '/' + hasilKPK + ' sisa');
 				} else {
-					const bagianIbu = (Ribu / hasilKPK) * totalwarisan;
-					$('#hasil_ibu').text(toRp(bagianIbu));
-					$('#bagian_ibu').text(Ribu + '/' + hasilKPK);
+					const bagianIbu = (Ribu / hasilKPK) * sisawarisan;
+					$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
+					$('#bagian_ibu').text(Ribu + '/' + hasilKPK + ' sisa');
 				}
 			}
 
 			if (nilai_kakek > 0) {
 				if (keturunanLaki > 0) {
-					const bagianKakek = (Rkakek / hasilKPK) * totalwarisan;
-					$('#hasil_kakek').text(toRp(bagianKakek));
-					$('#bagian_kakek').text(Rkakek + '/' + hasilKPK);
+					const bagianKakek = (Rkakek / hasilKPK) * sisawarisan;
+					$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
+					$('#bagian_kakek').text(Rkakek + '/' + hasilKPK + ' sisa');
 				}
 			}
 			if (nilai_nenekayah > 0 && nilai_nenekibu > 0) {
 				const bagianNenek2 =
-					((Rnenek2 / hasilKPK) * totalwarisan) / nilai_nenek2;
-				$('#kolom_nenek2').show();
-				$('#bagian_nenek2').text(Rnenek2 + '/' + hasilKPK);
-				$('#hasil_nenekayah').text(toRp(bagianNenek2));
-				$('#hasil_nenekibu').text(toRp(bagianNenek2));
-				$('#bagian_nenekayah').text();
-				$('#bagian_nenekibu').text();
+					((Rnenek2 / hasilKPK) * sisawarisan) / nilai_nenek2;
+				$('#hasil_nenekayah').text(toRp(bagianNenek2) + ' / Orang');
+				$('#hasil_nenekibu').text(toRp(bagianNenek2) + ' / Orang');
+				$('#bagian_nenekayah').text(Rnenek2 + '/' + hasilKPK + ' N sisa');
+				$('#bagian_nenekibu').text(Rnenek2 + '/' + hasilKPK + ' N sisa');
 			} else {
 				if (nilai_nenekayah > 0 && nilai_nenekibu == 0) {
-					const bagianNenekAyah =
-						((Rnenekayah / hasilKPK) * totalwarisan) / nilai_nenekayah;
-					$('#hasil_nenekayah').text(toRp(bagianNenekAyah));
-					$('#bagian_nenekayah').text(Rnenekayah + '/' + hasilKPK);
+					const bagianNenekAyah = (Rnenekayah / hasilKPK) * sisawarisan;
+					$('#hasil_nenekayah').text(toRp(bagianNenekAyah) + ' / Orang');
+					$('#bagian_nenekayah').text(Rnenekayah + '/' + hasilKPK + ' sisa');
 				}
 				if (nilai_nenekibu > 0 && nilai_nenekayah == 0) {
-					const bagianNenekIbu =
-						((Rnenekibu / hasilKPK) * totalwarisan) / nilai_nenekibu;
-					$('#hasil_nenekibu').text(toRp(bagianNenekIbu));
-					$('#bagian_nenekibu').text(Rnenekibu + '/' + hasilKPK);
+					const bagianNenekIbu = (Rnenekibu / hasilKPK) * sisawarisan;
+					$('#hasil_nenekibu').text(toRp(bagianNenekIbu) + ' / Orang');
+					$('#bagian_nenekibu').text(Rnenekibu + '/' + hasilKPK + ' sisa');
 				}
 			}
 
 			if (nilai_anakperempuan > 0) {
 				if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
+					console.log(Ranakperempuan);
 					const bagianAnakPerempuan =
-						((Ranakperempuan / hasilKPK) * totalwarisan) / nilai_anakperempuan;
-					$('#hasil_anakperempuan').text(toRp(bagianAnakPerempuan));
-					$('#bagian_anakperempuan').text(Ranakperempuan + '/' + hasilKPK);
+						((Ranakperempuan / hasilKPK) * sisawarisan) / nilai_anakperempuan;
+					$('#hasil_anakperempuan').text(
+						toRp(bagianAnakPerempuan) + ' / Orang'
+					);
+					$('#bagian_anakperempuan').text(
+						Ranakperempuan + '/' + hasilKPK + ' sisa'
+					);
 				} else if (nilai_anakperempuan == 1 && nilai_anaklaki == 0) {
-					const bagianAnakPerempuan =
-						(Ranakperempuan / hasilKPK) * totalwarisan;
-					$('#hasil_anakperempuan').text(toRp(bagianAnakPerempuan));
-					$('#bagian_anakperempuan').text(Ranakperempuan + '/' + hasilKPK);
+					const bagianAnakPerempuan = (Ranakperempuan / hasilKPK) * sisawarisan;
+					$('#hasil_anakperempuan').text(
+						toRp(bagianAnakPerempuan) + ' / Orang'
+					);
+					$('#bagian_anakperempuan').text(
+						Ranakperempuan + '/' + hasilKPK + ' sisa'
+					);
 				}
 			}
 
 			if (nilai_cucuperempuan > 0) {
 				if (nilai_anakperempuan > 0) {
 					const bagianCucuPerempuan =
-						((Rcucuperempuan / hasilKPK) * totalwarisan) / nilai_cucuperempuan;
-					$('#hasil_cucuperempuan').text(toRp(bagianCucuPerempuan));
-					$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+						((Rcucuperempuan / hasilKPK) * sisawarisan) / nilai_cucuperempuan;
+					$('#hasil_cucuperempuan').text(
+						toRp(bagianCucuPerempuan) + ' / Orang'
+					);
+					$('#bagian_cucuperempuan').text(
+						Rcucuperempuan + '/' + hasilKPK + ' sisa'
+					);
 				} else if (nilai_cucuperempuan == 1) {
-					const bagianCucuPerempuan =
-						(Rcucuperempuan / hasilKPK) * totalwarisan;
-					const ratioCucuPerempuan = Rcucuperempuan / hasilKPK;
-					$('#hasil_cucuperempuan').text(toRp(bagianCucuPerempuan));
-					$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+					const bagianCucuPerempuan = (Rcucuperempuan / hasilKPK) * sisawarisan;
+					$('#hasil_cucuperempuan').text(
+						toRp(bagianCucuPerempuan) + ' / Orang'
+					);
+					$('#bagian_cucuperempuan').text(
+						Rcucuperempuan + '/' + hasilKPK + ' sisa'
+					);
 				} else if (nilai_cucuperempuan > 1) {
 					const bagianCucuPerempuan =
-						((Rcucuperempuan / hasilKPK) * totalwarisan) / nilai_cucuperempuan;
-					$('#hasil_cucuperempuan').text(toRp(bagianCucuPerempuan));
-					$('#bagian_cucuperempuan').text(Rcucuperempuan + '/' + hasilKPK);
+						((Rcucuperempuan / hasilKPK) * sisawarisan) / nilai_cucuperempuan;
+					$('#hasil_cucuperempuan').text(
+						toRp(bagianCucuPerempuan) + ' / Orang'
+					);
+					$('#bagian_cucuperempuan').text(
+						Rcucuperempuan + '/' + hasilKPK + ' sisa'
+					);
 				}
 			}
 
 			if (nilai_saudaraperempuankandung > 0) {
 				if (nilai_saudaraperempuankandung == 1) {
 					const bagianSaudaraPerempuanKandung =
-						(Rsaudaraperempuankandung / hasilKPK) * totalwarisan;
+						(Rsaudaraperempuankandung / hasilKPK) * sisawarisan;
 					$('#hasil_saudaraperempuankandung').text(
-						toRp(bagianSaudaraPerempuanKandung)
+						toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuankandung').text(
-						Rsaudaraperempuankandung + '/' + hasilKPK
+						Rsaudaraperempuankandung + '/' + hasilKPK + ' sisa'
 					);
 				} else if (nilai_saudaraperempuankandung > 1) {
 					const bagianSaudaraPerempuanKandung =
-						((Rsaudaraperempuankandung / hasilKPK) * totalwarisan) /
+						((Rsaudaraperempuankandung / hasilKPK) * sisawarisan) /
 						nilai_saudaraperempuankandung;
 					$('#hasil_saudaraperempuankandung').text(
-						toRp(bagianSaudaraPerempuanKandung)
+						toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuankandung').text(
-						Rsaudaraperempuankandung + '/' + hasilKPK
+						Rsaudaraperempuankandung + '/' + hasilKPK + ' sisa'
 					);
 				}
 			}
@@ -1513,81 +2799,102 @@ $(document).ready(function () {
 			if (nilai_saudaraperempuanseayah > 0) {
 				if (nilai_saudaraperempuanseayah == 1) {
 					const bagianSaudaraPerempuanSeAyah =
-						(Rsaudaraperempuanseayah / hasilKPK) * totalwarisan;
+						(Rsaudaraperempuanseayah / hasilKPK) * sisawarisan;
 					$('#hasil_saudaraperempuanseayah').text(
-						toRp(bagianSaudaraPerempuanSeAyah)
+						toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuanseayah').text(
-						Rsaudaraperempuanseayah + '/' + hasilKPK
+						Rsaudaraperempuanseayah + '/' + hasilKPK + ' sisa'
 					);
 				} else if (nilai_saudaraperempuanseayah > 1) {
 					const bagianSaudaraPerempuanSeAyah =
-						((Rsaudaraperempuanseayah / hasilKPK) * totalwarisan) /
+						((Rsaudaraperempuanseayah / hasilKPK) * sisawarisan) /
 						nilai_saudaraperempuanseayah;
 					$('#hasil_saudaraperempuanseayah').text(
-						toRp(bagianSaudaraPerempuanSeAyah)
+						toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuanseayah').text(
-						Rsaudaraperempuanseayah + '/' + hasilKPK
+						Rsaudaraperempuanseayah + '/' + hasilKPK + ' sisa'
 					);
 				}
 			}
-			if (nilai_saudaralakiseibu > 0) {
-				if (nilai_saudaralakiseibu == 1) {
-					const bagianSaudaraLakiSeIbu =
-						(Rsaudaralakiseibu / hasilKPK) * totalwarisan;
-					$('#hasil_saudaralakiseibu').text(bagianSaudaraLakiSeIbu);
-					$('#bagian_saudaralakiseibu').text(
-						Rsaudaralakiseibu + '/' + hasilKPK
+
+			if (saudaraseibu > 0) {
+				if (nilai_saudaralakiseibu > 0 && nilai_saudaraperempuanseIbu > 0) {
+					const bagianSaudaraSeIbu =
+						((Rsaudaraseibu / hasilKPK) * sisawarisan) / saudaraseibu;
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraSeIbu) + ' / Orang'
 					);
+					$('#bagian_saudaralakiseibu').text(
+						Rsaudaraseibu + '/' + hasilKPK + ' B ' + ' sisa'
+					);
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraSeIbu) + ' / Orang'
+					);
+					$('#bagian_saudaraperempuanseibu').text(
+						Rsaudaraseibu + '/' + hasilKPK + ' B ' + ' sisa'
+					);
+				} else if (nilai_saudaralakiseibu == 1) {
+					const bagianSaudaraLakiSeIbu =
+						(Rsaudaraseibu / hasilKPK) * sisawarisan;
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+					);
+					$('#bagian_saudaralakiseibu').text(
+						Rsaudaraseibu + '/' + hasilKPK + ' sisa'
+					);
+					console.log('aulradd');
 				} else if (nilai_saudaralakiseibu > 1) {
 					const bagianSaudaraLakiSeIbu =
-						((Rsaudaralakiseibu / hasilKPK) * totalwarisan) /
-						nilai_saudaralakiseibu;
-					$('#hasil_saudaralakiseibu').text(toRp(bagianSaudaraLakiSeIbu));
+						((Rsaudaraseibu / hasilKPK) * sisawarisan) / nilai_saudaralakiseibu;
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+					);
 					$('#bagian_saudaralakiseibu').text(
-						Rsaudaralakiseibu + '/' + hasilKPK
+						Rsaudaraseibu + '/' + hasilKPK + ' sisa'
 					);
-				}
-			}
-			if (nilai_saudaraperempuanseIbu > 0) {
-				if (nilai_saudaraperempuanseIbu == 1) {
+					console.log('aulradd');
+				} else if (nilai_saudaraperempuanseIbu == 1) {
 					const bagianSaudaraPerempuanSeIbu =
-						(RsaudaraperempuanseIbu / hasilKPK) * totalwarisan;
-					$('#hasil_saudaraperempuanseIbu').text(
-						toRp(bagianSaudaraPerempuanSeIbu)
+						(Rsaudaraseibu / hasilKPK) * sisawarisan;
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
 					);
-					$('#bagian_saudaraperempuanseIbu').text(
-						RsaudaraperempuanseIbu + '/' + hasilKPK
+					$('#bagian_saudaraperempuanseibu').text(
+						Rsaudaraseibu + '/' + hasilKPK + ' sisa'
 					);
+					console.log('itu');
 				} else if (nilai_saudaraperempuanseIbu > 1) {
 					const bagianSaudaraPerempuanSeIbu =
-						((RsaudaraperempuanseIbu / hasilKPK) * totalwarisan) /
+						((Rsaudaraseibu / hasilKPK) * sisawarisan) /
 						nilai_saudaraperempuanseIbu;
-					$('#hasil_saudaraperempuanseIbu').text(
-						toRp(bagianSaudaraPerempuanSeIbu)
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
 					);
-					$('#bagian_saudaraperempuanseIbu').text(
-						RsaudaraperempuanseIbu + '/' + hasilKPK
+					$('#bagian_saudaraperempuanseibu').text(
+						Rsaudaraseibu + '/' + hasilKPK + ' sisa'
 					);
+					console.log('ini');
 				}
 			}
 		}
 
 		function CalculateShare() {
+			console.log('Cshare');
 			console.log(hasilKPK);
 			if (nilai_suami > 0) {
 				if (keturunan > 0) {
 					const bagianSuami = (1 / 4) * totalwarisan;
 					const ratioSuami = (1 / 4) * hasilKPK;
 					sisawarisan -= bagianSuami;
-					$('#hasil_suami').text(toRp(bagianSuami));
+					$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
 					$('#bagian_suami').text(ratioSuami + '/' + hasilKPK);
 				} else {
-					const bagianSuami = (1 / 2) * hasilKPK * totalwarisan;
+					const bagianSuami = (1 / 2) * totalwarisan;
 					const ratioSuami = (1 / 2) * hasilKPK;
 					sisawarisan -= bagianSuami;
-					$('#hasil_suami').text(toRp(bagianSuami));
+					$('#hasil_suami').text(toRp(bagianSuami) + ' / Orang');
 					$('#bagian_suami').text(ratioSuami + '/' + hasilKPK);
 				}
 			}
@@ -1597,13 +2904,13 @@ $(document).ready(function () {
 					const bagianIstri = ((1 / 8) * totalwarisan) / nilai_istri;
 					const ratioIstri = (1 / 8) * hasilKPK;
 					sisawarisan -= bagianIstri * nilai_istri;
-					$('#hasil_istri').text(toRp(bagianIstri));
+					$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
 					$('#bagian_istri').text(ratioIstri + '/' + hasilKPK);
 				} else {
 					const bagianIstri = ((1 / 4) * totalwarisan) / nilai_istri;
 					const ratioIstri = (1 / 4) * hasilKPK;
 					sisawarisan -= bagianIstri * nilai_istri;
-					$('#hasil_istri').text(toRp(bagianIstri));
+					$('#hasil_istri').text(toRp(bagianIstri) + ' / Orang');
 					$('#bagian_istri').text(ratioIstri + '/' + hasilKPK);
 				}
 			}
@@ -1613,22 +2920,22 @@ $(document).ready(function () {
 					const bagianAyah = (1 / 6) * totalwarisan;
 					const ratioAyah = (1 / 6) * hasilKPK;
 					sisawarisan -= bagianAyah;
-					$('#hasil_ayah').text(toRp(bagianAyah));
+					$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
 					$('#bagian_ayah').text(ratioAyah + '/' + hasilKPK);
 				}
 			}
 			if (nilai_ibu > 0) {
-				if (keturunan > 0 || saudara > 0) {
+				if (keturunan > 0 || saudara > 1) {
 					const bagianIbu = (1 / 6) * totalwarisan;
 					const ratioIbu = (1 / 6) * hasilKPK;
 					sisawarisan -= bagianIbu;
-					$('#hasil_ibu').text(toRp(bagianIbu));
+					$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
 					$('#bagian_ibu').text(ratioIbu + '/' + hasilKPK);
 				} else {
 					const bagianIbu = (1 / 3) * totalwarisan;
 					const ratioIbu = (1 / 3) * hasilKPK;
 					sisawarisan -= bagianIbu;
-					$('#hasil_ibu').text(toRp(bagianIbu));
+					$('#hasil_ibu').text(toRp(bagianIbu) + ' / Orang');
 					$('#bagian_ibu').text(ratioIbu + '/' + hasilKPK);
 				}
 			}
@@ -1638,7 +2945,7 @@ $(document).ready(function () {
 					const bagianKakek = (1 / 6) * totalwarisan;
 					const ratioKakek = (1 / 6) * hasilKPK;
 					sisawarisan -= bagianKakek;
-					$('#hasil_kakek').text(toRp(bagianKakek));
+					$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
 					$('#bagian_kakek').text(ratioKakek + '/' + hasilKPK);
 				}
 			}
@@ -1648,77 +2955,94 @@ $(document).ready(function () {
 				// const ratioNenekAyah = ratioNenek2 / nilai_nenekayah;
 				// const ratioNenekIbu = ratioNenek2 / nilai_nenekibu;
 				sisawarisan -= bagianNenek2 * nilai_nenek2;
-				$('#kolom_nenek2').show();
-				$('#bagian_nenek2').text(ratioNenek2 + '/' + hasilKPK);
-				$('#hasil_nenekayah').text(toRp(bagianNenek2));
-				$('#hasil_nenekibu').text(toRp(bagianNenek2));
-				$('#bagian_nenekayah').text();
-				$('#bagian_nenekibu').text();
+				$('#hasil_nenekayah').text(toRp(bagianNenek2) + ' / Orang');
+				$('#hasil_nenekibu').text(toRp(bagianNenek2) + ' / Orang');
+				$('#bagian_nenekayah').text(ratioNenek2 + '/' + hasilKPK + ' Bersama');
+				$('#bagian_nenekibu').text(ratioNenek2 + '/' + hasilKPK + ' Bersama');
 			} else {
 				if (nilai_nenekayah > 0 && nilai_nenekibu == 0) {
 					const bagianNenekAyah = ((1 / 6) * totalwarisan) / nilai_nenekayah;
 					const ratioNenekAyah = (1 / 6) * hasilKPK;
 					sisawarisan -= bagianNenekAyah * nilai_nenekayah;
-					$('#hasil_nenekayah').text(toRp(bagianNenekAyah));
+					$('#hasil_nenekayah').text(toRp(bagianNenekAyah) + ' / Orang');
 					$('#bagian_nenekayah').text(ratioNenekAyah + '/' + hasilKPK);
 				}
 				if (nilai_nenekibu > 0 && nilai_nenekayah == 0) {
 					const bagianNenekIbu = ((1 / 6) * totalwarisan) / nilai_nenekibu;
 					const ratioNenekIbu = (1 / 6) * hasilKPK;
 					sisawarisan -= bagianNenekIbu * nilai_nenekibu;
-					$('#hasil_nenekibu').text(toRp(bagianNenekIbu));
+					$('#hasil_nenekibu').text(toRp(bagianNenekIbu) + ' / Orang');
 					$('#bagian_nenekibu').text(ratioNenekIbu + '/' + hasilKPK);
 				}
 			}
 
-			if (nilai_anakperempuan > 0) {
+			if (nilai_anakperempuan > 0 && nilai_anaklaki == 0) {
 				if (nilai_anakperempuan > 1 && nilai_anaklaki == 0) {
 					const bagianAnakPerempuan =
 						((2 / 3) * totalwarisan) / nilai_anakperempuan;
 					const ratioAnakPerempuan = (2 / 3) * hasilKPK;
-					sisawarisan -= bagianAnakPerempuan;
-					$('#hasil_anakperempuan').text(toRp(bagianAnakPerempuan));
+					sisawarisan -= bagianAnakPerempuan * nilai_anakperempuan;
+					$('#hasil_anakperempuan').text(
+						toRp(bagianAnakPerempuan) + ' / Orang'
+					);
 					$('#bagian_anakperempuan').text(ratioAnakPerempuan + '/' + hasilKPK);
 				} else if (nilai_anakperempuan == 1 && nilai_anaklaki == 0) {
 					const bagianAnakPerempuan = (1 / 2) * totalwarisan;
 					const ratioAnakPerempuan = (1 / 2) * hasilKPK;
 					sisawarisan -= bagianAnakPerempuan;
-					$('#hasil_anakperempuan').text(toRp(bagianAnakPerempuan));
+					$('#hasil_anakperempuan').text(
+						toRp(bagianAnakPerempuan) + ' / Orang'
+					);
 					$('#bagian_anakperempuan').text(ratioAnakPerempuan + '/' + hasilKPK);
+					console.log(bagianAnakPerempuan);
 				}
 			}
 
-			if (nilai_cucuperempuan > 0) {
+			if (nilai_cucuperempuan > 0 && nilai_cuculaki == 0) {
+				console.log('share');
 				if (nilai_anakperempuan > 0) {
 					const bagianCucuPerempuan =
 						((1 / 6) * totalwarisan) / nilai_cucuperempuan;
 					const ratioCucuPerempuan = (1 / 6) * hasilKPK;
-					sisawarisan -= bagianCucuPerempuan;
-					$('#hasil_cucuperempuan').text(toRp(bagianCucuPerempuan));
+					sisawarisan -= bagianCucuPerempuan * nilai_cucuperempuan;
+					$('#hasil_cucuperempuan').text(
+						toRp(bagianCucuPerempuan) + ' / Orang'
+					);
 					$('#bagian_cucuperempuan').text(ratioCucuPerempuan + '/' + hasilKPK);
 				} else if (nilai_cucuperempuan == 1) {
 					const bagianCucuPerempuan = (1 / 2) * totalwarisan;
 					const ratioCucuPerempuan = (1 / 2) * hasilKPK;
 					sisawarisan -= bagianCucuPerempuan;
-					$('#hasil_cucuperempuan').text(toRp(bagianCucuPerempuan));
+					$('#hasil_cucuperempuan').text(
+						toRp(bagianCucuPerempuan) + ' / Orang'
+					);
 					$('#bagian_cucuperempuan').text(ratioCucuPerempuan + '/' + hasilKPK);
 				} else if (nilai_cucuperempuan > 1) {
 					const bagianCucuPerempuan =
 						((2 / 3) * totalwarisan) / nilai_cucuperempuan;
 					const ratioCucuPerempuan = (2 / 3) * hasilKPK;
-					sisawarisan -= bagianCucuPerempuan;
-					$('#hasil_cucuperempuan').text(toRp(bagianCucuPerempuan));
+					sisawarisan -= bagianCucuPerempuan * nilai_cucuperempuan;
+					$('#hasil_cucuperempuan').text(
+						toRp(bagianCucuPerempuan) + ' / Orang'
+					);
 					$('#bagian_cucuperempuan').text(ratioCucuPerempuan + '/' + hasilKPK);
+					console.log('ini');
+					console.log(bagianCucuPerempuan);
 				}
 			}
 
-			if (nilai_saudaraperempuankandung > 0) {
+			if (
+				nilai_saudaraperempuankandung > 0 &&
+				nilai_anakperempuan == 0 &&
+				nilai_cucuperempuan == 0 &&
+				nilai_saudaralakikandung == 0
+			) {
 				if (nilai_saudaraperempuankandung == 1) {
 					const bagianSaudaraPerempuanKandung = (1 / 2) * totalwarisan;
 					const ratioSaudaraPerempuanKandung = (1 / 2) * hasilKPK;
 					sisawarisan -= bagianSaudaraPerempuanKandung;
 					$('#hasil_saudaraperempuankandung').text(
-						toRp(bagianSaudaraPerempuanKandung)
+						toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuankandung').text(
 						ratioSaudaraPerempuanKandung + '/' + hasilKPK
@@ -1727,9 +3051,10 @@ $(document).ready(function () {
 					const bagianSaudaraPerempuanKandung =
 						((2 / 3) * totalwarisan) / nilai_saudaraperempuankandung;
 					const ratioSaudaraPerempuanKandung = (2 / 3) * hasilKPK;
-					sisawarisan -= bagianSaudaraPerempuanKandung;
+					sisawarisan -=
+						bagianSaudaraPerempuanKandung * nilai_saudaraperempuankandung;
 					$('#hasil_saudaraperempuankandung').text(
-						toRp(bagianSaudaraPerempuanKandung)
+						toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuankandung').text(
 						ratioSaudaraPerempuanKandung + '/' + hasilKPK
@@ -1737,13 +3062,18 @@ $(document).ready(function () {
 				}
 			}
 
-			if (nilai_saudaraperempuanseayah > 0) {
+			if (
+				nilai_saudaraperempuanseayah > 0 &&
+				nilai_anakperempuan == 0 &&
+				nilai_cucuperempuan == 0 &&
+				nilai_saudaralakiseayah == 0
+			) {
 				if (nilai_saudaraperempuanseayah == 1) {
 					const bagianSaudaraPerempuanSeAyah = (1 / 2) * totalwarisan;
 					const ratioSaudaraPerempuanSeAyah = (1 / 2) * hasilKPK;
 					sisawarisan -= bagianSaudaraPerempuanSeAyah;
 					$('#hasil_saudaraperempuanseayah').text(
-						toRp(bagianSaudaraPerempuanSeAyah)
+						toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuanseayah').text(
 						ratioSaudaraPerempuanSeAyah + '/' + hasilKPK
@@ -1752,21 +3082,40 @@ $(document).ready(function () {
 					const bagianSaudaraPerempuanSeAyah =
 						((2 / 3) * totalwarisan) / nilai_saudaraperempuanseayah;
 					const ratioSaudaraPerempuanSeAyah = (2 / 3) * hasilKPK;
-					sisawarisan -= bagianSaudaraPerempuanSeAyah;
+					sisawarisan -=
+						bagianSaudaraPerempuanSeAyah * nilai_saudaraperempuanseayah;
 					$('#hasil_saudaraperempuanseayah').text(
-						toRp(bagianSaudaraPerempuanSeAyah)
+						toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuanseayah').text(
 						ratioSaudaraPerempuanSeAyah + '/' + hasilKPK
 					);
 				}
 			}
-			if (nilai_saudaralakiseibu > 0) {
-				if (nilai_saudaralakiseibu == 1) {
+			if (saudaraseibu > 0) {
+				if (nilai_saudaralakiseibu > 0 && nilai_saudaraperempuanseIbu > 0) {
+					const bagianSaudaraSeIbu = ((1 / 3) * totalwarisan) / saudaraseibu;
+					const ratioSaudaraSeIbu = (1 / 3) * hasilKPK;
+					sisawarisan -= bagianSaudaraSeIbu * saudaraseibu;
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraSeIbu) + ' / Orang'
+					);
+					$('#bagian_saudaralakiseibu').text(
+						ratioSaudaraSeIbu + '/' + hasilKPK + ' Bersama'
+					);
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraSeIbu) + ' / Orang'
+					);
+					$('#bagian_saudaraperempuanseibu').text(
+						ratioSaudaraSeIbu + '/' + hasilKPK + ' Bersama'
+					);
+				} else if (nilai_saudaralakiseibu == 1) {
 					const bagianSaudaraLakiSeIbu = (1 / 6) * totalwarisan;
 					const ratioSaudaraLakiSeIbu = (1 / 6) * hasilKPK;
 					sisawarisan -= bagianSaudaraLakiSeIbu;
-					$('#hasil_saudaralakiseibu').text(bagianSaudaraLakiSeIbu);
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+					);
 					$('#bagian_saudaralakiseibu').text(
 						ratioSaudaraLakiSeIbu + '/' + hasilKPK
 					);
@@ -1774,164 +3123,184 @@ $(document).ready(function () {
 					const bagianSaudaraLakiSeIbu =
 						((1 / 3) * totalwarisan) / nilai_saudaralakiseibu;
 					const ratioSaudaraLakiSeIbu = (1 / 3) * hasilKPK;
-					sisawarisan -= bagianSaudaraLakiSeIbu;
-					$('#hasil_saudaralakiseibu').text(toRp(bagianSaudaraLakiSeIbu));
+					sisawarisan -= bagianSaudaraLakiSeIbu * nilai_saudaralakiseibu;
+					$('#hasil_saudaralakiseibu').text(
+						toRp(bagianSaudaraLakiSeIbu) + ' / Orang'
+					);
 					$('#bagian_saudaralakiseibu').text(
 						ratioSaudaraLakiSeIbu + '/' + hasilKPK
 					);
-				}
-			}
-			if (nilai_saudaraperempuanseIbu > 0) {
-				if (nilai_saudaraperempuanseIbu == 1) {
-					const bagianSaudaraPerempuanSeIbu = (1 / 3) * totalwarisan;
+				} else if (nilai_saudaraperempuanseIbu == 1) {
+					const bagianSaudaraPerempuanSeIbu = (1 / 6) * totalwarisan;
 					const ratioSaudaraPerempuanSeIbu = (1 / 3) * hasilKPK;
 					sisawarisan -= bagianSaudaraPerempuanSeIbu;
-					$('#hasil_saudaraperempuanseIbu').text(
-						toRp(bagianSaudaraPerempuanSeIbu)
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
 					);
-					$('#bagian_saudaraperempuanseIbu').text(
+					$('#bagian_saudaraperempuanseibu').text(
 						ratioSaudaraPerempuanSeIbu + '/' + hasilKPK
 					);
 				} else if (nilai_saudaraperempuanseIbu > 1) {
 					const bagianSaudaraPerempuanSeIbu =
 						((1 / 3) * totalwarisan) / nilai_saudaraperempuanseIbu;
-					const ratioSaudaraPerempuanSeIbu = (1 / 3) * hasilKPK;
-					sisawarisan -= bagianSaudaraPerempuanSeIbu;
-					$('#hasil_saudaraperempuanseIbu').text(
-						toRp(bagianSaudaraPerempuanSeIbu)
+					const ratioSaudaraSeIbu = (1 / 3) * hasilKPK;
+					sisawarisan -=
+						bagianSaudaraPerempuanSeIbu * nilai_saudaraperempuanseIbu;
+					$('#hasil_saudaraperempuanseibu').text(
+						toRp(bagianSaudaraPerempuanSeIbu) + ' / Orang'
 					);
-					$('#bagian_saudaraperempuanseIbu').text(
-						ratioSaudaraPerempuanSeIbu + '/' + hasilKPK
+					$('#bagian_saudaraperempuanseibu').text(
+						ratioSaudaraSeIbu + '/' + hasilKPK
 					);
 				}
 			}
-
-			CalculateAshabah();
+			console.log(sisawarisan);
+			if (sisawarisan > 0) {
+				console.log(sisawarisan);
+				CalculateAshabah();
+			}
 		}
 
 		function CalculateAshabah() {
+			console.log('Cashabah');
 			console.log(hasilKPK);
+			console.log(totalashobah);
 			let nilai_ashabah = sisawarisan / totalashobah;
 
-			if (nilai_ayah > 0) {
+			if (nilai_ayah > 0 && keturunanLaki == 0) {
 				if (nilai_anakperempuan > 0 && keturunanLaki == 0) {
 					const bagianAyah = (1 / 6) * totalwarisan + nilai_ashabah * 2;
-					$('#hasil_ayah').text(toRp(bagianAyah));
-					$('#bagian_ayah').text('1/6 + Ashabah');
+					const ratioAyah = (1 / 6) * hasilKPK;
+					$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
+					$('#bagian_ayah').text(ratioAyah + '/' + hasilKPK + ' + Ashabah');
 				} else {
 					const bagianAyah = nilai_ashabah * 2;
-					$('#hasil_ayah').text(toRp(bagianAyah));
+					$('#hasil_ayah').text(toRp(bagianAyah) + ' / Orang');
 					$('#bagian_ayah').text('Ashabah');
 				}
 			}
-			if (nilai_kakek > 0) {
-				if (CalculateShare.keturunanPerempuan > 0) {
+			if (nilai_kakek > 0 && keturunanLaki == 0) {
+				if (keturunanPerempuan > 0) {
 					const bagianKakek = (1 / 6) * totalwarisan + nilai_ashabah * 2;
+					const ratioKakek = (1 / 6) * hasilKPK;
 					sisawarisan -= bagianKakek;
-					$('#hasil_kakek').text(toRp(bagianKakek));
-					$('#bagian_kakek').text('1/6 + Ashabah');
+					$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
+					$('#bagian_kakek').text(ratioKakek + '/' + hasilKPK + ' + Ashabah');
 				} else {
 					const bagianKakek = nilai_ashabah * 2;
-					$('#hasil_kakek').text(toRp(bagianKakek));
+					$('#hasil_kakek').text(toRp(bagianKakek) + ' / Orang');
 					$('#bagian_kakek').text('Ashabah');
 				}
 			}
 			if (nilai_anaklaki > 0) {
 				const bagianAnakLaki = nilai_ashabah * 2;
-				$('#hasil_anaklaki').text(toRp(bagianAnakLaki));
+				$('#hasil_anaklaki').text(toRp(bagianAnakLaki) + ' / Orang');
 				$('#bagian_anaklaki').text('Ashabah');
 			}
 			if (nilai_anakperempuan > 0) {
 				if (nilai_anaklaki > 0) {
 					const bagianAnakPerempuan = nilai_ashabah;
-					$('#hasil_anakperempuan').text(toRp(bagianAnakPerempuan));
+					$('#hasil_anakperempuan').text(
+						toRp(bagianAnakPerempuan) + ' / Orang'
+					);
 					$('#bagian_anakperempuan').text('Ashabah');
 				}
 			}
 			if (nilai_cuculaki > 0) {
 				const bagianCucuLaki = nilai_ashabah * 2;
-				$('#hasil_cuculaki').text(toRp(bagianCucuLaki));
+				$('#hasil_cuculaki').text(toRp(bagianCucuLaki) + ' / Orang');
 				$('#bagian_cuculaki').text('Ashabah');
 			}
 			if (nilai_cucuperempuan > 0) {
 				if (nilai_cuculaki > 0) {
 					const bagianCucuPerempuan = nilai_ashabah;
-					$('#hasil_cucuperempuan').text(toRp(bagianCucuPerempuan));
+					$('#hasil_cucuperempuan').text(
+						toRp(bagianCucuPerempuan) + ' / Orang'
+					);
 					$('#bagian_cucuperempuan').text('Ashabah');
 				}
 			}
 			if (nilai_saudaralakikandung > 0) {
 				const bagianSaudaraLakiKandung = nilai_ashabah * 2;
-				$('#hasil_saudaralakikandung').text(toRp(bagianSaudaraLakiKandung));
+				$('#hasil_saudaralakikandung').text(
+					toRp(bagianSaudaraLakiKandung) + ' / Orang'
+				);
 				$('#bagian_saudaralakikandung').text('Ashabah');
 			}
 			if (nilai_saudaraperempuankandung > 0) {
-				if (nilai_saudaralakikandung > 0 && nilai_anakperempuan > 0) {
+				if (
+					nilai_saudaralakikandung > 0 ||
+					nilai_anakperempuan > 0 ||
+					nilai_cucuperempuan > 0
+				) {
 					const bagianSaudaraPerempuanKandung = nilai_ashabah;
 					$('#hasil_saudaraperempuankandung').text(
-						toRp(bagianSaudaraPerempuanKandung)
+						toRp(bagianSaudaraPerempuanKandung) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuankandung').text('Ashabah');
 				}
 			}
 			if (nilai_saudaralakiseayah > 0) {
 				const bagianSaudaraLakiSeAyah = nilai_ashabah * 2;
-				$('#hasil_saudaralakiseayah').text(toRp(bagianSaudaraLakiSeAyah));
+				$('#hasil_saudaralakiseayah').text(
+					toRp(bagianSaudaraLakiSeAyah) + ' / Orang'
+				);
 				$('#bagian_saudaralakiseayah').text('Ashabah');
 			}
 			if (nilai_saudaraperempuanseayah > 0) {
-				if (nilai_saudaralakiseayah > 0) {
+				if (
+					nilai_saudaralakiseayah > 0 ||
+					nilai_anakperempuan > 0 ||
+					nilai_cucuperempuan > 0
+				) {
 					const bagianSaudaraPerempuanSeAyah = nilai_ashabah;
 					$('#hasil_saudaraperempuanseayah').text(
-						toRp(bagianSaudaraPerempuanSeAyah)
+						toRp(bagianSaudaraPerempuanSeAyah) + ' / Orang'
 					);
 					$('#bagian_saudaraperempuanseayah').text('Ashabah');
 				}
 			}
-			if (nilai_saudaralakiseibu > 0) {
-				const bagianSaudaraLakiSeIbu = nilai_ashabah * 2;
-				$('#hasil_saudaralakiseibu').text(toRp(bagianSaudaraLakiSeIbu));
-				$('#bagian_saudaralakiseibu').text('Ashabah');
-			}
-			if (nilai_saudaraperempuanseIbu > 0) {
-				const bagianSaudaraPerempuanSeIbu = nilai_ashabah;
-				$('#hasil_saudaraperempuanseIbu').text(
-					toRp(bagianSaudaraPerempuanSeIbu)
-				);
-				$('#bagian_saudaraperempuanseIbu').text('Ashabah');
-			}
 			if (nilai_anaklakisaudarakandung > 0) {
 				const bagianAnakLakiSaudaraKandung = nilai_ashabah * 2;
 				$('#hasil_anaklakisaudarakandung').text(
-					toRp(bagianAnakLakiSaudaraKandung)
+					toRp(bagianAnakLakiSaudaraKandung) + ' / Orang'
 				);
 				$('#bagian_anaklakisaudarakandung').text('Ashabah');
 			}
 			if (nilai_anaklakisaudaraseayah > 0) {
 				const bagianAnakLakiSaudaraSeAyah = nilai_ashabah * 2;
 				$('#hasil_anaklakisaudaraseayah').text(
-					toRp(bagianAnakLakiSaudaraSeAyah)
+					toRp(bagianAnakLakiSaudaraSeAyah) + ' / Orang'
 				);
 				$('#bagian_anaklakisaudaraseayah').text('Ashabah');
 			}
 			if (nilai_pamankandungayah > 0) {
 				const bagianPamanKandungAyah = nilai_ashabah * 2;
-				$('#hasil_pamankandungayah').text(toRp(bagianPamanKandungAyah));
+				$('#hasil_pamankandungayah').text(
+					toRp(bagianPamanKandungAyah) + ' / Orang'
+				);
 				$('#bagian_pamankandungayah').text('Ashabah');
+				console.log('paman');
 			}
 			if (nilai_pamansekakekayah > 0) {
 				const bagianPamanSeKakekAyah = nilai_ashabah * 2;
-				$('#hasil_pamansekakekayah').text(toRp(bagianPamanSeKakekAyah));
+				$('#hasil_pamansekakekayah').text(
+					toRp(bagianPamanSeKakekAyah) + ' / Orang'
+				);
 				$('#bagian_pamansekakekayah').text('Ashabah');
 			}
 			if (nilai_anaklakipamankandung > 0) {
 				const bagianAnakLakiPamanKandung = nilai_ashabah * 2;
-				$('#hasil_anaklakipamankandung').text(toRp(bagianAnakLakiPamanKandung));
+				$('#hasil_anaklakipamankandung').text(
+					toRp(bagianAnakLakiPamanKandung) + ' / Orang'
+				);
 				$('#bagian_anaklakipamankandung').text('Ashabah');
 			}
 			if (nilai_anaklakipamansekakek > 0) {
 				const bagianAnakLakiPamanSeKakek = nilai_ashabah * 2;
-				$('#hasil_anaklakipamansekakek').text(toRp(bagianAnakLakiPamanSeKakek));
+				$('#hasil_anaklakipamansekakek').text(
+					toRp(bagianAnakLakiPamanSeKakek) + ' / Orang'
+				);
 				$('#bagian_anaklakipamansekakek').text('Ashabah');
 			}
 		}
@@ -1943,6 +3312,7 @@ $(document).ready(function () {
 			if (nilai_ > 0) {
 				$(rowId).show(); // Menampilkan baris jika memiliki hasil
 				$(`#jumlah_${idPrefix}`).text(nilai_); // Menampilkan jumlah pewaris
+				console.log('1');
 			}
 		}
 

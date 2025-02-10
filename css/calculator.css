@@ -4,6 +4,8 @@
 	--b: #333;
 	--r: #dadada;
 	--lg: #007b31;
+	--rg: #418f60;
+	--gr: #c9c9c9;
 }
 
 * {
@@ -62,15 +64,20 @@ body {
 	top: 10%;
 }
 
-.a-next-button {
+.footer {
+	max-width: 100%;
+	display: flex;
+	padding: 5px 3%;
 	position: fixed;
 	background-color: var(--g);
-	width: 70px;
-	height: 100px;
-	align-items: center;
-	top: 45%;
-	right: 1%;
-	border-radius: 25%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	z-index: 100;
+	box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
 }
 
 #img-next-button0,
@@ -92,20 +99,52 @@ body {
 #img-return-button8,
 #img-next-button9,
 #img-return-button9 {
-	margin: 35% 15%;
-	max-width: 50px;
-	height: 50px;
+	margin: auto;
+	color: var(--w);
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+.a-next-button,
+.z-next-button {
+	margin: auto;
+	padding-top: 10px;
+	position: absolute;
+	height: 30px;
+	right: 7%;
+	z-index: 102;
 }
 
 .a-return-button {
-	position: fixed;
+	margin: auto;
+	padding-top: 10px;
+	position: absolute;
+	height: 30px;
+	left: 7%;
+	z-index: 102;
+}
+
+.logo {
+	position: absolute;
+	margin: auto;
+	bottom: 10%;
+	right: 48%;
+	transform: translateX(10%);
+	height: 60px;
+	z-index: 999;
+	width: 90px;
+	height: 90px;
 	background-color: var(--g);
-	width: 70px;
-	height: 100px;
+	border-radius: 50%;
 	align-items: center;
-	top: 45%;
-	left: 1%;
-	border-radius: 25%;
+	box-shadow: 1px 1px 11px 3px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 1px 1px 11px 3px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 1px 1px 7px 11px rgba(0, 0, 0, 0.5);
+}
+
+.logo_white {
+	width: 80px;
+	margin: 5px;
 }
 
 .main-title {
@@ -140,29 +179,32 @@ body {
 section {
 	position: absolute;
 	top: 6%;
-	margin: 30px;
+	margin: 0;
 	width: 100%;
 	height: 100%;
 	font-size: 1.1rem;
 }
 
 .main-page {
-	padding: 18% 10%;
+	padding: 13% 10%;
 	margin: 0;
 	max-height: 100vh;
 }
 
 table {
-	width: 100%;
+	width: 100%; /* Membuat tabel memenuhi 80% dari lebar layar */
 	border-collapse: collapse;
-	margin: 20px 0;
+	margin: 20px auto; /* Margin otomatis untuk memastikan tabel terpusat */
 }
 
 table tr {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 3px;
+	display: table-row; /* Kembalikan ke default table-row */
+}
+
+table td,
+table th {
+	padding: 5px; /* Memberikan sedikit ruang dalam sel */
+	box-sizing: border-box;
 }
 
 .numeric {
@@ -192,9 +234,36 @@ table tr {
 	width: 100%;
 }
 
+.kolom_slider {
+	display: flex;
+}
+
+.minus {
+	display: flex;
+	padding: 0px 10px 12px 10px;
+	font-weight: 700;
+	color: var(--lg);
+	font-family: 'Lexend Giga', serif;
+	font-weight: 900;
+	font-size: 1rem;
+	cursor: pointer;
+	align-items: center;
+}
+
+.plus {
+	display: flex;
+	padding: 6px 10px 0px 10px;
+	font-weight: 700;
+	color: var(--lg);
+	font-family: 'Lexend Giga', serif;
+	font-weight: 900;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
 .slider {
 	appearance: none;
-	width: 80vw;
+	width: 76vw;
 	background: var(--b);
 	outline: solid 1px var(--b);
 	opacity: 0.7;
@@ -204,16 +273,16 @@ table tr {
 }
 
 .slider:hover {
-	opacity: 1; /* Fully shown on mouse-over */
+	opacity: 1;
 }
 
 .slider::-webkit-slider-thumb {
 	padding-top: 10px;
 	appearance: none;
-	width: 25px; /* Set a specific slider handle width */
-	height: 25px; /* Slider handle height */
-	background: var(--g); /* Green background */
-	cursor: pointer; /* Cursor on hover */
+	width: 25px;
+	height: 25px;
+	background: var(--g);
+	cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
@@ -227,6 +296,11 @@ table tr {
 
 #legacy_total {
 	margin: 0;
+}
+
+.data,
+.kolom_final {
+	padding-bottom: 60rem;
 }
 
 .main-page2 {
@@ -243,6 +317,7 @@ table tr {
 	display: block;
 	margin: 0;
 	box-sizing: border-box;
+	padding-top: 30px;
 }
 
 .hasil_atas {
@@ -259,28 +334,50 @@ table tr {
 	margin-right: 11%;
 }
 
-.kolom_bagian tr td:nth-child(2) {
-	right: 46%;
-	transform: translateX(50);
-	position: absolute;
+.kolom_main tr td,
+.kolom_main tr th {
+	border: 2px solid var(--gr);
+}
+
+/* .kolom_main tr th:nth-child(1) {
+	text-align: left;
+}
+.kolom_main tr th:nth-child(2) {
 	text-align: center;
-	align-items: center;
+}
+.kolom_main tr th:nth-child(3) {
+	text-align: right;
+} */
+
+.kolom_main tr td:nth-child(1) {
+	text-align: left;
+}
+.kolom_main tr td:nth-child(2) {
+	text-align: center;
+}
+.kolom_main tr td:nth-child(3) {
+	text-align: center;
 }
 
-.kolom_final table {
-	width: 100%;
-	border-collapse: collapse;
-	margin: 20px 0;
+#kontak {
+	margin: auto;
+	text-align: center;
+	background-color: var(--g);
+	padding: 10px;
+	border-radius: 12px;
+	color: var(--w);
+	max-width: 80%;
 }
 
-.kolom_final table tr {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 3px;
+#kontak a {
+	color: var(--w);
 }
 
-@media (max-width: 1024px) {
+#kontak a:hover {
+	color: var(--gy);
+}
+
+@media (max-width: 1224px) {
 	html {
 		font-size: 75%;
 	}
@@ -293,19 +390,174 @@ table tr {
 	.page-label {
 		margin-top: 1rem;
 	}
+	.logo {
+		left: 46%;
+		transform: translateX(-10%);
+	}
+	.a-next-button {
+		margin-right: 37px;
+		display: flex;
+		bottom: 100%;
+		margin-bottom: -37px;
+		cursor: pointer;
+	}
+
+	.a-return-button {
+		margin: auto;
+		display: flex;
+		left: 7%;
+		bottom: 100%;
+		margin-bottom: -37px;
+	}
+
+	#img-next-button0,
+	#img-next-button1,
+	#img-return-button1,
+	#img-next-button2,
+	#img-return-button2,
+	#img-next-button3,
+	#img-return-button3,
+	#img-next-button4,
+	#img-return-button4,
+	#img-next-button5,
+	#img-return-button5,
+	#img-next-button6,
+	#img-return-button6,
+	#img-next-button7,
+	#img-return-button7,
+	#img-next-button8,
+	#img-return-button8,
+	#img-next-button9,
+	#img-return-button9 {
+		margin: auto;
+		cursor: pointer;
+	}
 }
 
 @media (max-width: 768px) {
 	html {
-		font-size: 62.5%;
+		font-size: 60%;
+	}
+	section {
+		margin: 0;
+	}
+	.navbar-main {
+		height: 43px;
 	}
 	.main-title {
-		top: 23%;
+		display: none;
 	}
 	.sub-title {
-		margin-top: 1rem;
+		top: 0;
 	}
 	.page-label {
-		margin-top: 1.4rem;
+		margin-top: 1.2rem;
+		right: 1%;
+	}
+	.return-button {
+		left: 3%;
+		height: 25px;
+		width: 25px;
+	}
+
+	.footer {
+		height: 40px;
+	}
+
+	.logo {
+		left: 45%;
+		transform: translateX(-10%);
+		width: 72px;
+		height: 72px;
+	}
+
+	.logo_white {
+		width: 64px;
+		margin: 5px;
+	}
+
+	.a-next-button {
+		margin: auto;
+		right: 23%;
+		display: flex;
+		bottom: 100%;
+		margin-bottom: -28px;
+		cursor: pointer;
+	}
+
+	.a-return-button {
+		margin: auto;
+		display: flex;
+		left: 4%;
+		bottom: 100%;
+		margin-bottom: -28px;
+	}
+
+	.z-next-button {
+		margin: auto;
+		right: 10%;
+		display: flex;
+		bottom: 100%;
+		margin-bottom: -30px;
+		cursor: pointer;
+	}
+
+	.main-page {
+		padding: 18% 4%;
+	}
+	.main-page2 {
+		padding: 0% 3%;
+	}
+	#total_tirkah,
+	#total_hutang,
+	#total_wasiat,
+	#total_tajhiz,
+	#total_irts {
+		margin-right: 4.5%;
+	}
+	#img-next-button0,
+	#img-next-button1,
+	#img-return-button1,
+	#img-next-button2,
+	#img-return-button2,
+	#img-next-button3,
+	#img-return-button3,
+	#img-next-button4,
+	#img-return-button4,
+	#img-next-button5,
+	#img-return-button5,
+	#img-next-button6,
+	#img-return-button6,
+	#img-next-button7,
+	#img-return-button7,
+	#img-next-button8,
+	#img-return-button8 {
+		margin: 10% 33%;
+		max-width: 30px;
+		height: 30px;
+	}
+
+	#img-next-button9 {
+		max-width: 80px;
+		height: 30px;
+	}
+
+	.slider {
+		width: 88vw;
+	}
+	.slider::-webkit-slider-thumb {
+		padding-top: 10px;
+		appearance: none;
+		width: 20px;
+		height: 20px;
+	}
+	.kolom_main thead tr th:nth-child(2) {
+		padding-left: 18%;
+	}
+	.kolom_bagian tr td:nth-child(2) {
+		right: 36%;
+	}
+	.kolom_hasil {
+		padding-top: 10px;
 	}
 }

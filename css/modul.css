@@ -28,6 +28,12 @@ body {
 	overflow-x: hidden;
 }
 
+header {
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
 .navbar {
 	max-width: 100%;
 	display: flex;
@@ -43,6 +49,7 @@ body {
 	box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
 	-webkit-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
 	-moz-box-shadow: 1px 1px 11px 4px rgba(0, 0, 0, 0.75);
+	will-change: transform;
 }
 .navbar a {
 	left: 1%;
@@ -64,7 +71,7 @@ body {
 	color: var(--w);
 }
 .navbar-side {
-	width: 20%;
+	width: 22%;
 	height: 100%;
 	position: fixed;
 	display: grid;
@@ -72,6 +79,7 @@ body {
 	background-color: var(--g);
 	z-index: 99;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 .navbar-side .title-modul {
 	position: absolute;
@@ -97,50 +105,47 @@ body {
 	flex-direction: column;
 	transform-style: preserve-3d;
 	transform: perspective(1000px);
-	margin: 1rem 1.5rem;
+	margin: 2rem 1rem;
+	width: 90%;
 }
 .navbar-side .list-modul a {
-	padding: 1rem;
+	padding: 10px 0px;
 	color: var(--w);
 	font-family: 'Poppins', sans-serif;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	font-weight: 500;
 }
 .navbar-side .list-modul .bab {
 	transition: 0.5s;
+	cursor: pointer;
 }
 .navbar-side .list-modul .bab:hover {
-	transform: translateZ(100px);
+	transform: translateZ(75px);
 	font-weight: 700;
 	color: var(--gy);
 }
-
 .navbar-side .list-modul .bab:hover + * {
-	transform: translateZ(100px) rotateX(-30deg);
+	transform: translateZ(75px) rotateX(-30deg);
 }
 .navbar-side .list-modul .bab:hover + * + * {
-	transform: translateZ(70px) rotateX(-15deg);
+	transform: translateZ(50px) rotateX(-15deg);
 }
 .navbar-side .list-modul .bab:has(+ *:hover) {
-	transform: translateZ(100px) rotateX(30deg);
+	transform: translateZ(75px) rotateX(30deg);
 }
 
-.navbar-side .lis .modul {
-	width: 80%;
-	height: 100%;
-	position: fixed;
-	background-color: var(--w);
+.h-button {
+	display: none;
 }
 
 .modul {
 	position: absolute;
 	left: 2%;
 	margin-top: 64px;
-	width: 76%;
+	width: 74%;
 }
 
 /* display bab */
-#bab-1,
 #bab-2,
 #bab-3,
 #bab-4,
@@ -150,7 +155,8 @@ body {
 #bab-8,
 #bab-9,
 #bab-10,
-#bab-11 {
+#bab-11,
+#bab-12 {
 	display: none;
 }
 
@@ -174,6 +180,7 @@ body {
 	margin-left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
+	width: 70%;
 }
 
 .materi1 {
@@ -386,7 +393,7 @@ body {
 }
 
 .list-sebab li {
-	margin-left: 1rem;
+	margin-left: 0.8rem;
 	font-weight: 400;
 }
 
@@ -647,6 +654,26 @@ body {
 	padding: 3px;
 }
 
+.tabel {
+	padding: rem;
+	margin: auto;
+	border-collapse: collapse;
+}
+.tabel tr td {
+	border: 1px solid var(--b);
+	padding: 2px 6px;
+}
+.tabel tr td:nth-child(2),
+.tabel tr td:nth-child(3),
+.tabel tr td:nth-child(4),
+.tabel tr td:nth-child(5),
+.tabel tr td:nth-child(6) {
+	text-align: center;
+}
+.tabel tr:nth-child(1) {
+	text-align: center;
+}
+
 /* bab 8 */
 .materi8 span {
 	color: var(--lb);
@@ -780,6 +807,18 @@ body {
 }
 
 /* bab 10 */
+.materi10 span {
+	color: var(--dg);
+	font-weight: 500;
+}
+.materi10 .blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+.materi10 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
 
 .list-terkenal {
 	padding: 5px;
@@ -803,32 +842,98 @@ body {
 	padding: 3px;
 }
 
-@media (max-width: 1024px) {
+/* bab 11 */
+.materi11 span {
+	color: var(--dg);
+	font-weight: 500;
+}
+.materi11 .blue {
+	color: var(--lb);
+	font-weight: 500;
+}
+.materi11 .orange {
+	color: var(--r);
+	font-weight: 500;
+}
+
+#bab-12 {
+	margin: 0px 0 40px 0;
+}
+
+.tabel-rasio {
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+.tabel-rasio tr:nth-child(1) {
+	text-align: center;
+}
+
+.tabel-rasio tr td {
+	border: 1px solid var(--b);
+	padding: 2px 5px;
+}
+
+.tabel-rasio tr td:nth-child(1) {
+	text-align: center;
+}
+
+.tabel-rasio tr td:nth-child(3) {
+	text-align: center;
+}
+
+@media (max-width: 1025px) {
 	html {
 		font-size: 75%;
 	}
-	.main-title {
-		top: 20%;
+	.navbar {
+		height: 45;
 	}
-	.sub-title {
-		margin-top: 0.7rem;
+	.navbar h3 {
+		position: absolute;
+		top: 23%;
 	}
-	.page-label {
-		margin-top: 1rem;
+	.navbar-side {
+		width: 30%;
+		right: -50%;
+		transition: 0.5s ease;
+		opacity: 0.95;
+	}
+	.navbar-side.active {
+		right: 0;
+	}
+	.navbar-side .list-modul {
+		margin: 0.8rem;
+		width: 97%;
+	}
+	.navbar-side .list-modul a {
+		padding: 10px 20px 0px 8px;
+	}
+	.h-button {
+		position: absolute;
+		display: block;
+		right: 3%;
+		top: 23%;
+	}
+	#h-button {
+		height: 23px;
+	}
+	.modul {
+		width: 96%;
+	}
+	#bab-12 {
+		margin: 0px 0 20px 0;
 	}
 }
 
 @media (max-width: 768px) {
 	html {
-		font-size: 62.5%;
+		font-size: 57%;
 	}
-	.main-title {
-		top: 23%;
+	.navbar-side {
+		width: 35%;
 	}
-	.sub-title {
-		margin-top: 1rem;
-	}
-	.page-label {
-		margin-top: 1.4rem;
+	#bab-12 {
+		margin: 0px 0 15px 0;
 	}
 }
